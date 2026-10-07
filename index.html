@@ -215,20 +215,164 @@
             margin: 0;
         }
 
-        /* Infotext unter den Modellen */
+        /* Farbauswahl: zwei Kreise, schlicht wie im Onlineshop */
+        .color-picker {
+            margin-top: 18px;
+        }
+        .color-label {
+            display: block;
+            font-family: "Open sans", sans-serif;
+            font-weight: 800;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #777777;
+            margin-bottom: 8px;
+        }
+        .color-swatches {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .swatch {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid #cfcfcf;
+            box-shadow: 0 0 0 3px #ffffff, 0 0 0 4px #e0e0e0;
+        }
+        .swatch-white {
+            background-color: #ffffff;
+        }
+        .swatch-black {
+            background-color: #090909;
+            border-color: #090909;
+        }
+
+        /* Technik- und Kapazitätshinweise */
         .facts-info {
             background-color: #f6f6f6;
             border-top: 4px solid #f2013f;
-            padding: 24px 26px;
+            padding: 24px 26px 8px;
+            margin-bottom: 24px;
+        }
+        .facts-info .info-item {
+            padding: 0 0 18px;
+        }
+        .facts-info .info-label {
+            display: block;
+            font-family: "Open sans", sans-serif;
+            font-weight: 800;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #f2013f;
+            margin-bottom: 4px;
         }
         .facts-info p {
             font-family: "Open sans", sans-serif;
-            font-size: 17px;
-            line-height: 1.7;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #090909;
+            margin: 0;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0 32px;
+        }
+
+        /* Montage: kleiner Abschnitt mit größerem Bild */
+        .mount {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            gap: 24px;
+            background-color: #f6f6f6;
+            border-top: 4px solid #f2013f;
+            padding: 16px 26px 16px 16px;
+            margin-bottom: 24px;
+        }
+        .mount-photo {
+            flex: 0 0 200px;
+            height: 170px;
+            background-color: #ececec;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .mount-photo img {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .mount-text {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+        .mount-text .info-label {
+            display: block;
+            font-family: "Open sans", sans-serif;
+            font-weight: 800;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #f2013f;
+            margin-bottom: 4px;
+        }
+        .mount-text p {
+            font-family: "Open sans", sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
             color: #090909;
             margin: 0;
         }
 
+        /* Hinweisfeld am Ende des Abschnitts */
+        .contact-note {
+            background-color: #090909;
+            color: #ffffff;
+            padding: 28px 30px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .contact-note p {
+            flex: 1 1 380px;
+            font-family: "Open sans", sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #ffffff;
+            margin: 0;
+        }
+        .contact-note a.contact-link {
+            display: inline-block;
+            background-color: #f2013f;
+            color: #ffffff;
+            font-family: "Open sans", sans-serif;
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 14px 26px;
+            transition: background-color 0.3s;
+        }
+        .contact-note a.contact-link:hover {
+            background-color: #d00135;
+            color: #ffffff;
+        }
+
+        @media (min-width: 768px) {
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
         @media (min-width: 992px) {
             .models-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -239,6 +383,13 @@
                 flex-wrap: wrap;
             }
             .model-photo {
+                flex: 0 0 100%;
+            }
+            .mount {
+                flex-wrap: wrap;
+                padding: 16px;
+            }
+            .mount-photo {
                 flex: 0 0 100%;
             }
         }
@@ -484,8 +635,8 @@
         </section>
 
         <!-- ================= UNSERE AUTOMATEN ================= -->
-        <!-- Aufbau: zwei Modelle mit Bild nebeneinander, darunter ein kurzer Infotext. -->
-        <!-- Bilder in images/banner-carousel/ : modell-basic.png, modell-pro.png -->
+        <!-- Aufbau: 1) zwei Modelle mit Bild und Farbauswahl, 2) Technik-Hinweise, 3) Montage mit Bild, 4) Kontakt-Hinweis. -->
+        <!-- Bilder in images/banner-carousel/ : modell-basic.png, modell-pro.png, infofacts5.png (Standfuß) -->
         <!-- Fehlt ein Bild, wird sein Feld automatisch ausgeblendet. -->
         <section id="facts" class="facts page">
             <div class="container wow fadeInUp">
@@ -502,26 +653,70 @@
                         <div class="model-text">
                             <h2 class="model-name">latehub Basic</h2>
                             <p class="model-desc">Das Standardmodell: schlicht, unauffällig und in jeder Location einsetzbar.</p>
+                            <div class="color-picker">
+                                <span class="color-label">Verfügbare Farben</span>
+                                <div class="color-swatches">
+                                    <span class="swatch swatch-white" title="Weiß" aria-label="Weiß"></span>
+                                    <span class="swatch swatch-black" title="Schwarz" aria-label="Schwarz"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Pro (mit LED-Streifen) -->
+                    <!-- Pro (mit LED-Modul) -->
                     <div class="model-head">
                         <div class="model-photo">
-                            <img src="images/banner-carousel/modell-pro.png" alt="latehub Pro mit LED-Streifen" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                            <img src="images/banner-carousel/modell-pro.png" alt="latehub Pro mit LED-Modul" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
                         </div>
                         <div class="model-text">
-                            <span class="model-badge">mit LED-Streifen</span>
+                            <span class="model-badge">mit LED-Modul</span>
                             <h2 class="model-name">latehub Pro</h2>
-                            <p class="model-desc">Gleiche Technik wie das Basic-Modell, dazu mit seitlichem LED-Streifen, der den Automaten in Club und Bar in Szene setzt.</p>
+                            <p class="model-desc">Ausgestattet mit individualisierbarer LED-Technik.</p>
+                            <div class="color-picker">
+                                <span class="color-label">Verfügbare Farben</span>
+                                <div class="color-swatches">
+                                    <span class="swatch swatch-white" title="Weiß" aria-label="Weiß"></span>
+                                    <span class="swatch swatch-black" title="Schwarz" aria-label="Schwarz"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                 </div>
 
-                <!-- Infotext -->
+                <!-- Kapazität und Technik -->
                 <div class="facts-info">
-                    <p>Beide Modelle gibt es in verschiedenen Kapazitäten, in Schwarz oder Weiß und wahlweise mit Standfuß oder zur Wandmontage.</p>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Kapazität</span>
+                            <p>Beide Modelle sind in unterschiedlichen Kapazitäten erhältlich.</p>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Stromversorgung</span>
+                            <p>Der Betrieb erfolgt am europäischen Stromnetz und entspricht dem hierzulande üblichen Standard.</p>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Zahlung</span>
+                            <p>Das integrierte Kartenlesegerät für EC- und kontaktlose Zahlung entspricht dem europäischen Standard.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Montage -->
+                <div class="mount">
+                    <div class="mount-photo">
+                        <img src="images/banner-carousel/infofacts5.png" alt="Standfuß für latehub Automaten" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                    </div>
+                    <div class="mount-text">
+                        <span class="info-label">Montage</span>
+                        <p>Alle Automaten sind wahlweise zur Wandmontage oder mit einem optionalen Standfuß auf Rollen erhältlich.</p>
+                    </div>
+                </div>
+
+                <!-- Hinweis auf Kontakt -->
+                <div class="contact-note">
+                    <p>Für weiterführende Informationen stehen wir Ihnen jederzeit gerne zur Verfügung. Bei Interesse freuen wir uns über Ihre Kontaktaufnahme.</p>
+                    <a href="contact.html" class="contact-link">Kontakt aufnehmen</a>
                 </div>
 
             </div>
