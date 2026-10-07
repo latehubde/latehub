@@ -10,7 +10,7 @@
     <meta name="description" content="latehub – Verkaufsautomaten mit kontaktloser Zahlung und Altersverifikation für Clubs, Bars, Hotels und Gastronomie in Köln.">
     <!--meta tags ends-->
 
-    <title>latehub – Verkaufsautomaten für Clubs, Bars &amp; Hotels</title>
+    <title>latehub – Verkaufsautomaten für Clubs &amp; Bars &amp; Hotels</title>
 
     <!--- Links to google fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800%7cRoboto+Mono:400,700%7cMerriweather:300%7cAbril+Fatface'
@@ -318,6 +318,92 @@
             border-radius: 20px;
         }
 
+        /* ===== Basic und Pro nebeneinander ===== */
+        .models-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 56px;
+        }
+        .models-row .model {
+            margin-bottom: 0;
+            min-width: 0;
+        }
+        .models-row .model-head {
+            flex-wrap: nowrap;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .models-row .model-photo {
+            flex: 0 0 150px;
+            height: 190px;
+        }
+        .models-row .model-text {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+        .facts .models-row .model-name {
+            font-size: 24px;
+        }
+        .models-row .model-desc {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .models-row .size-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .models-row .size-card {
+            padding: 16px 14px 6px;
+        }
+        .models-row .size-title {
+            font-size: 18px;
+        }
+        .models-row .size-sub {
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+        .models-row .fact-row {
+            gap: 10px;
+            padding: 10px 0;
+        }
+        .models-row .fact-icon {
+            flex: 0 0 36px;
+            width: 36px;
+            height: 36px;
+        }
+        .models-row .fact-label {
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+        .models-row .fact-value {
+            font-size: 15px;
+        }
+        .models-row .fact-note {
+            font-size: 12px;
+        }
+
+        /* Ab Laptop-Breite: Basic links, Pro rechts */
+        @media (min-width: 992px) {
+            .models-row {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+        }
+
+        /* Kleines Handy: Karten und Foto untereinander */
+        @media (max-width: 479px) {
+            .models-row .size-grid {
+                grid-template-columns: 1fr;
+            }
+            .models-row .model-head {
+                flex-wrap: wrap;
+            }
+            .models-row .model-photo {
+                flex: 0 0 100%;
+            }
+        }
+
         @media (min-width: 768px) {
             .size-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -571,6 +657,7 @@
 
         <!-- ================= UNSERE AUTOMATEN ================= -->
         <!-- Zwei Modelle (Basic, Pro), jeweils kompakt (10 Slots) und groß (15 Slots). -->
+        <!-- Auf dem Laptop stehen Basic und Pro nebeneinander (.models-row). -->
         <!-- Bilder in images/banner-carousel/ : -->
         <!--   modell-basic.png, modell-pro.png              = Foto je Modell -->
         <!--   infofacts1.png = Abmessungen, infofacts2.png = Gewicht, infofacts3.png = Strom, -->
@@ -581,6 +668,9 @@
             <div class="container wow fadeInUp">
                 <h1>Unsere Automaten</h1>
                 <p class="facts-intro">Zwei Modelle, jeweils in kompakter und in großer Ausführung. Alle Automaten gibt es wahlweise zur Wandmontage oder auf einem Ständer.</p>
+
+                <!-- ===== BASIC UND PRO NEBENEINANDER ===== -->
+                <div class="models-row">
 
                 <!-- ===== MODELL 1: BASIC ===== -->
                 <div class="model">
@@ -730,6 +820,9 @@
                     </div>
                 </div>
                 <!-- ===== MODELL 2 ENDE ===== -->
+
+                </div>
+                <!-- ===== MODELLE NEBENEINANDER ENDE ===== -->
 
                 <!-- ===== FÜR ALLE MODELLE ===== -->
                 <h2 class="common-title">Für alle Modelle</h2>
