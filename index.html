@@ -34,7 +34,7 @@
     <!-- custom stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
-    <!-- Logo, Leiste und Überschriften-Schrift -->
+    <!-- Logo, Leiste, Überschriften-Schrift und Karussell-Steuerung -->
     <style>
         /* Durchgängig schwarze Leiste */
         .navbar-default,
@@ -52,6 +52,88 @@
             font-size: 36px;
             line-height: 1.15;
             letter-spacing: -0.5px;
+        }
+
+        /* Karussell: langsamere Überblendung */
+        .carousel-fade .carousel-inner .item {
+            -webkit-transition-duration: 1.2s;
+            transition-duration: 1.2s;
+        }
+
+        /* Karussell-Steuerung: mittig unten, drei getrennte Elemente */
+        .carousel-indicators {
+            position: absolute;
+            left: 50%;
+            right: auto;
+            top: auto;
+            bottom: 28px;
+            margin: 0;
+            padding: 0;
+            width: 108px;
+            height: 48px;
+            transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            background-color: #000000;
+            border: none;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+        .carousel-indicators li {
+            width: 10px;
+            height: 10px;
+            margin: 0 6px;
+            background-color: #ffffff;
+            border: none;
+            border-radius: 10px;
+        }
+        .carousel-indicators .active {
+            width: 12px;
+            height: 12px;
+            margin: 0 6px;
+            background-color: #f2013f;
+        }
+
+        .carousel-control.left,
+        .carousel-control.right {
+            top: auto;
+            bottom: 28px;
+            width: 48px;
+            height: 48px;
+            margin-top: 0;
+            margin-right: 0;
+            background-color: #000000;
+            background-image: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 5;
+        }
+        .carousel-control.left {
+            left: 50%;
+            right: auto;
+            margin-left: -110px;
+        }
+        .carousel-control.right {
+            left: 50%;
+            right: auto;
+            margin-left: 62px;
+        }
+        .carousel-control.left i img,
+        .carousel-control.right i img {
+            margin-top: 0;
+            width: 24px;
+            height: auto;
+            display: block;
+        }
+        .carousel-control.left:hover,
+        .carousel-control.right:hover {
+            background-color: #1a1a1a;
+            transform: scale(1.08);
         }
 
         /* Logo-Größe und Position (Handy) */
@@ -159,7 +241,8 @@
         <section id="banner" class="banner">
             
             <div class="container">
-            <div id="ghughu-banner-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+            <!-- data-interval: Zeit pro Slide in Millisekunden (9000 = 9 Sekunden) -->
+            <div id="ghughu-banner-carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="9000">
               
                <!-- Indicators -->
                   <ol class="carousel-indicators">
