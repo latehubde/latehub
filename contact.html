@@ -36,6 +36,14 @@
 
     <!-- Logo, Leiste und Überschriften-Schrift -->
     <style>
+        /* Sanftes Scrollen zum Formular */
+        html {
+            scroll-behavior: smooth;
+        }
+        #email-us {
+            scroll-margin-top: 90px;
+        }
+
         /* Durchgängig schwarze Leiste */
         .navbar-default,
         .navbar-default .navbar-collapse {
@@ -52,6 +60,56 @@
             font-size: 36px;
             line-height: 1.15;
             letter-spacing: -0.5px;
+        }
+
+        /* Hinweiskasten zum Kontaktformular */
+        .address-table {
+            margin-bottom: 30px;
+        }
+        .form-hint {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 24px 26px;
+            border-left: 5px solid #ffffff;
+            margin-bottom: 50px;
+        }
+        .form-hint h2 {
+            font-family: "Montserrat", "Open Sans", sans-serif;
+            font-weight: 800;
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+        .form-hint p {
+            font-family: "Open Sans", sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+        .form-hint a.form-hint-btn {
+            display: inline-block;
+            background-color: #ffffff;
+            color: #f2013f;
+            font-family: "Montserrat", "Open Sans", sans-serif;
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 12px 22px;
+            transition: all 0.3s;
+        }
+        .form-hint a.form-hint-btn:hover {
+            background-color: #f2013f;
+            color: #ffffff;
+        }
+        .form-hint .hint-arrow {
+            display: inline-block;
+            margin-left: 8px;
+            animation: hint-bounce 1.4s infinite;
+        }
+        @keyframes hint-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
         }
 
         /* Logo-Größe und Position (Handy) */
@@ -182,6 +240,16 @@
                                     </tr>
                                 </tbody>
                             </table>
+
+                            <!-- Hinweis auf das Kontaktformular -->
+                            <div class="form-hint">
+                                <h2>Anfrage über das Kontaktformular</h2>
+                                <p>Sie erreichen uns auch über das Kontaktformular auf dieser Seite.
+                                Schildern Sie uns kurz Ihre Location und Ihre Anforderungen, wir melden
+                                uns zeitnah mit einem passenden Angebot bei Ihnen.</p>
+                                <a class="form-hint-btn" href="#email-us">Zum Kontaktformular<span class="hint-arrow">&#8595;</span></a>
+                            </div>
+
                             </div>
                     </div>
                     <div class="col-md-6">
