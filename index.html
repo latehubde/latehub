@@ -32,6 +32,35 @@
     <!-- custom stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
+    <!-- Logo-Größe und Position (Handy / Tablet / Desktop) -->
+    <style>
+        .navbar-default .navbar-brand {
+            height: auto;
+            padding: 8px 15px;
+        }
+        .navbar-default .navbar-brand img {
+            display: block;
+            height: 34px;
+            width: auto;
+        }
+        @media (min-width: 768px) {
+            .navbar-default .navbar-brand {
+                padding: 10px 40px;
+            }
+            .navbar-default .navbar-brand img {
+                height: 46px;
+            }
+        }
+        @media (min-width: 992px) {
+            .navbar-default .navbar-brand {
+                padding: 14px 40px;
+            }
+            .navbar-default .navbar-brand img {
+                height: 65px;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
@@ -63,7 +92,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="index.html"><img src="images/banner-carousel/logoicon.png" alt="latehub" style="height:54px; width:auto;"></a>
+                        <a class="navbar-brand" href="index.html"><img src="images/banner-carousel/logoicon.png" alt="latehub"></a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
