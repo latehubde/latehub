@@ -15,6 +15,8 @@
     <!--- Links to google fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800%7cRoboto+Mono:400,700%7cMerriweather:300%7cAbril+Fatface'
           rel='stylesheet' >
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:700,800'
+          rel='stylesheet' >
     <!-- Links to fonts ends -->
 
     <!-- Bootstrap stylesheet -->
@@ -31,6 +33,74 @@
 
     <!-- custom stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <!-- Logo, Leiste und Überschriften-Schrift -->
+    <style>
+        /* Durchgängig schwarze Leiste */
+        .navbar-default,
+        .navbar-default .navbar-collapse {
+            background-color: #000000;
+        }
+        .navbar-default .navbar-nav > li.active > a {
+            background-color: #000000;
+        }
+
+        /* Überschriften-Schrift */
+        h1 {
+            font-family: "Montserrat", "Open Sans", sans-serif;
+            font-weight: 800;
+            font-size: 36px;
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+        }
+
+        /* Logo-Größe und Position (Handy) */
+        .navbar-default .navbar-brand {
+            height: auto;
+            padding: 8px 15px;
+        }
+        .navbar-default .navbar-brand img {
+            display: block;
+            height: 34px;
+            width: auto;
+        }
+
+        /* Tablet */
+        @media (min-width: 768px) {
+            /* Leiste über die volle Breite: Logo links, Menü rechts am Rand */
+            .navbar-default > .container {
+                width: 100%;
+                max-width: none;
+                padding-left: 40px;
+                padding-right: 40px;
+            }
+            .navbar-default {
+                background-color: #000000;
+            }
+            .navbar-default .navbar-brand {
+                padding: 10px 15px 10px 15px;
+            }
+            .navbar-default .navbar-brand img {
+                height: 52px;
+            }
+            .navbar-default .navbar-collapse {
+                padding-right: 0;
+            }
+        }
+
+        /* Laptop / Desktop */
+        @media (min-width: 992px) {
+            h1 {
+                font-size: 46px;
+            }
+            .navbar-default .navbar-brand {
+                padding: 15px 15px 15px 15px;
+            }
+            .navbar-default .navbar-brand img {
+                height: 75px;
+            }
+        }
+    </style>
 
 </head>
 
@@ -63,7 +133,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="index.html">latehub</a>
+                        <a class="navbar-brand" href="index.html"><img src="images/banner-carousel/logoicon.png" alt="latehub"></a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -143,11 +213,11 @@
                                 <tbody>
                                     <tr>
                                         <td>E-Mail:</td>
-                                        <td>[Ihre E-Mail-Adresse]</td>
+                                        <td>kontakt@latehub.de</td>
                                     </tr>
                                     <tr>
                                         <td>Telefon:</td>
-                                        <td>[Ihre Telefonnummer]</td>
+                                        <td>+49 15906125600</td>
                                     </tr>
                                     <tr>
                                         <td>Standort:</td>
@@ -245,10 +315,18 @@
     <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
     <script type="text/javascript" src="js/jquery.easing.min.js"></script>
     <script type="text/javascript" src="js/wow.min.js"></script>
-    <script src="https://maps.google.com/maps/api/js"></script>
+    <script src="http://maps.google.com/maps/api/js"></script>
     <script src="js/gmaps.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- Notausgang: blendet den Lade-Bildschirm nach 3 Sekunden aus -->
+    <script>
+      setTimeout(function () {
+        var l = document.getElementById('loader-wrapper');
+        if (l) { l.style.display = 'none'; }
+      }, 3000);
+    </script>
 
 <!-- SCRIPTS ENDS -->
 </body>
