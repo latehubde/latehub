@@ -154,111 +154,12 @@
             margin-bottom: 44px;
         }
 
-        /* Ein Block (Modelle / Gemeinsam / Unterschiede) */
-        .facts-block {
-            margin-bottom: 56px;
-        }
-        .facts-block:last-child {
-            margin-bottom: 0;
-        }
-        .facts .block-title {
-            font-family: "Montserrat", "Open Sans", sans-serif;
-            font-weight: 800;
-            font-size: 24px;
-            line-height: 1.2;
-            color: #090909;
-            margin: 0 0 20px;
-        }
-
-        /* Karten (gemeinsame Merkmale) */
-        .common-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-        .size-card {
-            background-color: #f6f6f6;
-            border-top: 4px solid #f2013f;
-            padding: 22px 22px 10px;
-        }
-
-        /* Eine Zeile mit Bild und Wert */
-        .fact-row {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 12px 0;
-            border-top: 1px solid #e0e0e0;
-        }
-        .fact-row:first-of-type {
-            border-top: none;
-        }
-        .fact-icon {
-            flex: 0 0 56px;
-            width: 56px;
-            height: 56px;
-            background-color: #ececec;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        .fact-icon img {
-            display: block;
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-        .fact-text {
-            flex: 1 1 auto;
-            min-width: 0;
-        }
-        .fact-label {
-            display: block;
-            font-family: "Open sans", sans-serif;
-            font-weight: 800;
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #f2013f;
-            margin-bottom: 3px;
-        }
-        .fact-value {
-            font-family: "Montserrat", "Open Sans", sans-serif;
-            font-weight: 800;
-            font-size: 17px;
-            line-height: 1.3;
-            color: #090909;
-        }
-        .fact-note {
-            display: block;
-            font-family: "Open sans", sans-serif;
-            font-size: 13px;
-            line-height: 1.5;
-            color: #555555;
-            margin-top: 2px;
-        }
-
-        .chip-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 24px;
-        }
-        .chip {
-            background-color: #090909;
-            color: #ffffff;
-            font-family: "Open sans", sans-serif;
-            font-size: 13px;
-            padding: 8px 16px;
-            border-radius: 20px;
-        }
-
         /* Die zwei Modelle nebeneinander */
         .models-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 32px;
+            margin-bottom: 40px;
         }
         .model-head {
             display: flex;
@@ -314,124 +215,23 @@
             margin: 0;
         }
 
-        /* Vergleichstabelle: Unterschiede nach Modell und Größe */
-        .compare-wrap {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
+        /* Infotext unter den Modellen */
+        .facts-info {
+            background-color: #f6f6f6;
             border-top: 4px solid #f2013f;
-            background-color: #f6f6f6;
+            padding: 24px 26px;
         }
-        .compare {
-            width: 100%;
-            min-width: 700px;
-            border-collapse: collapse;
+        .facts-info p {
             font-family: "Open sans", sans-serif;
-        }
-        .compare th,
-        .compare td {
-            padding: 16px 18px;
-            text-align: left;
-            vertical-align: middle;
-        }
-        .compare thead .c-model {
-            background-color: #090909;
-            color: #ffffff;
-            font-family: "Montserrat", "Open Sans", sans-serif;
-            font-weight: 800;
-            font-size: 18px;
-            text-align: center;
-        }
-        .compare thead .c-model .c-badge {
-            display: inline-block;
-            background-color: #f2013f;
-            color: #ffffff;
-            font-family: "Open sans", sans-serif;
-            font-weight: 800;
-            font-size: 10px;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            padding: 3px 8px;
-            margin-left: 8px;
-            vertical-align: middle;
-        }
-        .compare thead .c-size {
-            background-color: #ececec;
-            border-bottom: 3px solid #f2013f;
-            font-family: "Montserrat", "Open Sans", sans-serif;
-            font-weight: 800;
-            font-size: 16px;
+            font-size: 17px;
+            line-height: 1.7;
             color: #090909;
-        }
-        .compare thead .c-size span {
-            display: block;
-            font-family: "Open sans", sans-serif;
-            font-weight: 400;
-            font-size: 13px;
-            color: #555555;
-            margin-top: 2px;
-        }
-        .compare .sep {
-            border-left: 3px solid #ffffff;
-        }
-        .compare tbody tr {
-            border-bottom: 1px solid #e0e0e0;
-        }
-        .compare tbody tr:last-child {
-            border-bottom: none;
-        }
-        .compare tbody th {
-            font-weight: 400;
-            background-color: #f6f6f6;
-            white-space: nowrap;
-        }
-        .compare tbody th .row-label {
-            display: block;
-            font-family: "Open sans", sans-serif;
-            font-weight: 800;
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #f2013f;
-        }
-        .compare tbody th .row-note {
-            display: block;
-            font-size: 12px;
-            color: #555555;
-            margin-top: 2px;
-        }
-        .compare tbody td {
-            font-family: "Montserrat", "Open Sans", sans-serif;
-            font-weight: 800;
-            font-size: 16px;
-            line-height: 1.3;
-            color: #090909;
-        }
-        .compare-hint {
-            display: none;
-            font-family: "Open sans", sans-serif;
-            font-size: 12px;
-            color: #777777;
-            margin: 8px 0 0;
+            margin: 0;
         }
 
-        @media (min-width: 768px) {
-            .common-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
         @media (min-width: 992px) {
             .models-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (max-width: 767px) {
-            .compare-hint {
-                display: block;
-            }
-            .compare tbody th {
-                position: sticky;
-                left: 0;
-                z-index: 1;
             }
         }
         @media (max-width: 480px) {
@@ -684,155 +484,45 @@
         </section>
 
         <!-- ================= UNSERE AUTOMATEN ================= -->
-        <!-- Aufbau: 1) die zwei Modelle mit Bild, 2) was alle Automaten gemeinsam haben, 3) Unterschiede als Tabelle. -->
-        <!-- Bilder in images/banner-carousel/ : -->
-        <!--   modell-basic.png, modell-pro.png              = Foto je Modell -->
-        <!--   infofacts1.png = Abmessungen, infofacts2.png = Gewicht, infofacts3.png = Strom, -->
-        <!--   infofacts4.png = Kapazität,   infofacts5.png = Montage -->
+        <!-- Aufbau: zwei Modelle mit Bild nebeneinander, darunter ein kurzer Infotext. -->
+        <!-- Bilder in images/banner-carousel/ : modell-basic.png, modell-pro.png -->
         <!-- Fehlt ein Bild, wird sein Feld automatisch ausgeblendet. -->
-        <!-- Werte in eckigen Klammern [ ] bitte durch die echten Daten ersetzen. -->
         <section id="facts" class="facts page">
             <div class="container wow fadeInUp">
                 <h1>Unsere Automaten</h1>
-                <p class="facts-intro">Zwei Modelle, jeweils in kompakter und in großer Ausführung. Alle Automaten gibt es wahlweise zur Wandmontage oder auf einem Ständer.</p>
+                <p class="facts-intro">Zwei Modelle für Ihre Location.</p>
 
-                <!-- ===== 1) DIE ZWEI MODELLE (BILDER ZUERST) ===== -->
-                <div class="facts-block">
+                <div class="models-grid">
 
-                    <div class="models-grid">
-
-                        <!-- Basic -->
-                        <div class="model-head">
-                            <div class="model-photo">
-                                <img src="images/banner-carousel/modell-basic.png" alt="latehub Basic" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
-                            </div>
-                            <div class="model-text">
-                                <h2 class="model-name">latehub Basic</h2>
-                                <p class="model-desc">Das Standardmodell: schlicht, unauffällig und in jeder Location einsetzbar.</p>
-                            </div>
+                    <!-- Basic -->
+                    <div class="model-head">
+                        <div class="model-photo">
+                            <img src="images/banner-carousel/modell-basic.png" alt="latehub Basic" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
                         </div>
-
-                        <!-- Pro (mit LED-Streifen) -->
-                        <div class="model-head">
-                            <div class="model-photo">
-                                <img src="images/banner-carousel/modell-pro.png" alt="latehub Pro mit LED-Streifen" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
-                            </div>
-                            <div class="model-text">
-                                <span class="model-badge">mit LED-Streifen</span>
-                                <h2 class="model-name">latehub Pro</h2>
-                                <p class="model-desc">Gleiche Technik wie das Basic-Modell, dazu mit seitlichem LED-Streifen, der den Automaten in Club und Bar in Szene setzt.</p>
-                            </div>
+                        <div class="model-text">
+                            <h2 class="model-name">latehub Basic</h2>
+                            <p class="model-desc">Das Standardmodell: schlicht, unauffällig und in jeder Location einsetzbar.</p>
                         </div>
-
                     </div>
+
+                    <!-- Pro (mit LED-Streifen) -->
+                    <div class="model-head">
+                        <div class="model-photo">
+                            <img src="images/banner-carousel/modell-pro.png" alt="latehub Pro mit LED-Streifen" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                        </div>
+                        <div class="model-text">
+                            <span class="model-badge">mit LED-Streifen</span>
+                            <h2 class="model-name">latehub Pro</h2>
+                            <p class="model-desc">Gleiche Technik wie das Basic-Modell, dazu mit seitlichem LED-Streifen, der den Automaten in Club und Bar in Szene setzt.</p>
+                        </div>
+                    </div>
+
                 </div>
-                <!-- ===== MODELLE ENDE ===== -->
 
-                <!-- ===== 2) GEMEINSAM FÜR ALLE AUTOMATEN ===== -->
-                <div class="facts-block">
-                    <h2 class="block-title">Das haben alle Automaten gemeinsam</h2>
-
-                    <div class="common-grid">
-
-                        <div class="size-card">
-                            <div class="fact-row">
-                                <div class="fact-icon"><img src="images/banner-carousel/infofacts3.png" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'"></div>
-                                <div class="fact-text">
-                                    <span class="fact-label">Stromversorgung</span>
-                                    <span class="fact-value">220 V / 50 Hz</span>
-                                    <span class="fact-note">Leistungsaufnahme maximal 36 W</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="size-card">
-                            <div class="fact-row">
-                                <div class="fact-icon"><img src="images/banner-carousel/infofacts5.png" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'"></div>
-                                <div class="fact-text">
-                                    <span class="fact-label">Montage</span>
-                                    <span class="fact-value">Wand oder Standfuß</span>
-                                    <span class="fact-note">Wahlweise an der Wand befestigt oder auf einem Ständer mit Rollen, in Weiß oder Schwarz.</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="size-card">
-                            <div class="fact-row">
-                                <div class="fact-icon"><img src="images/banner-carousel/infofacts4.png" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'"></div>
-                                <div class="fact-text">
-                                    <span class="fact-label">Zwei Größen</span>
-                                    <span class="fact-value">Kompakt · Groß</span>
-                                    <span class="fact-note">Kompakt mit 10 Slots, Groß mit 15 Slots – bei Basic und Pro.</span>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="chip-list">
-                        <span class="chip">32"-Touchscreen</span>
-                        <span class="chip">Bargeldlose Zahlung</span>
-                        <span class="chip">Ausgabe per Spirale</span>
-                        <span class="chip">Verkaufsdaten per WLAN/4G abrufbar</span>
-                    </div>
+                <!-- Infotext -->
+                <div class="facts-info">
+                    <p>Beide Modelle gibt es in verschiedenen Kapazitäten, in Schwarz oder Weiß und wahlweise mit Standfuß oder zur Wandmontage.</p>
                 </div>
-                <!-- ===== GEMEINSAM ENDE ===== -->
-
-                <!-- ===== 3) UNTERSCHIEDE: VERGLEICHSTABELLE ===== -->
-                <div class="facts-block">
-                    <h2 class="block-title">Die Unterschiede im Überblick</h2>
-
-                    <div class="compare-wrap">
-                        <table class="compare">
-                            <thead>
-                                <tr>
-                                    <th rowspan="2" class="c-size"></th>
-                                    <th colspan="2" class="c-model">latehub Basic</th>
-                                    <th colspan="2" class="c-model sep">latehub Pro <span class="c-badge">LED</span></th>
-                                </tr>
-                                <tr>
-                                    <th class="c-size">Kompakt<span>10 Slots</span></th>
-                                    <th class="c-size">Groß<span>15 Slots</span></th>
-                                    <th class="c-size sep">Kompakt<span>10 Slots</span></th>
-                                    <th class="c-size">Groß<span>15 Slots</span></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">
-                                        <span class="row-label">Abmessungen</span>
-                                        <span class="row-note">Breite × Tiefe × Höhe</span>
-                                    </th>
-                                    <td>600 × 260 × 1030 mm</td>
-                                    <td>600 × 355 × 1030 mm</td>
-                                    <td class="sep">600 × 260 × 1030 mm</td>
-                                    <td>600 × 220 × 1200 mm</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <span class="row-label">Gewicht</span>
-                                    </th>
-                                    <td>60 kg</td>
-                                    <td>60 kg</td>
-                                    <td class="sep">60 kg</td>
-                                    <td>[xx] kg</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <span class="row-label">Kapazität</span>
-                                        <span class="row-note">Produkte insgesamt</span>
-                                    </th>
-                                    <td>bis zu 200</td>
-                                    <td>bis zu 250</td>
-                                    <td class="sep">bis zu 200</td>
-                                    <td>bis zu 250</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <p class="compare-hint">Tabelle seitlich wischen, um alle Varianten zu sehen.</p>
-                </div>
-                <!-- ===== UNTERSCHIEDE ENDE ===== -->
 
             </div>
         </section>
