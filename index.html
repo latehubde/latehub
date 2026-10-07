@@ -34,7 +34,7 @@
     <!-- custom stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
-    <!-- Logo, Leiste, Überschriften-Schrift, Karussell-Steuerung, Fakten-Abschnitt und Bilderband -->
+    <!-- Logo, Leiste, Überschriften-Schrift, Karussell-Steuerung, Automaten-Abschnitt und Bilderband -->
     <style>
         /* Durchgängig schwarze Leiste */
         .navbar-default,
@@ -136,7 +136,7 @@
             transform: scale(1.08);
         }
 
-        /* Abschnitt "Fakten zum Automaten" (zwischen Banner und "Wer wir sind") */
+        /* ===== Abschnitt "Unsere Automaten" (zwischen Banner und "Wer wir sind") ===== */
         .facts {
             background-color: #ffffff;
             color: #090909;
@@ -146,79 +146,186 @@
             margin-bottom: 14px;
         }
         .facts .facts-intro {
-            font-family: "Open Sans", sans-serif;
+            font-family: "Open sans", sans-serif;
             font-size: 16px;
             line-height: 1.6;
             color: #555555;
-            max-width: 640px;
-            margin-bottom: 40px;
+            max-width: 680px;
+            margin-bottom: 44px;
         }
-        .facts-grid {
+
+        /* Ein Modell (Basic bzw. Pro) */
+        .model {
+            margin-bottom: 56px;
+        }
+        .model-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        .model-photo {
+            flex: 0 0 240px;
+            max-width: 100%;
+            height: 220px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .model-photo img {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .model-text {
+            flex: 1 1 280px;
+        }
+        .facts .model-name {
+            font-family: "Montserrat", "Open Sans", sans-serif;
+            font-weight: 800;
+            font-size: 28px;
+            line-height: 1.2;
+            color: #090909;
+            margin: 0 0 8px;
+        }
+        .model-badge {
+            display: inline-block;
+            background-color: #f2013f;
+            color: #ffffff;
+            font-family: "Open sans", sans-serif;
+            font-weight: 800;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            margin-bottom: 10px;
+        }
+        .model-desc {
+            font-family: "Open sans", sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #444444;
+            margin: 0;
+        }
+
+        /* Karten: Kompakt / Groß */
+        .size-grid {
             display: grid;
-            grid-template-columns: repeat(1, 1fr);
+            grid-template-columns: 1fr;
             gap: 20px;
         }
-        .fact {
+        .size-card {
             background-color: #f6f6f6;
             border-top: 4px solid #f2013f;
-            display: flex;
-            flex-direction: column;
+            padding: 22px 22px 10px;
         }
-        .fact-img {
-            height: 140px;
+        .size-title {
+            font-family: "Montserrat", "Open Sans", sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            line-height: 1.2;
+            color: #090909;
+            margin: 0 0 4px;
+        }
+        .size-sub {
+            font-family: "Open sans", sans-serif;
+            font-size: 14px;
+            color: #555555;
+            margin: 0 0 12px;
+        }
+
+        /* Eine Zeile mit Bild und Wert */
+        .fact-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 0;
+            border-top: 1px solid #e0e0e0;
+        }
+        .fact-row:first-of-type {
+            border-top: none;
+        }
+        .fact-icon {
+            flex: 0 0 56px;
+            width: 56px;
+            height: 56px;
             background-color: #ececec;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
         }
-        .fact-img img {
+        .fact-icon img {
             display: block;
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
         }
-        .fact-body {
-            padding: 18px 18px 22px;
+        .fact-text {
+            flex: 1 1 auto;
+            min-width: 0;
         }
         .fact-label {
             display: block;
-            font-family: "Open Sans", sans-serif;
+            font-family: "Open sans", sans-serif;
             font-weight: 800;
-            font-size: 12px;
+            font-size: 11px;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             color: #f2013f;
-            margin-bottom: 8px;
+            margin-bottom: 3px;
         }
         .fact-value {
             font-family: "Montserrat", "Open Sans", sans-serif;
             font-weight: 800;
-            font-size: 18px;
+            font-size: 17px;
             line-height: 1.3;
             color: #090909;
-            margin-bottom: 6px;
         }
         .fact-note {
-            font-family: "Open Sans", sans-serif;
+            display: block;
+            font-family: "Open sans", sans-serif;
             font-size: 13px;
             line-height: 1.5;
             color: #555555;
-            margin: 0;
+            margin-top: 2px;
         }
-        @media (min-width: 480px) {
-            .facts-grid {
+
+        /* Für alle Modelle */
+        .common-title {
+            font-family: "Montserrat", "Open Sans", sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+            color: #090909;
+            margin: 0 0 20px;
+        }
+        .chip-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 24px;
+        }
+        .chip {
+            background-color: #090909;
+            color: #ffffff;
+            font-family: "Open sans", sans-serif;
+            font-size: 13px;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .size-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
-        @media (min-width: 768px) {
-            .facts-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        @media (min-width: 992px) {
-            .facts-grid {
-                grid-template-columns: repeat(5, 1fr);
+        @media (max-width: 480px) {
+            .model-photo {
+                flex: 0 0 100%;
             }
         }
 
@@ -462,71 +569,206 @@
              </div> 
         </section>
 
-        <!-- FAKTEN ZUM AUTOMATEN: Abmessungen, Gewicht, Strom, Kapazität, Montage -->
-        <!-- Bilder: images/banner-carousel/infofacts1.png bis infofacts5.png -->
-        <!-- Die Werte in eckigen Klammern [ ] bitte durch die echten Daten ersetzen. -->
+        <!-- ================= UNSERE AUTOMATEN ================= -->
+        <!-- Zwei Modelle (Basic, Pro), jeweils kompakt (10 Slots) und groß (15 Slots). -->
+        <!-- Bilder in images/banner-carousel/ : -->
+        <!--   modell-basic.png, modell-pro.png              = Foto je Modell -->
+        <!--   infofacts1.png = Abmessungen, infofacts2.png = Gewicht, infofacts3.png = Strom, -->
+        <!--   infofacts4.png = Kapazität,   infofacts5.png = Montage -->
+        <!-- Fehlt ein Bild, wird sein Feld automatisch ausgeblendet. -->
+        <!-- Werte in eckigen Klammern [ ] bitte durch die echten Daten ersetzen. -->
         <section id="facts" class="facts page">
             <div class="container wow fadeInUp">
-                <h1>Fakten zum Automaten</h1>
-                <p class="facts-intro">Die wichtigsten Eckdaten auf einen Blick.</p>
+                <h1>Unsere Automaten</h1>
+                <p class="facts-intro">Zwei Modelle, jeweils in kompakter und in großer Ausführung. Alle Automaten gibt es wahlweise zur Wandmontage oder auf einem Ständer.</p>
 
-                <div class="facts-grid">
-
-                    <div class="fact">
-                        <div class="fact-img">
-                            <img src="images/banner-carousel/infofacts1.png" alt="Abmessungen des Automaten" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                <!-- ===== MODELL 1: BASIC ===== -->
+                <div class="model">
+                    <div class="model-head">
+                        <div class="model-photo">
+                            <img src="images/banner-carousel/modell-basic.png" alt="latehub Basic" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
                         </div>
-                        <div class="fact-body">
-                            <span class="fact-label">Abmessungen</span>
-                            <div class="fact-value">[Breite] × [Höhe] × [Tiefe] cm</div>
+                        <div class="model-text">
+                            <h2 class="model-name">latehub Basic</h2>
+                            <p class="model-desc">Das Standardmodell: schlicht, unauffällig und in jeder Location einsetzbar.</p>
                         </div>
                     </div>
 
-                    <div class="fact">
-                        <div class="fact-img">
-                            <img src="images/banner-carousel/infofacts2.png" alt="Gewicht des Automaten" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                    <div class="size-grid">
+
+                        <div class="size-card">
+                            <div class="size-title">Kompakt</div>
+                            <p class="size-sub">10 Slots</p>
+                            <div class="fact-row">
+                                <div class="fact-icon"><img src="images/banner-carousel/infofacts1.png" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'"></div>
+                                <div class="fact-text">
+                                    <span class="fact-label">Abmessungen</span>
+                                    <span class="fact-value">600 × 260 × 1030 mm</span>
+                                    <span class="fact-note">Breite × Tiefe × Höhe</span>
+                                </div>
+                            </div>
+                            <div class="fact-row">
+                                <div class="fact-icon"><img src="images/banner-carousel/infofacts2.png" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'"></div>
+                                <div class="fact-text">
+                                    <span class="fact-label">Gewicht</span>
+                                    <span class="fact-value">60 kg</span>
+                                </div>
+                            </div>
+                            <div class="fact-row">
+                                <div class="fact-icon"><img src="images/banner-carousel/infofacts4.png" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'"></div>
+                                <div class="fact-text">
+                                    <span class="fact-label">Kapazität</span>
+                                    <span class="fact-value">10 Slots</span>
+                                    <span class="fact-note">bis zu 200 Produkte insgesamt</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="fact-body">
-                            <span class="fact-label">Gewicht</span>
-                            <div class="fact-value">[xx] kg</div>
+
+                        <div class="size-card">
+                            <div class="size-title">Groß</div>
+                            <p class="size-sub">15 Slots</p>
+                            <div class="fact-row">
+                                <div class="fact-icon"><img src="images/banner-carousel/infofacts1.png" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'"></div>
+                                <div class="fact-text">
+                                    <span class="fact-label">Abmessungen</span>
+                                    <span class="fact-value">600 × 355 × 1030 mm</span>
+                                    <span class="fact-note">Breite × Tiefe × Höhe</span>
+                                </div>
+                            </div>
+                            <div class="fact-row">
+                                <div class="fact-icon"><img src="images/banner-carousel/infofacts2.png" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'"></div>
+                                <div class="fact-text">
+                                    <span class="fact-label">Gewicht</span>
+                                    <span class="fact-value">60 kg</span>
+                                </div>
+                            </div>
+                            <div class="fact-row">
+                                <div class="fact-icon"><img src="images/banner-carousel/infofacts4.png" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'"></div>
+                                <div class="fact-text">
+                                    <span class="fact-label">Kapazität</span>
+                                    <span class="fact-value">15 Slots</span>
+                                    <span class="fact-note">bis zu 200 Produkte insgesamt</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- ===== MODELL 1 ENDE ===== -->
+
+                <!-- ===== MODELL 2: PRO (mit LED-Streifen) ===== -->
+                <div class="model">
+                    <div class="model-head">
+                        <div class="model-photo">
+                            <img src="images/banner-carousel/modell-pro.png" alt="latehub Pro mit LED-Streifen" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                        </div>
+                        <div class="model-text">
+                            <span class="model-badge">mit LED-Streifen</span>
+                            <h2 class="model-name">latehub Pro</h2>
+                            <p class="model-desc">Gleiche Technik wie das Basic-Modell, dazu mit seitlichem LED-Streifen, der den Automaten in Club und Bar in Szene setzt.</p>
                         </div>
                     </div>
 
-                    <div class="fact">
-                        <div class="fact-img">
-                            <img src="images/banner-carousel/infofacts3.png" alt="Stromversorgung des Automaten" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                    <div class="size-grid">
+
+                        <div class="size-card">
+                            <div class="size-title">Kompakt</div>
+                            <p class="size-sub">10 Slots</p>
+                            <div class="fact-row">
+                                <div class="fact-icon"><img src="images/banner-carousel/infofacts1.png" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'"></div>
+                                <div class="fact-text">
+                                    <span class="fact-label">Abmessungen</span>
+                                    <span class="fact-value">600 × 260 × 1030 mm</span>
+                                    <span class="fact-note">Breite × Tiefe × Höhe</span>
+                                </div>
+                            </div>
+                            <div class="fact-row">
+                                <div class="fact-icon"><img src="images/banner-carousel/infofacts2.png" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'"></div>
+                                <div class="fact-text">
+                                    <span class="fact-label">Gewicht</span>
+                                    <span class="fact-value">60 kg</span>
+                                </div>
+                            </div>
+                            <div class="fact-row">
+                                <div class="fact-icon"><img src="images/banner-carousel/infofacts4.png" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'"></div>
+                                <div class="fact-text">
+                                    <span class="fact-label">Kapazität</span>
+                                    <span class="fact-value">10 Slots</span>
+                                    <span class="fact-note">bis zu 200 Produkte insgesamt</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="fact-body">
-                            <span class="fact-label">Stromversorgung</span>
-                            <div class="fact-value">[xxx] V / [xx] W</div>
+
+                        <div class="size-card">
+                            <div class="size-title">Groß</div>
+                            <p class="size-sub">15 Slots</p>
+                            <div class="fact-row">
+                                <div class="fact-icon"><img src="images/banner-carousel/infofacts1.png" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'"></div>
+                                <div class="fact-text">
+                                    <span class="fact-label">Abmessungen</span>
+                                    <span class="fact-value">600 × 220 × 1200 mm</span>
+                                    <span class="fact-note">Breite × Tiefe × Höhe</span>
+                                </div>
+                            </div>
+                            <div class="fact-row">
+                                <div class="fact-icon"><img src="images/banner-carousel/infofacts2.png" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'"></div>
+                                <div class="fact-text">
+                                    <span class="fact-label">Gewicht</span>
+                                    <span class="fact-value">[xx] kg</span>
+                                </div>
+                            </div>
+                            <div class="fact-row">
+                                <div class="fact-icon"><img src="images/banner-carousel/infofacts4.png" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'"></div>
+                                <div class="fact-text">
+                                    <span class="fact-label">Kapazität</span>
+                                    <span class="fact-value">15 Slots</span>
+                                    <span class="fact-note">bis zu [xxx] Produkte insgesamt</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- ===== MODELL 2 ENDE ===== -->
+
+                <!-- ===== FÜR ALLE MODELLE ===== -->
+                <h2 class="common-title">Für alle Modelle</h2>
+                <div class="size-grid">
+
+                    <div class="size-card">
+                        <div class="fact-row">
+                            <div class="fact-icon"><img src="images/banner-carousel/infofacts3.png" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'"></div>
+                            <div class="fact-text">
+                                <span class="fact-label">Stromversorgung</span>
+                                <span class="fact-value">220 V / 50 Hz</span>
+                                <span class="fact-note">Leistungsaufnahme maximal 36 W</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="fact">
-                        <div class="fact-img">
-                            <img src="images/banner-carousel/infofacts4.png" alt="Kapazität des Automaten" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
-                        </div>
-                        <div class="fact-body">
-                            <span class="fact-label">Kapazität</span>
-                            <div class="fact-value">[xx] Produkte</div>
-                        </div>
-                    </div>
-
-                    <div class="fact">
-                        <div class="fact-img">
-                            <img src="images/banner-carousel/infofacts5.png" alt="Montage des Automaten" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
-                        </div>
-                        <div class="fact-body">
-                            <span class="fact-label">Montage</span>
-                            <div class="fact-value">Wand oder Standfuß</div>
-                            <p class="fact-note">Wahlweise an der Wand befestigt oder auf einem Ständer/Fuß aufgestellt.</p>
+                    <div class="size-card">
+                        <div class="fact-row">
+                            <div class="fact-icon"><img src="images/banner-carousel/infofacts5.png" alt="" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'"></div>
+                            <div class="fact-text">
+                                <span class="fact-label">Montage</span>
+                                <span class="fact-value">Wand oder Standfuß</span>
+                                <span class="fact-note">Wahlweise an der Wand befestigt oder auf einem Ständer mit Rollen, in Weiß oder Schwarz.</span>
+                            </div>
                         </div>
                     </div>
 
                 </div>
+
+                <div class="chip-list">
+                    <span class="chip">32"-Touchscreen</span>
+                    <span class="chip">Bargeldlose Zahlung</span>
+                    <span class="chip">Ausgabe per Spirale</span>
+                    <span class="chip">Verkaufsdaten per WLAN/4G abrufbar</span>
+                </div>
+
             </div>
         </section>
-        <!-- FAKTEN ENDE -->
+        <!-- ================= AUTOMATEN ENDE ================= -->
 
         <section id="who-are-we" class="who-are-we page">
             <div class="container wow fadeInUp">
