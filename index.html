@@ -34,7 +34,7 @@
     <!-- custom stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
-    <!-- Logo, Leiste, Überschriften-Schrift und Karussell-Steuerung -->
+    <!-- Logo, Leiste, Überschriften-Schrift, Karussell-Steuerung und Bilderband -->
     <style>
         /* Durchgängig schwarze Leiste */
         .navbar-default,
@@ -134,6 +134,46 @@
         .carousel-control.right:hover {
             background-color: #1a1a1a;
             transform: scale(1.08);
+        }
+
+        /* Bilderband zwischen "Wer wir sind" und "Unsere Leistungen" */
+        .image-strip {
+            background-color: #000000;
+            padding: 30px 0;
+            overflow: hidden;
+        }
+        .image-strip-track {
+            display: flex;
+            width: max-content;
+            animation: strip-scroll 50s linear infinite;
+        }
+        .image-strip:hover .image-strip-track {
+            animation-play-state: paused;
+        }
+        .image-strip-track img {
+            display: block;
+            height: 220px;
+            width: auto;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        @keyframes strip-scroll {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+        @media (max-width: 767px) {
+            .image-strip {
+                padding: 20px 0;
+            }
+            .image-strip-track img {
+                height: 150px;
+                margin-right: 12px;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .image-strip-track {
+                animation: none;
+            }
         }
 
         /* Logo-Größe und Position (Handy) */
@@ -328,6 +368,29 @@
                 </div>
             </div>
         </section>
+
+        <!-- BILDERBAND: läuft langsam und endlos durch -->
+        <!-- Die Bilder liegen in images/banner-carousel/ (presentation1.png bis presentation6.png). -->
+        <!-- Der Block steht zweimal hintereinander, damit die Schleife nahtlos läuft. -->
+        <section id="image-strip" class="image-strip">
+            <div class="image-strip-track">
+                <img src="images/banner-carousel/presentation1.png" alt="latehub Präsentation 1">
+                <img src="images/banner-carousel/presentation2.png" alt="latehub Präsentation 2">
+                <img src="images/banner-carousel/presentation3.png" alt="latehub Präsentation 3">
+                <img src="images/banner-carousel/presentation4.png" alt="latehub Präsentation 4">
+                <img src="images/banner-carousel/presentation5.png" alt="latehub Präsentation 5">
+                <img src="images/banner-carousel/presentation6.png" alt="latehub Präsentation 6">
+
+                <img src="images/banner-carousel/presentation1.png" alt="" aria-hidden="true">
+                <img src="images/banner-carousel/presentation2.png" alt="" aria-hidden="true">
+                <img src="images/banner-carousel/presentation3.png" alt="" aria-hidden="true">
+                <img src="images/banner-carousel/presentation4.png" alt="" aria-hidden="true">
+                <img src="images/banner-carousel/presentation5.png" alt="" aria-hidden="true">
+                <img src="images/banner-carousel/presentation6.png" alt="" aria-hidden="true">
+            </div>
+        </section>
+        <!-- BILDERBAND ENDE -->
+
         <!-- most probably like canvas -->
         <section id="services" class="services page">
             <div class="container wow fadeInUp">
