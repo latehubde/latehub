@@ -142,24 +142,31 @@
             padding: 30px 0;
             overflow: hidden;
         }
+        .image-strip-viewport {
+            overflow: hidden;
+            cursor: grab;
+            touch-action: pan-y;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        .image-strip-viewport.is-dragging {
+            cursor: grabbing;
+        }
         .image-strip-track {
             display: flex;
             width: max-content;
-            animation: strip-scroll 50s linear infinite;
-        }
-        .image-strip:hover .image-strip-track {
-            animation-play-state: paused;
+            will-change: transform;
         }
         .image-strip-track img {
             display: block;
             height: 220px;
             width: auto;
+            min-width: 120px;
             margin-right: 20px;
             flex-shrink: 0;
-        }
-        @keyframes strip-scroll {
-            from { transform: translateX(0); }
-            to   { transform: translateX(-50%); }
+            -webkit-user-drag: none;
+            user-drag: none;
+            pointer-events: none;
         }
         @media (max-width: 767px) {
             .image-strip {
@@ -168,11 +175,6 @@
             .image-strip-track img {
                 height: 150px;
                 margin-right: 12px;
-            }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .image-strip-track {
-                animation: none;
             }
         }
 
@@ -255,7 +257,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="index.html"><img src="images/banner-carousel/logoicon.png" alt="latehub"></a>
+                        <a class="navbar-brand" href="index.html"><img src="images/banner-carousel/logoicon.png" alt="latehub" decoding="async"></a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -302,7 +304,7 @@
                               ohne zusätzlichen Personalaufwand für Ihr Team.</p>
                         </div>
                         <div class="col-sm-5 text-center hidden-xs">
-                            <img src="images/banner-carousel/browser.png" class="animated fadeInUp delay-4 img-responsive" alt="latehub Automat">
+                            <img src="images/banner-carousel/browser.png" class="animated fadeInUp delay-4 img-responsive" alt="latehub Automat" decoding="async">
                         </div>
                         </div>
                 </div>
@@ -316,7 +318,7 @@
                               schnell und passt zum Alltag Ihrer Gäste.</p>
                         </div>
                         <div class="col-sm-5 text-center hidden-xs">
-                            <img src="images/banner-carousel/monitor.png" class="animated fadeInUp delay-4 img-responsive" alt="EC-Zahlung">
+                            <img src="images/banner-carousel/monitor.png" class="animated fadeInUp delay-4 img-responsive" alt="EC-Zahlung" decoding="async">
                         </div>
                     </div>
                 </div>
@@ -330,7 +332,7 @@
                               und ganz ohne Kontrolle durch Ihr Personal.</p>
                         </div>
                         <div class="col-sm-5 text-center hidden-xs">
-                            <img src="images/banner-carousel/mobile.png" class="animated fadeInUp delay-4 img-responsive" alt="Altersverifikation">
+                            <img src="images/banner-carousel/mobile.png" class="animated fadeInUp delay-4 img-responsive" alt="Altersverifikation" decoding="async">
                         </div>
                     </div>
                 </div>
@@ -369,24 +371,27 @@
             </div>
         </section>
 
-        <!-- BILDERBAND: läuft langsam und endlos durch -->
+        <!-- BILDERBAND: läuft langsam und endlos, stoppt bei Mausberührung, per Ziehen/Wischen verschiebbar -->
         <!-- Die Bilder liegen in images/banner-carousel/ (presentation1.png bis presentation6.png). -->
         <!-- Der Block steht zweimal hintereinander, damit die Schleife nahtlos läuft. -->
+        <!-- loading="lazy": Die Bilder laden erst, wenn man in ihre Nähe scrollt. -->
         <section id="image-strip" class="image-strip">
-            <div class="image-strip-track">
-                <img src="images/banner-carousel/presentation1.png" alt="latehub Präsentation 1">
-                <img src="images/banner-carousel/presentation2.png" alt="latehub Präsentation 2">
-                <img src="images/banner-carousel/presentation3.png" alt="latehub Präsentation 3">
-                <img src="images/banner-carousel/presentation4.png" alt="latehub Präsentation 4">
-                <img src="images/banner-carousel/presentation5.png" alt="latehub Präsentation 5">
-                <img src="images/banner-carousel/presentation6.png" alt="latehub Präsentation 6">
+            <div class="image-strip-viewport" id="strip-viewport">
+                <div class="image-strip-track" id="strip-track">
+                    <img src="images/banner-carousel/presentation1.png" alt="latehub Präsentation 1" draggable="false" loading="lazy" decoding="async">
+                    <img src="images/banner-carousel/presentation2.png" alt="latehub Präsentation 2" draggable="false" loading="lazy" decoding="async">
+                    <img src="images/banner-carousel/presentation3.png" alt="latehub Präsentation 3" draggable="false" loading="lazy" decoding="async">
+                    <img src="images/banner-carousel/presentation4.png" alt="latehub Präsentation 4" draggable="false" loading="lazy" decoding="async">
+                    <img src="images/banner-carousel/presentation5.png" alt="latehub Präsentation 5" draggable="false" loading="lazy" decoding="async">
+                    <img src="images/banner-carousel/presentation6.png" alt="latehub Präsentation 6" draggable="false" loading="lazy" decoding="async">
 
-                <img src="images/banner-carousel/presentation1.png" alt="" aria-hidden="true">
-                <img src="images/banner-carousel/presentation2.png" alt="" aria-hidden="true">
-                <img src="images/banner-carousel/presentation3.png" alt="" aria-hidden="true">
-                <img src="images/banner-carousel/presentation4.png" alt="" aria-hidden="true">
-                <img src="images/banner-carousel/presentation5.png" alt="" aria-hidden="true">
-                <img src="images/banner-carousel/presentation6.png" alt="" aria-hidden="true">
+                    <img src="images/banner-carousel/presentation1.png" alt="" aria-hidden="true" draggable="false" loading="lazy" decoding="async">
+                    <img src="images/banner-carousel/presentation2.png" alt="" aria-hidden="true" draggable="false" loading="lazy" decoding="async">
+                    <img src="images/banner-carousel/presentation3.png" alt="" aria-hidden="true" draggable="false" loading="lazy" decoding="async">
+                    <img src="images/banner-carousel/presentation4.png" alt="" aria-hidden="true" draggable="false" loading="lazy" decoding="async">
+                    <img src="images/banner-carousel/presentation5.png" alt="" aria-hidden="true" draggable="false" loading="lazy" decoding="async">
+                    <img src="images/banner-carousel/presentation6.png" alt="" aria-hidden="true" draggable="false" loading="lazy" decoding="async">
+                </div>
             </div>
         </section>
         <!-- BILDERBAND ENDE -->
@@ -526,12 +531,106 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
 
-    <!-- Notausgang: blendet den Lade-Bildschirm nach 3 Sekunden aus -->
+    <!-- Notausgang: blendet den Lade-Bildschirm nach 2 Sekunden aus -->
     <script>
       setTimeout(function () {
         var l = document.getElementById('loader-wrapper');
         if (l) { l.style.display = 'none'; }
-      }, 3000);
+      }, 2000);
+    </script>
+
+    <!-- Bilderband: Autoscroll, Pause bei Mausberührung, Ziehen/Wischen -->
+    <script>
+      (function () {
+        var viewport = document.getElementById('strip-viewport');
+        var track = document.getElementById('strip-track');
+        if (!viewport || !track) { return; }
+
+        var SPEED = 40; /* Pixel pro Sekunde: kleiner = langsamer, größer = schneller */
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        var pos = 0;          /* aktuelle Verschiebung in Pixel */
+        var half = 0;         /* Breite einer Bilderreihe (die Hälfte des Bands) */
+        var hovering = false;
+        var dragging = false;
+        var startX = 0;
+        var startPos = 0;
+        var lastTime = null;
+
+        function measure() {
+          half = track.offsetWidth / 2;
+        }
+
+        function wrap() {
+          if (half > 0) {
+            pos = ((pos % half) + half) % half;
+          }
+        }
+
+        function render() {
+          track.style.transform = 'translate3d(' + (-pos) + 'px, 0, 0)';
+        }
+
+        function tick(time) {
+          if (lastTime === null) { lastTime = time; }
+          var dt = Math.min((time - lastTime) / 1000, 0.1);
+          lastTime = time;
+
+          measure();
+
+          if (!hovering && !dragging && !reduceMotion) {
+            pos += SPEED * dt;
+          }
+          wrap();
+          render();
+          window.requestAnimationFrame(tick);
+        }
+
+        /* Pause nur bei der Maus (auf Touchgeräten läuft das Band nach dem Loslassen weiter) */
+        viewport.addEventListener('pointerenter', function (e) {
+          if (e.pointerType === 'mouse') { hovering = true; }
+        });
+        viewport.addEventListener('pointerleave', function (e) {
+          if (e.pointerType === 'mouse') { hovering = false; }
+        });
+
+        /* Ziehen mit Maus oder Finger */
+        viewport.addEventListener('pointerdown', function (e) {
+          if (e.pointerType === 'mouse' && e.button !== 0) { return; }
+          dragging = true;
+          startX = e.clientX;
+          startPos = pos;
+          viewport.classList.add('is-dragging');
+          try { viewport.setPointerCapture(e.pointerId); } catch (err) {}
+        });
+        viewport.addEventListener('pointermove', function (e) {
+          if (!dragging) { return; }
+          pos = startPos - (e.clientX - startX);
+        });
+        function endDrag(e) {
+          if (!dragging) { return; }
+          dragging = false;
+          viewport.classList.remove('is-dragging');
+          try { viewport.releasePointerCapture(e.pointerId); } catch (err) {}
+        }
+        viewport.addEventListener('pointerup', endDrag);
+        viewport.addEventListener('pointercancel', endDrag);
+
+        /* Seitliches Wischen auf dem Trackpad */
+        viewport.addEventListener('wheel', function (e) {
+          if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+            e.preventDefault();
+            pos += e.deltaX;
+          }
+        }, { passive: false });
+
+        /* Bilder nicht per Browser verschieben lassen */
+        viewport.addEventListener('dragstart', function (e) { e.preventDefault(); });
+
+        window.addEventListener('resize', measure);
+        measure();
+        window.requestAnimationFrame(tick);
+      })();
     </script>
 
 <!-- SCRIPTS ENDS -->
