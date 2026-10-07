@@ -34,7 +34,7 @@
     <!-- custom stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
-    <!-- Logo, Leiste, Überschriften-Schrift, Karussell-Steuerung und Bilderband -->
+    <!-- Logo, Leiste, Überschriften-Schrift, Karussell-Steuerung, Fakten-Abschnitt und Bilderband -->
     <style>
         /* Durchgängig schwarze Leiste */
         .navbar-default,
@@ -136,11 +136,116 @@
             transform: scale(1.08);
         }
 
+        /* Abschnitt "Fakten zum Automaten" (zwischen Banner und "Wer wir sind") */
+        .facts {
+            background-color: #ffffff;
+            color: #090909;
+        }
+        .facts h1 {
+            color: #090909;
+            margin-bottom: 14px;
+        }
+        .facts .facts-intro {
+            font-family: "Open Sans", sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555555;
+            max-width: 640px;
+            margin-bottom: 40px;
+        }
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 20px;
+        }
+        .fact {
+            background-color: #f6f6f6;
+            border-top: 4px solid #f2013f;
+            display: flex;
+            flex-direction: column;
+        }
+        .fact-img {
+            height: 140px;
+            background-color: #ececec;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .fact-img img {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .fact-body {
+            padding: 18px 18px 22px;
+        }
+        .fact-label {
+            display: block;
+            font-family: "Open Sans", sans-serif;
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #f2013f;
+            margin-bottom: 8px;
+        }
+        .fact-value {
+            font-family: "Montserrat", "Open Sans", sans-serif;
+            font-weight: 800;
+            font-size: 18px;
+            line-height: 1.3;
+            color: #090909;
+            margin-bottom: 6px;
+        }
+        .fact-note {
+            font-family: "Open Sans", sans-serif;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #555555;
+            margin: 0;
+        }
+        @media (min-width: 480px) {
+            .facts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 768px) {
+            .facts-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (min-width: 992px) {
+            .facts-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
         /* Bilderband zwischen "Wer wir sind" und "Unsere Leistungen" */
         .image-strip {
             background-color: #000000;
             padding: 30px 0;
             overflow: hidden;
+        }
+        .strip-head {
+            padding-bottom: 24px;
+        }
+        .strip-head .strip-title {
+            font-family: "Montserrat", "Open Sans", sans-serif;
+            font-weight: 800;
+            font-size: 26px;
+            line-height: 1.2;
+            color: #ffffff;
+            margin: 0 0 8px;
+        }
+        .strip-head .strip-sub {
+            font-family: "Open Sans", sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #e6e6e6;
+            max-width: 640px;
+            margin: 0;
         }
         .image-strip-viewport {
             overflow: hidden;
@@ -171,6 +276,9 @@
         @media (max-width: 767px) {
             .image-strip {
                 padding: 20px 0;
+            }
+            .strip-head .strip-title {
+                font-size: 22px;
             }
             .image-strip-track img {
                 height: 150px;
@@ -222,6 +330,9 @@
             }
             .navbar-default .navbar-brand img {
                 height: 75px;
+            }
+            .strip-head .strip-title {
+                font-size: 30px;
             }
         }
     </style>
@@ -300,7 +411,7 @@
                         <div class="col-sm-7">
                               <h1 class="animated fadeInUp delay-2">LATEHUB<br> Der Automat<br> für Ihre Location.</h1>
                               <p class="animated fadeInUp delay-3">Wir platzieren Verkaufsautomaten in Clubs, Bars, Hotels
-                              und Gastronomiebetrieben. Das Sortiment, an Ihre Zielguruppe angepasst. Der klassische Gang zum Kiosk entfällt: Ihre
+                              und Gastronomiebetrieben. Das Sortiment, an Ihre Zielgruppe angepasst. Der klassische Gang zum Kiosk entfällt: Ihre
                               Gäste bleiben in Ihrer Location und sind rund um die Uhr versorgt –
                               ganz ohne zusätzlichen Personalaufwand für Ihr Team.</p>
                         </div>
@@ -351,6 +462,72 @@
              </div> 
         </section>
 
+        <!-- FAKTEN ZUM AUTOMATEN: Abmessungen, Gewicht, Strom, Kapazität, Montage -->
+        <!-- Bilder: images/banner-carousel/infofacts1.png bis infofacts5.png -->
+        <!-- Die Werte in eckigen Klammern [ ] bitte durch die echten Daten ersetzen. -->
+        <section id="facts" class="facts page">
+            <div class="container wow fadeInUp">
+                <h1>Fakten zum Automaten</h1>
+                <p class="facts-intro">Die wichtigsten Eckdaten auf einen Blick.</p>
+
+                <div class="facts-grid">
+
+                    <div class="fact">
+                        <div class="fact-img">
+                            <img src="images/banner-carousel/infofacts1.png" alt="Abmessungen des Automaten" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                        </div>
+                        <div class="fact-body">
+                            <span class="fact-label">Abmessungen</span>
+                            <div class="fact-value">[Breite] × [Höhe] × [Tiefe] cm</div>
+                        </div>
+                    </div>
+
+                    <div class="fact">
+                        <div class="fact-img">
+                            <img src="images/banner-carousel/infofacts2.png" alt="Gewicht des Automaten" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                        </div>
+                        <div class="fact-body">
+                            <span class="fact-label">Gewicht</span>
+                            <div class="fact-value">[xx] kg</div>
+                        </div>
+                    </div>
+
+                    <div class="fact">
+                        <div class="fact-img">
+                            <img src="images/banner-carousel/infofacts3.png" alt="Stromversorgung des Automaten" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                        </div>
+                        <div class="fact-body">
+                            <span class="fact-label">Stromversorgung</span>
+                            <div class="fact-value">[xxx] V / [xx] W</div>
+                        </div>
+                    </div>
+
+                    <div class="fact">
+                        <div class="fact-img">
+                            <img src="images/banner-carousel/infofacts4.png" alt="Kapazität des Automaten" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                        </div>
+                        <div class="fact-body">
+                            <span class="fact-label">Kapazität</span>
+                            <div class="fact-value">[xx] Produkte</div>
+                        </div>
+                    </div>
+
+                    <div class="fact">
+                        <div class="fact-img">
+                            <img src="images/banner-carousel/infofacts5.png" alt="Montage des Automaten" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                        </div>
+                        <div class="fact-body">
+                            <span class="fact-label">Montage</span>
+                            <div class="fact-value">Wand oder Standfuß</div>
+                            <p class="fact-note">Wahlweise an der Wand befestigt oder auf einem Ständer/Fuß aufgestellt.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- FAKTEN ENDE -->
+
         <section id="who-are-we" class="who-are-we page">
             <div class="container wow fadeInUp">
                 <div class="row">
@@ -376,6 +553,13 @@
         <!-- Der Block steht zweimal hintereinander, damit die Schleife nahtlos läuft. -->
         <!-- loading="lazy": Die Bilder laden erst, wenn man in ihre Nähe scrollt. -->
         <section id="image-strip" class="image-strip">
+
+            <!-- Titel und Untertitel über dem Bilderband -->
+            <div class="container strip-head">
+                <h2 class="strip-title">Produktion in Guangzhou</h2>
+                <p class="strip-sub">Wir arbeiten eng mit unserer Produktionsstätte zusammen und sind regelmäßig vor Ort.</p>
+            </div>
+
             <div class="image-strip-viewport" id="strip-viewport">
                 <div class="image-strip-track" id="strip-track">
                     <img src="images/banner-carousel/presentation1.png" alt="latehub Präsentation 1" draggable="false" loading="lazy" decoding="async">
