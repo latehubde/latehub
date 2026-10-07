@@ -54,7 +54,7 @@
             letter-spacing: -0.5px;
         }
 
-        /* Logo-Größe und Position (Handy / Tablet / Desktop) */
+        /* Logo-Größe und Position (Handy) */
         .navbar-default .navbar-brand {
             height: auto;
             padding: 8px 15px;
@@ -64,26 +64,40 @@
             height: 34px;
             width: auto;
         }
+
+        /* Tablet */
         @media (min-width: 768px) {
+            /* Leiste über die volle Breite: Logo links, Menü rechts am Rand */
+            .navbar-default > .container {
+                width: 100%;
+                max-width: none;
+                padding-left: 40px;
+                padding-right: 40px;
+            }
             .navbar-default {
                 background-color: #000000;
             }
             .navbar-default .navbar-brand {
-                padding: 10px 40px;
+                padding: 10px 15px 10px 15px;
             }
             .navbar-default .navbar-brand img {
-                height: 46px;
+                height: 52px;
+            }
+            .navbar-default .navbar-collapse {
+                padding-right: 0;
             }
         }
+
+        /* Laptop / Desktop */
         @media (min-width: 992px) {
             h1 {
                 font-size: 46px;
             }
             .navbar-default .navbar-brand {
-                padding: 22px 40px;
+                padding: 15px 15px 15px 15px;
             }
             .navbar-default .navbar-brand img {
-                height: 65px;
+                height: 75px;
             }
         }
     </style>
