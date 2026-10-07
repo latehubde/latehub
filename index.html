@@ -165,10 +165,9 @@
             display: flex;
             flex-wrap: nowrap;
             align-items: stretch;
-            gap: 20px;
+            gap: 32px;
         }
         .model-photo {
-            position: relative;
             flex: 0 0 180px;
             align-self: flex-start;
             max-width: 100%;
@@ -192,20 +191,25 @@
             display: flex;
             flex-direction: column;
         }
+
+        /* Überschrift mit optionalem Hinweis rechts daneben */
+        .model-title-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px 14px;
+            margin: 0 0 10px;
+        }
         .facts .model-name {
             font-family: "Montserrat", "Open Sans", sans-serif;
             font-weight: 800;
             font-size: 26px;
             line-height: 1.2;
             color: #090909;
-            margin: 0 0 8px;
+            margin: 0;
         }
-        /* Roter Hinweis oben links auf dem Foto, damit beide Modelle auf einer Höhe beginnen */
         .model-badge {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 2;
+            display: inline-block;
             background-color: #f2013f;
             color: #ffffff;
             font-family: "Open sans", sans-serif;
@@ -214,6 +218,7 @@
             letter-spacing: 1.5px;
             text-transform: uppercase;
             padding: 5px 10px;
+            white-space: nowrap;
         }
         .model-desc {
             font-family: "Open sans", sans-serif;
@@ -236,12 +241,13 @@
             letter-spacing: 1.5px;
             text-transform: uppercase;
             color: #777777;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         .color-swatches {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
+            padding-left: 5px;
         }
         .swatch {
             display: inline-block;
@@ -259,7 +265,7 @@
             border-color: #090909;
         }
 
-        /* Technische Daten (Strom, Leistung, Zahlung, Kapazität in einem Block) */
+        /* Informationsblöcke (Technische Daten, Spiralförderung) */
         .facts-info {
             background-color: #f6f6f6;
             border-top: 4px solid #f2013f;
@@ -273,6 +279,14 @@
             line-height: 1.2;
             color: #090909;
             margin: 0 0 18px;
+        }
+        .facts-info .info-lead {
+            font-family: "Open sans", sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            color: #090909;
+            margin: 0 0 20px;
+            max-width: 860px;
         }
         .spec-grid {
             display: grid;
@@ -406,10 +420,14 @@
             .spec-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
+            .spec-grid.spec-grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
         @media (max-width: 480px) {
             .model-head {
                 flex-wrap: wrap;
+                gap: 20px;
             }
             .model-photo {
                 flex: 0 0 100%;
@@ -668,7 +686,7 @@
         </section>
 
         <!-- ================= UNSERE AUTOMATEN ================= -->
-        <!-- Aufbau: 1) zwei Modelle mit Bild und Farbauswahl, 2) Technische Daten, 3) Montage mit Bild, 4) Kontakt-Hinweis. -->
+        <!-- Aufbau: 1) zwei Modelle mit Bild und Farbauswahl, 2) Technische Daten, 3) Spiralförderung, 4) Montage mit Bild, 5) Kontakt-Hinweis. -->
         <!-- Bilder in images/banner-carousel/ : modell-basic.png, modell-pro.png, infofacts5.png (Standfuß) -->
         <!-- Fehlt ein Bild, wird sein Feld automatisch ausgeblendet. -->
         <section id="facts" class="facts page">
@@ -678,13 +696,15 @@
 
                 <div class="models-grid">
 
-                    <!-- Basic -->
+                    <!-- Basismodell -->
                     <div class="model-head">
                         <div class="model-photo">
-                            <img src="images/banner-carousel/modell-basic.png" alt="latehub Basic" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                            <img src="images/banner-carousel/modell-basic.png" alt="Basismodell" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
                         </div>
                         <div class="model-text">
-                            <h2 class="model-name">latehub Basic</h2>
+                            <div class="model-title-row">
+                                <h2 class="model-name">Basismodell</h2>
+                            </div>
                             <p class="model-desc">Das Standardmodell: schlicht, unauffällig und in jeder Location einsetzbar.</p>
                             <div class="color-picker">
                                 <span class="color-label">Verfügbare Farben</span>
@@ -696,14 +716,16 @@
                         </div>
                     </div>
 
-                    <!-- Pro (mit LED-Modul) -->
+                    <!-- Pro-Modell (mit LED-Modul) -->
                     <div class="model-head">
                         <div class="model-photo">
-                            <span class="model-badge">mit LED-Modul</span>
-                            <img src="images/banner-carousel/modell-pro.png" alt="latehub Pro mit LED-Modul" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                            <img src="images/banner-carousel/modell-pro.png" alt="Pro-Modell mit LED-Modul" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
                         </div>
                         <div class="model-text">
-                            <h2 class="model-name">latehub Pro</h2>
+                            <div class="model-title-row">
+                                <h2 class="model-name">Pro-Modell</h2>
+                                <span class="model-badge">mit LED-Modul</span>
+                            </div>
                             <p class="model-desc">Zusätzlich ausgestattet mit individualisierbarer LED-Technik: Links und rechts am Gehäuse verlaufen LED-Streifen, die den Automaten in Szene setzen. So fügt sich das Pro-Modell besonders stimmig in die Atmosphäre von Club und Bar ein.</p>
                             <div class="color-picker">
                                 <span class="color-label">Verfügbare Farben</span>
@@ -724,7 +746,7 @@
                         <div class="spec">
                             <span class="info-label">Stromversorgung</span>
                             <span class="spec-value">220 V / 50 Hz</span>
-                            <span class="spec-note">Betrieb am europäischen Stromnetz</span>
+                            <span class="spec-note">Europäischer Standard</span>
                         </div>
                         <div class="spec">
                             <span class="info-label">Leistungsaufnahme</span>
@@ -734,12 +756,30 @@
                         <div class="spec">
                             <span class="info-label">Zahlungsmodul</span>
                             <span class="spec-value">Nayax</span>
-                            <span class="spec-note">Kartenlesemodul für EC- und kontaktlose Zahlung</span>
+                            <span class="spec-note">Kartenlesemodul für EC- und kontaktlose Zahlungen auf europäischem Standard</span>
                         </div>
                         <div class="spec">
-                            <span class="info-label">Kapazität</span>
-                            <span class="spec-value">Mehrere Größen</span>
-                            <span class="spec-note">Beide Modelle in unterschiedlichen Kapazitäten erhältlich</span>
+                            <span class="info-label">Software</span>
+                            <span class="spec-value">Individuell anpassbar</span>
+                            <span class="spec-note">Die Software lässt sich nach Ihren Wünschen konfigurieren und anpassen</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spiralförderung -->
+                <div class="facts-info">
+                    <h2 class="info-title">Spiralförderung</h2>
+                    <p class="info-lead">Die Produkte werden über eine Spiralförderung ausgegeben: Eine rotierende Spirale befördert den Artikel zuverlässig aus dem Fach. Der Abstand der Spiralwindungen bestimmt dabei Kapazität und Produktgröße. Dadurch sind verschiedene Kapazitäten möglich, passend zu Ihrem Sortiment.</p>
+                    <div class="spec-grid">
+                        <div class="spec">
+                            <span class="info-label">Enger Spiralabstand</span>
+                            <span class="spec-value">Mehr Produkte</span>
+                            <span class="spec-note">Pro Fach finden mehr Artikel Platz, die Gesamtkapazität steigt.</span>
+                        </div>
+                        <div class="spec">
+                            <span class="info-label">Größerer Spiralabstand</span>
+                            <span class="spec-value">Größere Produkte</span>
+                            <span class="spec-note">Auch voluminösere Artikel lassen sich im Automaten anbieten.</span>
                         </div>
                     </div>
                 </div>
