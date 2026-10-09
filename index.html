@@ -343,6 +343,54 @@
             margin-top: 2px;
         }
 
+        /* Symbole bei den Technischen Daten */
+        .spec .spec-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            margin-bottom: 12px;
+            background-color: #f2013f;
+            color: #ffffff;
+            border-radius: 50%;
+            font-size: 18px;
+            line-height: 1;
+        }
+        .spec .spec-icon .fa {
+            display: block;
+            line-height: 1;
+        }
+
+        /* Spiralförderung: Text links, Bild rechts */
+        .spiral-intro {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            gap: 32px;
+            margin-bottom: 24px;
+        }
+        .spiral-intro .info-lead {
+            flex: 1 1 0;
+            min-width: 0;
+            margin: 0;
+        }
+        .spiral-photo {
+            flex: 0 0 260px;
+            height: 200px;
+            background-color: #ececec;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .spiral-photo img {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
         /* Montage: kleiner Abschnitt mit größerem Bild */
         .mount {
             display: flex;
@@ -442,6 +490,16 @@
             }
             .spec-grid.spec-grid-3 {
                 grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 767px) {
+            .spiral-intro {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            .spiral-photo {
+                flex: 0 0 100%;
+                height: 220px;
             }
         }
         @media (max-width: 480px) {
@@ -703,7 +761,7 @@
 
         <!-- ================= UNSERE AUTOMATEN ================= -->
         <!-- Aufbau: 1) zwei Modelle mit Bild, Farb- und Größenauswahl, 2) Technische Daten, 3) Spiralförderung, 4) Montage mit Bild, 5) Kontakt-Hinweis. -->
-        <!-- Bilder in images/banner-carousel/ : modell-basic.png, modell-pro.png, infofacts5.png (Standfuß) -->
+        <!-- Bilder in images/banner-carousel/ : modell-basic.png, modell-pro.png, spiralinfo.png (Spiralförderung), infofacts5.png (Standfuß) -->
         <!-- Fehlt ein Bild, wird sein Feld automatisch ausgeblendet. -->
         <section id="facts" class="facts page">
             <div class="container wow fadeInUp">
@@ -778,21 +836,25 @@
                     <h2 class="info-title">Technische Daten</h2>
                     <div class="spec-grid">
                         <div class="spec">
+                            <div class="spec-icon" aria-hidden="true"><i class="fa fa-plug"></i></div>
                             <span class="info-label">Stromversorgung</span>
                             <span class="spec-value">220 V / 50 Hz</span>
                             <span class="spec-note">Europäischer Standard</span>
                         </div>
                         <div class="spec">
+                            <div class="spec-icon" aria-hidden="true"><i class="fa fa-bolt"></i></div>
                             <span class="info-label">Leistungsaufnahme</span>
                             <span class="spec-value">max. 36 W</span>
                             <span class="spec-note">Energieeffizienter Dauerbetrieb</span>
                         </div>
                         <div class="spec">
+                            <div class="spec-icon" aria-hidden="true"><i class="fa fa-credit-card"></i></div>
                             <span class="info-label">Zahlungsmodul</span>
                             <span class="spec-value">Nayax</span>
                             <span class="spec-note">Kartenlesemodul für EC- und kontaktlose Zahlungen auf europäischem Standard</span>
                         </div>
                         <div class="spec">
+                            <div class="spec-icon" aria-hidden="true"><i class="fa fa-sliders"></i></div>
                             <span class="info-label">Software</span>
                             <span class="spec-value">Individuell anpassbar</span>
                             <span class="spec-note">Die Software lässt sich nach Ihren Wünschen konfigurieren und anpassen</span>
@@ -803,7 +865,12 @@
                 <!-- Spiralförderung -->
                 <div class="facts-info">
                     <h2 class="info-title">Spiralförderung</h2>
-                    <p class="info-lead">Die Produkte werden über eine Spiralförderung ausgegeben: Eine rotierende Spirale befördert den Artikel zuverlässig aus dem Fach. Der Abstand der Spiralwindungen bestimmt dabei Kapazität und Produktgröße. Dadurch sind verschiedene Kapazitäten möglich, passend zu Ihrem Sortiment.</p>
+                    <div class="spiral-intro">
+                        <p class="info-lead">Die Produkte werden über eine Spiralförderung ausgegeben: Eine rotierende Spirale befördert den Artikel zuverlässig aus dem Fach. Der Abstand der Spiralwindungen bestimmt dabei Kapazität und Produktgröße. Dadurch sind verschiedene Kapazitäten möglich, passend zu Ihrem Sortiment.</p>
+                        <div class="spiral-photo">
+                            <img src="images/banner-carousel/spiralinfo.png" alt="Spiralförderung im latehub Automaten" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                        </div>
+                    </div>
                     <div class="spec-grid spec-grid-3">
                         <div class="spec">
                             <span class="info-label">Zwei Größen</span>
