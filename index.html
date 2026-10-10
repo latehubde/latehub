@@ -50,22 +50,22 @@
             box-shadow: none;
         }
 
-        /* Logo */
+        /* Logo (Handy: normal in der Leiste, größer als vorher) */
         .navbar-default .navbar-brand {
             height: auto;
             padding: 8px 15px;
         }
         .navbar-default .navbar-brand img {
             display: block;
-            height: 40px;
+            height: 50px;
             width: auto;
             transition: height 0.3s;
         }
 
         /* Menü-Knopf (Handy) */
         .navbar-default .navbar-toggle {
-            margin-top: 11px;
-            margin-bottom: 11px;
+            margin-top: 16px;
+            margin-bottom: 16px;
             border-color: #333333;
         }
         .navbar-default .navbar-toggle:hover,
@@ -121,7 +121,8 @@
             color: #ffffff;
         }
 
-        /* Tablet und größer: Logo links, Menü rechts am Rand */
+        /* Tablet und größer: Leiste über die volle Breite, Menü rechts am Rand.
+           Das Logo sitzt in einem schwarzen Kasten, der unten über die Leiste hinausragt. */
         @media (min-width: 768px) {
             .navbar-default > .container {
                 width: 100%;
@@ -129,11 +130,19 @@
                 padding-left: 40px;
                 padding-right: 40px;
             }
-            .navbar-default .navbar-brand {
-                padding: 12px 15px;
+            .navbar-default > .container .navbar-brand {
+                position: absolute;
+                top: 0;
+                left: 40px;
+                margin-left: 0;
+                background-color: #000000;
+                border-bottom: 2px solid #f2013f;
+                padding: 10px 20px 14px;
+                box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+                transition: padding 0.3s, box-shadow 0.3s;
             }
             .navbar-default .navbar-brand img {
-                height: 52px;
+                height: 84px;
             }
             .navbar-default .navbar-collapse {
                 padding-right: 0;
@@ -170,26 +179,29 @@
             }
         }
 
-        /* Laptop / Desktop: größeres Logo */
+        /* Laptop / Desktop: noch größeres Logo.
+           Größe anpassen über height (Logo) und padding (Kasten) */
         @media (min-width: 992px) {
-            .navbar-default .navbar-brand {
-                padding: 12px 15px;
+            .navbar-default > .container .navbar-brand {
+                padding: 12px 24px 18px;
             }
             .navbar-default .navbar-brand img {
-                height: 56px;
+                height: 104px;
             }
         }
 
-        /* Beim Scrollen wird die Leiste schlanker (Klasse wird per Skript am Seitenende gesetzt) */
+        /* Beim Scrollen wird die Leiste schlanker: Logo schrumpft in die Leiste, der Kasten ragt nicht mehr heraus
+           (Klasse wird per Skript am Seitenende gesetzt) */
         @media (min-width: 768px) {
             .navbar-default.navbar-scrolled {
                 box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
             }
+            .navbar-default.navbar-scrolled > .container .navbar-brand {
+                padding: 9px 15px;
+                box-shadow: none;
+            }
             .navbar-default.navbar-scrolled .navbar-brand img {
                 height: 38px;
-            }
-            .navbar-default.navbar-scrolled .navbar-brand {
-                padding: 9px 15px;
             }
             .navbar-default.navbar-scrolled .navbar-nav > li > a {
                 padding-top: 18px;
@@ -205,6 +217,7 @@
         }
         @media (prefers-reduced-motion: reduce) {
             .navbar-default,
+            .navbar-default .navbar-brand,
             .navbar-default .navbar-brand img,
             .navbar-default .navbar-nav > li > a::after {
                 transition: none;
