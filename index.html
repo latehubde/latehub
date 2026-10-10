@@ -7,10 +7,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="latehub – Verkaufsautomaten mit kontaktloser Zahlung und Altersverifikation für Clubs, Bars, Hotels und Gastronomie in Köln.">
+    <meta name="description" content="latehub – Wir betreiben Automaten mit kontaktloser Zahlung und Altersverifikation in Clubs, Bars, Hotels und Gastronomie in Köln.">
     <!--meta tags ends-->
 
-    <title>latehub – Verkaufsautomaten für Clubs, Bars &amp; Hotels</title>
+    <title>latehub – Automaten-Betrieb für Clubs, Bars &amp; Hotels</title>
 
     <!-- Schriften: Verbindung früh aufbauen, alle Schriften in einer Anfrage laden -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,15 +34,181 @@
     <!-- custom stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/main.css">
 
-    <!-- Logo, Leiste, Überschriften-Schrift, Karussell-Steuerung, Automaten-Abschnitt und Bilderband -->
+    <!-- Navigation, Überschriften-Schrift, Karussell-Steuerung, Automaten-Abschnitt, Bilderband und Leistungen -->
     <style>
-        /* Durchgängig schwarze Leiste */
-        .navbar-default,
+        /* ===== Navigationsleiste ===== */
+        .navbar-default {
+            background-color: #000000;
+            border: none;
+            border-bottom: 2px solid #f2013f;
+            margin-bottom: 0;
+            transition: box-shadow 0.3s;
+        }
         .navbar-default .navbar-collapse {
             background-color: #000000;
+            border-color: #000000;
+            box-shadow: none;
         }
-        .navbar-default .navbar-nav > li.active > a {
-            background-color: #000000;
+
+        /* Logo */
+        .navbar-default .navbar-brand {
+            height: auto;
+            padding: 8px 15px;
+        }
+        .navbar-default .navbar-brand img {
+            display: block;
+            height: 40px;
+            width: auto;
+            transition: height 0.3s;
+        }
+
+        /* Menü-Knopf (Handy) */
+        .navbar-default .navbar-toggle {
+            margin-top: 11px;
+            margin-bottom: 11px;
+            border-color: #333333;
+        }
+        .navbar-default .navbar-toggle:hover,
+        .navbar-default .navbar-toggle:focus {
+            background-color: #1a1a1a;
+        }
+        .navbar-default .navbar-toggle .icon-bar {
+            background-color: #ffffff;
+        }
+
+        /* Menüpunkte (Handy: untereinander) */
+        .navbar-default .navbar-nav > li > a {
+            font-family: "Montserrat", "Open Sans", sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: 0.3px;
+            color: #ffffff;
+            background-color: transparent;
+            padding: 14px 15px;
+            border-top: 1px solid #1f1f1f;
+        }
+        .navbar-default .navbar-nav > li > a:hover,
+        .navbar-default .navbar-nav > li > a:focus,
+        .navbar-default .navbar-nav > .active > a,
+        .navbar-default .navbar-nav > .active > a:hover,
+        .navbar-default .navbar-nav > .active > a:focus {
+            background-color: transparent;
+            color: #ffffff;
+        }
+        .navbar-default .navbar-nav > .active > a {
+            color: #f2013f;
+        }
+        .navbar-default .navbar-nav > li > a:focus-visible {
+            outline: 2px solid #f2013f;
+            outline-offset: -2px;
+        }
+
+        /* Kontakt als roter Knopf (Handy: volle Breite) */
+        .navbar-default .navbar-nav > li.nav-cta > a {
+            background-color: #f2013f;
+            color: #ffffff;
+            text-align: center;
+            margin: 12px 15px 16px;
+            padding: 12px 20px;
+            border-top: none;
+            transition: background-color 0.3s;
+        }
+        .navbar-default .navbar-nav > li.nav-cta > a:hover,
+        .navbar-default .navbar-nav > li.nav-cta > a:focus,
+        .navbar-default .navbar-nav > li.nav-cta.active > a {
+            background-color: #d00135;
+            color: #ffffff;
+        }
+
+        /* Tablet und größer: Logo links, Menü rechts am Rand */
+        @media (min-width: 768px) {
+            .navbar-default > .container {
+                width: 100%;
+                max-width: none;
+                padding-left: 40px;
+                padding-right: 40px;
+            }
+            .navbar-default .navbar-brand {
+                padding: 12px 15px;
+            }
+            .navbar-default .navbar-brand img {
+                height: 52px;
+            }
+            .navbar-default .navbar-collapse {
+                padding-right: 0;
+            }
+            .navbar-default .navbar-nav > li > a {
+                position: relative;
+                font-size: 15px;
+                padding: 30px 16px;
+                border-top: none;
+            }
+            /* Rote Linie unter dem aktiven Punkt, beim Darüberfahren wächst sie ein */
+            .navbar-default .navbar-nav > li:not(.nav-cta) > a::after {
+                content: "";
+                position: absolute;
+                left: 16px;
+                right: 16px;
+                bottom: 22px;
+                height: 2px;
+                background-color: #f2013f;
+                transform: scaleX(0);
+                transform-origin: left center;
+                transition: transform 0.3s;
+            }
+            .navbar-default .navbar-nav > li:not(.nav-cta) > a:hover::after,
+            .navbar-default .navbar-nav > li.active:not(.nav-cta) > a::after {
+                transform: scaleX(1);
+            }
+            .navbar-default .navbar-nav > .active > a {
+                color: #ffffff;
+            }
+            .navbar-default .navbar-nav > li.nav-cta > a {
+                margin: 18px 0 18px 12px;
+                padding: 10px 22px;
+            }
+        }
+
+        /* Laptop / Desktop: größeres Logo */
+        @media (min-width: 992px) {
+            .navbar-default .navbar-brand {
+                padding: 12px 15px;
+            }
+            .navbar-default .navbar-brand img {
+                height: 56px;
+            }
+        }
+
+        /* Beim Scrollen wird die Leiste schlanker (Klasse wird per Skript am Seitenende gesetzt) */
+        @media (min-width: 768px) {
+            .navbar-default.navbar-scrolled {
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+            }
+            .navbar-default.navbar-scrolled .navbar-brand img {
+                height: 38px;
+            }
+            .navbar-default.navbar-scrolled .navbar-brand {
+                padding: 9px 15px;
+            }
+            .navbar-default.navbar-scrolled .navbar-nav > li > a {
+                padding-top: 18px;
+                padding-bottom: 18px;
+            }
+            .navbar-default.navbar-scrolled .navbar-nav > li:not(.nav-cta) > a::after {
+                bottom: 10px;
+            }
+            .navbar-default.navbar-scrolled .navbar-nav > li.nav-cta > a {
+                margin-top: 8px;
+                margin-bottom: 8px;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .navbar-default,
+            .navbar-default .navbar-brand img,
+            .navbar-default .navbar-nav > li > a::after {
+                transition: none;
+            }
         }
 
         /* Überschriften-Schrift */
@@ -633,47 +799,71 @@
             }
         }
 
-        /* Logo-Größe und Position (Handy) */
-        .navbar-default .navbar-brand {
-            height: auto;
-            padding: 8px 15px;
+        /* ===== Unsere Leistungen ===== */
+        section.leistungen {
+            background-color: #ffffff;
+            color: #090909;
         }
-        .navbar-default .navbar-brand img {
-            display: block;
-            height: 34px;
-            width: auto;
+        .leistungen h1 {
+            color: #090909;
+            margin-bottom: 14px;
         }
-
-        /* Tablet */
+        .leistungen .leistungen-intro {
+            font-family: "Open sans", sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555555;
+            max-width: 680px;
+            margin-bottom: 40px;
+        }
+        .leistungen-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+        .leistung {
+            background-color: #f6f6f6;
+            border-top: 4px solid #f2013f;
+            padding: 28px 28px 26px;
+        }
+        .leistung-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            margin-bottom: 18px;
+            background-color: #f2013f;
+            color: #ffffff;
+            border-radius: 50%;
+            font-size: 22px;
+            line-height: 1;
+        }
+        .leistung h2 {
+            font-family: "Montserrat", "Open Sans", sans-serif;
+            font-weight: 800;
+            font-size: 22px;
+            line-height: 1.2;
+            color: #090909;
+            margin: 0 0 10px;
+        }
+        .leistung p {
+            font-family: "Open sans", sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            color: #444444;
+            margin: 0;
+        }
         @media (min-width: 768px) {
-            /* Leiste über die volle Breite: Logo links, Menü rechts am Rand */
-            .navbar-default > .container {
-                width: 100%;
-                max-width: none;
-                padding-left: 40px;
-                padding-right: 40px;
-            }
-            .navbar-default .navbar-brand {
-                padding: 10px 15px 10px 15px;
-            }
-            .navbar-default .navbar-brand img {
-                height: 52px;
-            }
-            .navbar-default .navbar-collapse {
-                padding-right: 0;
+            .leistungen-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        /* Laptop / Desktop */
+        /* Laptop / Desktop: größere Überschriften */
         @media (min-width: 992px) {
             h1 {
                 font-size: 46px;
-            }
-            .navbar-default .navbar-brand {
-                padding: 15px 15px 15px 15px;
-            }
-            .navbar-default .navbar-brand img {
-                height: 75px;
             }
             .strip-head .strip-title {
                 font-size: 30px;
@@ -720,7 +910,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="active"><a href="index.html">Startseite</a></li>
                             <li><a href="about.html">Über uns</a></li>
-                            <li><a href="contact.html">Kontakt</a></li>                            
+                            <li class="nav-cta"><a href="contact.html">Kontakt</a></li>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->
@@ -754,8 +944,8 @@
                         <div class="row">
                         <div class="col-sm-7">
                               <h1 class="animated fadeInUp delay-2">LATEHUB<br> Der Automat<br> für Ihre Location.</h1>
-                              <p class="animated fadeInUp delay-3">Wir platzieren Verkaufsautomaten in Clubs, Bars, Hotels
-                              und Gastronomiebetrieben. Das Sortiment, an Ihre Zielgruppe angepasst. Der klassische Gang zum Kiosk entfällt: Ihre
+                              <p class="animated fadeInUp delay-3">Wir betreiben Automaten in Clubs, Bars, Hotels
+                              und Gastronomiebetrieben, von der Befüllung bis zum laufenden Betrieb. Das Sortiment, an Ihre Zielgruppe angepasst. Der klassische Gang zum Kiosk entfällt: Ihre
                               Gäste bleiben in Ihrer Location und sind rund um die Uhr versorgt –
                               ganz ohne zusätzlichen Personalaufwand für Ihr Team.</p>
                         </div>
@@ -812,7 +1002,7 @@
         <!-- Fehlt ein Bild, wird sein Feld automatisch ausgeblendet. -->
         <section id="facts" class="facts page">
             <div class="container wow fadeInUp">
-                <h1>Unsere Top-Seller Automaten</h1>
+                <h1>Unsere Automaten</h1>
                 <p class="facts-intro">Kompakt und Platzeffizient</p>
 
                 <div class="models-grid">
@@ -900,7 +1090,7 @@
                 <div class="facts-info">
                     <h2 class="info-title">Spiralförderung</h2>
                     <div class="spiral-row">
-                        <p class="info-lead">Die Produkte werden über eine Spiralförderung ausgegeben: Eine rotierende Spirale befördert den Artikel zuverlässig aus dem Fach. Der Abstand der Spiralwindungen bestimmt dabei Kapazität und Produktgröße. Dadurch sind verschiedene Kapazitäten möglich, passend zu Ihrem Sortiment. Die Automaten sind mit 10 oder 15 Slots erhältlich, wobei jeder Slot eine Spirale enthält. Mit 10 Slots beträgt die Tiefe des Automaten 27 cm, mit 15 Slots 36 cm.</p>
+                        <p class="info-lead">Die Produkte werden über eine Spiralförderung ausgegeben: Eine rotierende Spirale befördert den Artikel zuverlässig aus dem Fach. Der Abstand der Spiralwindungen bestimmt dabei Kapazität und Produktgröße. Dadurch sind verschiedene Kapazitäten möglich, passend zu Ihrem Sortiment. Die Automaten sind mit 10 oder 15 Slots verfügbar, wobei jeder Slot eine Spirale enthält. Mit 10 Slots beträgt die Tiefe des Automaten 27 cm, mit 15 Slots 36 cm.</p>
                         <div class="spiral-figure">
                             <img src="images/banner-carousel/spiralinfo.png" width="1400" height="1010" alt="Schema: Automat mit 10 Slots (270 mm Tiefe) und mit 15 Slots (355 mm Tiefe), Höhe und Breite bleiben gleich" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
                             <p class="spiral-caption">(Beispiel: Konfiguration mit 15 Slots – Tiefe des Automaten 36 cm)</p>
@@ -910,7 +1100,7 @@
                         <div class="spec">
                             <span class="info-label">Zwei Größen</span>
                             <span class="spec-value">10 oder 15 Slots</span>
-                            <span class="spec-note">Basis- und Pro-Modell sind jeweils mit 10 oder 15 Slots erhältlich. Ein Slot enthält eine Spirale.</span>
+                            <span class="spec-note">Basis- und Pro-Modell sind jeweils mit 10 oder 15 Slots verfügbar. Ein Slot enthält eine Spirale.</span>
                         </div>
                         <div class="spec">
                             <span class="info-label">Enger Spiralabstand</span>
@@ -963,7 +1153,7 @@
                     </div>
                     <div class="mount-text">
                         <span class="info-label">Montage</span>
-                        <p>Alle Automaten werden standardmäßig zur Wandmontage geliefert. Optional ist zusätzlich ein Standfuß erhältlich, der weiteren Stauraum bietet.</p>
+                        <p>Wir montieren den Automaten standardmäßig an der Wand. Optional ist zusätzlich ein Standfuß möglich, der weiteren Stauraum bietet.</p>
                     </div>
                 </div>
 
@@ -984,12 +1174,12 @@
                         <h1>Wer wir sind</h1>
                     </div>
                     <div class="col-sm-7 col-md-6">
-                        <p>latehub ist Ihr Ansprechpartner für Verkaufsautomaten in Gastronomie und
-                        Hotellerie. Wir verkaufen und platzieren Automaten mit Karten/kontaktloser Zahlung
+                        <p>latehub ist Ihr Ansprechpartner für Automaten in Gastronomie und
+                        Hotellerie. Wir betreiben die Automaten in Ihrer Location, mit Karten/kontaktloser Zahlung
                         und optionaler Altersverifikation.</p>
                         <p>Das Sortiment stimmen wir individuell auf Ihre Location und Ihre Gäste ab –
                         von Vapes und Feuerzeugen über Kaugummis und Hygieneartikel bis hin zu
-                        Kartenspielen. So finden Ihre Gäste im richtigen Moment, was sie brauchen,
+                        Kartenspielen. Befüllung und Betrieb übernehmen wir, so finden Ihre Gäste im richtigen Moment, was sie brauchen,
                         und Sie gewinnen eine zusätzliche Einnahmequelle.</p>
 
                     </div>
@@ -1029,68 +1219,40 @@
         </section>
         <!-- BILDERBAND ENDE -->
 
-        <!-- UNSERE LEISTUNGEN: Vermietung, Betrieb, Verkauf -->
-        <section id="services" class="services page">
+        <!-- UNSERE LEISTUNGEN: Betrieb, Befüllung, individuelle Anpassung, Marketing am Standort -->
+        <section id="services" class="services leistungen page">
             <div class="container wow fadeInUp">
-                <div class="row">
-                    <div class="col-md-12 main-heading">
-                      <h1>Unsere Leistungen</h1>  
+                <h1>Unsere Leistungen</h1>
+                <p class="leistungen-intro">Wir stellen den Automaten auf und betreiben ihn. Für Ihr Team entsteht kein Aufwand.</p>
+
+                <div class="leistungen-grid">
+
+                    <div class="leistung">
+                        <div class="leistung-icon" aria-hidden="true"><i class="fa fa-cogs"></i></div>
+                        <h2>Betrieb</h2>
+                        <p>Wir kümmern uns um den laufenden Betrieb Ihres Automaten. Über WLAN und 5G behalten wir Verkaufszahlen und Statistiken online im Blick.</p>
                     </div>
 
-                    <!-- 1: Vermietung -->
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="service clearfix">
-                                <div class="col-sm-4 col-md-5">
-                                    <span class="service-number">1</span>
-                                </div>
-                                <div class="col-sm-8 col-md-7">
-                                    <h2>Automaten mieten</h2>
-                                    <p>Sie möchten einen Automaten in Ihrer Location, ohne ihn zu kaufen? Dann mieten
-                                    Sie ihn bei uns. Sie wählen Modell (Basis oder Pro), Farbe und Größe mit 10 oder
-                                    15 Slots, wir stellen den Automaten bei Ihnen auf.</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="leistung">
+                        <div class="leistung-icon" aria-hidden="true"><i class="fa fa-truck"></i></div>
+                        <h2>Befüllung</h2>
+                        <p>Wir bestücken den Automaten und halten ihn gefüllt. Ihre Gäste finden immer, was sie suchen.</p>
                     </div>
 
-                    <!-- 2: Betrieb -->
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="service clearfix">
-                                <div class="col-sm-4 col-md-5">
-                                    <span class="service-number">2</span>
-                                </div>
-                                <div class="col-sm-8 col-md-7">
-                                    <h2>Betrieb <span class="thin">durch</span> latehub</h2>
-                                    <p>Wir betreiben die Automaten für Sie. Wir stimmen das Sortiment auf Ihre Gäste
-                                    ab, bestücken den Automaten und kümmern uns um den laufenden Betrieb. Über
-                                    WLAN und 5G behalten wir Verkaufszahlen und Statistiken online im Blick. Für Ihr
-                                    Team entsteht kein Aufwand.</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="leistung">
+                        <div class="leistung-icon" aria-hidden="true"><i class="fa fa-sliders"></i></div>
+                        <h2>Individuelle Anpassung</h2>
+                        <p>Sortiment und Software stimmen wir auf Ihre Location und Ihre Gäste ab.</p>
                     </div>
 
-                    <!-- 3: Verkauf -->
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="service clearfix">
-                                <div class="col-sm-4 col-md-5">
-                                    <span class="service-number">3</span>
-                                </div>
-                                <div class="col-sm-8 col-md-7">
-                                    <h2>Automaten kaufen</h2>
-                                    <p>Sie möchten einen eigenen Automaten? Wir verkaufen Ihnen Basis- und Pro-Modell
-                                    in 10 oder 15 Slots, in Weiß oder Schwarz. Auf Wunsch mit Altersverifikations-Modul
-                                    für Produkte ab 18 und mit Standfuß, der zusätzlichen Stauraum bietet.</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="leistung">
+                        <div class="leistung-icon" aria-hidden="true"><i class="fa fa-bullhorn"></i></div>
+                        <h2>Marketing am Standort</h2>
+                        <p>Wir sorgen dafür, dass der Automat in Ihrer Location auffällt und genutzt wird.</p>
                     </div>
-                  
+
                 </div>
-            </div>            
+            </div>
         </section>
 
         <!-- CTA section starts -->
@@ -1117,7 +1279,7 @@
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="footer-link footer-link-1">
-                                    <h4>Für Betreiber</h4>
+                                    <h4>Für Locations</h4>
                                     <ul>
                                         <li><a href="contact.html">Automat anfragen</a></li>
                                         <li><a href="about.html">Über latehub</a></li>
@@ -1138,7 +1300,7 @@
                         </div>
                     </div>
                     <div class="col-md-5 col-md-offset-1 footer-text">
-                        <p>latehub – Verkaufsautomaten mit kontaktloser Zahlung und Altersverifikation für Clubs, Bars, Hotels und Gastronomie. Individuelles Sortiment, minimaler Aufwand für Ihr Team.</p>
+                        <p>latehub – Wir betreiben Automaten mit kontaktloser Zahlung und Altersverifikation in Clubs, Bars, Hotels und Gastronomie. Individuelles Sortiment, minimaler Aufwand für Ihr Team.</p>
                         <span>&copy; 2026 latehub</span>
                     </div>
                     </div>
@@ -1172,6 +1334,21 @@
         var l = document.getElementById('loader-wrapper');
         if (l) { l.style.display = 'none'; }
       }, 2000);
+    </script>
+
+    <!-- Navigationsleiste: wird beim Scrollen schlanker -->
+    <script>
+      (function () {
+        var nav = document.querySelector('.top-navigation-bar');
+        if (!nav) { return; }
+        function update() {
+          var y = window.pageYOffset || document.documentElement.scrollTop;
+          if (y > 30) { nav.classList.add('navbar-scrolled'); }
+          else { nav.classList.remove('navbar-scrolled'); }
+        }
+        window.addEventListener('scroll', update, { passive: true });
+        update();
+      })();
     </script>
 
     <!-- Bilderband: Autoscroll, Pause bei Mausberührung, Ziehen/Wischen, pausiert außerhalb des Sichtbereichs -->
