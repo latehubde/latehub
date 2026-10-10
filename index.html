@@ -60,6 +60,17 @@
             transition-duration: 1.2s;
         }
 
+        /* Karussell: Bild rechts mit Rahmen, abgerundeten Ecken und Schatten.
+           Größe anpassen über max-width (100% = volle Spalte), Rahmen über border */
+        #ghughu-banner-carousel .banner-item .col-sm-5 > img {
+            display: block;
+            max-width: 88%;
+            margin: 0 auto;
+            border: 6px solid #000000;
+            border-radius: 18px;
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+        }
+
         /* Karussell-Steuerung: mittig unten, drei getrennte Elemente */
         .carousel-indicators {
             position: absolute;
@@ -400,21 +411,22 @@
             line-height: 1;
         }
 
-        /* Spiralförderung: Text links, Schema rechts daneben */
+        /* Spiralförderung: Text links, Schema rechts daneben.
+           Bildbreite anpassen über flex: 0 0 270px */
         .spiral-row {
             display: flex;
             flex-wrap: nowrap;
             align-items: flex-start;
             gap: 32px;
-            margin-bottom: 8px;
+            margin-bottom: 0;
         }
         .spiral-row .info-lead {
             flex: 1 1 0;
             min-width: 0;
         }
         .spiral-figure {
-            flex: 0 0 340px;
-            margin: 0 0 20px;
+            flex: 0 0 270px;
+            margin: 0 0 14px;
             text-align: center;
         }
         .spiral-figure img {
@@ -534,7 +546,7 @@
             .spiral-figure {
                 flex: 0 0 auto;
                 width: 100%;
-                max-width: 420px;
+                max-width: 360px;
                 margin: 0 auto 20px;
             }
         }
@@ -921,13 +933,7 @@
                             <div class="spec-icon" aria-hidden="true"><i class="fa fa-plug"></i></div>
                             <span class="info-label">Stromversorgung</span>
                             <span class="spec-value">220 V / 50 Hz</span>
-                            <span class="spec-note">Europäischer Standard</span>
-                        </div>
-                        <div class="spec">
-                            <div class="spec-icon" aria-hidden="true"><i class="fa fa-bolt"></i></div>
-                            <span class="info-label">Leistungsaufnahme</span>
-                            <span class="spec-value">max. 36 W</span>
-                            <span class="spec-note">Energieeffizienter Dauerbetrieb</span>
+                            <span class="spec-note">Europäischer Standard, max. 36 W Leistungsaufnahme im energieeffizienten Dauerbetrieb</span>
                         </div>
                         <div class="spec">
                             <div class="spec-icon" aria-hidden="true"><i class="fa fa-credit-card"></i></div>
@@ -1023,7 +1029,7 @@
         </section>
         <!-- BILDERBAND ENDE -->
 
-        <!-- most probably like canvas -->
+        <!-- UNSERE LEISTUNGEN -->
         <section id="services" class="services page">
             <div class="container wow fadeInUp">
                 <div class="row">
@@ -1038,9 +1044,10 @@
                                 </div>
                                 <div class="col-sm-8 col-md-7">
                                     <h2>Bargeldlos &amp; rund um die Uhr</h2>
-                                    <p>Unsere Automaten akzeptieren ausschließlich Karten/kontaktlose Zahlung. Das erhöht die
-                                    Sicherheit und macht Wechselgeld überflüssig. Ihre Gäste können
-                                    jederzeit einkaufen – auch dann, wenn der Supermarkt um die Ecke geschlossen ist.</p>
+                                    <p>Die Automaten arbeiten mit dem Nayax-Kartenlesemodul und akzeptieren EC-Karte und
+                                    kontaktlose Zahlung. Es gibt kein Bargeld und kein Wechselgeld, das ist sicherer
+                                    und schneller. Ihre Gäste können jederzeit einkaufen, auch dann, wenn der Kiosk
+                                    oder Supermarkt in der Nähe geschlossen ist.</p>
                                 </div>
                             </div>
                         </div>
@@ -1054,9 +1061,9 @@
                                 </div>
                                 <div class="col-sm-8 col-md-7">
                                     <h2>Altersverifikation <span class="thin">für</span> Produkte ab 18</h2>
-                                    <p>Das optionale Altersverifikations-Modul prüft direkt am Automaten,
-                                    ob ein Kauf zulässig ist. So können Sie auch altersbeschränkte Artikel
-                                    anbieten, ohne dass Ihr Personal kontrollieren muss.</p>
+                                    <p>Mit dem optionalen Altersverifikations-Modul prüft der Automat selbst, ob ein
+                                    Kauf zulässig ist. So bieten Sie auch altersbeschränkte Artikel
+                                    jugendschutzkonform an, ohne dass Ihr Personal Ausweise kontrollieren muss.</p>
                                 </div>
                             </div>
                         </div>
@@ -1069,11 +1076,27 @@
                                     <span class="service-number">3</span>
                                 </div>
                                 <div class="col-sm-8 col-md-7">
-                                    <h2>Individuelles Sortiment <span class="thin">für</span> Ihre Location</h2>
+                                    <h2>Sortiment <span class="thin">und</span> Betreuung <span class="thin">aus einer Hand</span></h2>
                                     <p>Jeder Standort hat ein anderes Publikum. Wir beraten Sie zur passenden
-                                    Produktauswahl, bestücken den Automaten und betreuen ihn im laufenden
-                                    Betrieb. So profitieren Sie von einer zusätzlichen Einnahmequelle –
-                                    ohne eigenen Aufwand.</p>
+                                    Produktauswahl, richten den Automaten in der für Sie passenden Größe (10 oder 15 Slots)
+                                    ein, bestücken ihn und betreuen ihn im laufenden Betrieb. Für Sie ist das eine
+                                    zusätzliche Einnahmequelle ohne eigenen Aufwand.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="service clearfix">
+                                <div class="col-sm-4 col-md-5">
+                                    <span class="service-number">4</span>
+                                </div>
+                                <div class="col-sm-8 col-md-7">
+                                    <h2>Alle Verkäufe <span class="thin">im</span> Blick</h2>
+                                    <p>Dank WLAN und 5G sind die Automaten online verbunden. Sortiment, Verkaufszahlen
+                                    und Statistiken lassen sich jederzeit abrufen. So sehen wir, was gut läuft, und
+                                    stimmen das Angebot auf Ihre Gäste ab.</p>
                                 </div>
                             </div>
                         </div>
