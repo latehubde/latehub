@@ -165,17 +165,30 @@
             display: flex;
             flex-wrap: nowrap;
             align-items: flex-start;
-            gap: 32px;
+            gap: 24px;
+        }
+
+        /* Foto mit kleiner Beschriftung darunter */
+        .model-figure {
+            flex: 0 0 230px;
+            max-width: 100%;
         }
         .model-photo {
-            flex: 0 0 180px;
-            max-width: 100%;
-            height: 220px;
-            background-color: #f0f0f0;
+            width: 100%;
+            height: 290px;
+            background-color: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+        }
+        .model-photo-caption {
+            font-family: "Open sans", sans-serif;
+            font-size: 12px;
+            line-height: 1.4;
+            color: #777777;
+            text-align: center;
+            margin: 8px 0 0;
         }
         .model-text {
             flex: 1 1 0;
@@ -301,6 +314,11 @@
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
+        }
+        /* Modellfotos: leicht vergrößert, damit der Automat größer wirkt und Bildränder abgeschnitten werden.
+           Wert anpassen: 1 = Originalgröße, 1.15 = 15 % größer, 1.3 = 30 % größer */
+        .model-photo img {
+            transform: scale(1.15);
         }
 
         /* Informationsblöcke (Spiralförderung, Technische Daten) */
@@ -498,6 +516,15 @@
                 grid-template-columns: repeat(3, 1fr);
             }
         }
+        /* Kleine Laptops: Fotos etwas schmaler, damit der Text genug Platz hat */
+        @media (min-width: 992px) and (max-width: 1199px) {
+            .model-figure {
+                flex-basis: 200px;
+            }
+            .model-photo {
+                height: 250px;
+            }
+        }
         /* Handy: Schema rutscht unter den Text und nutzt die volle Breite */
         @media (max-width: 767px) {
             .spiral-row {
@@ -516,8 +543,11 @@
                 flex-wrap: wrap;
                 gap: 20px;
             }
-            .model-photo {
+            .model-figure {
                 flex: 0 0 100%;
+            }
+            .model-photo {
+                height: 280px;
             }
             .mount {
                 flex-wrap: wrap;
@@ -766,7 +796,7 @@
 
         <!-- ================= UNSERE AUTOMATEN ================= -->
         <!-- Aufbau: 1) zwei Modelle mit Bild, Farb- und Größenauswahl, 2) Spiralförderung mit Schema, 3) Technische Daten, 4) Montage mit Bild, 5) Kontakt-Hinweis. -->
-        <!-- Bilder in images/banner-carousel/ : modell-basic.png, modell-pro.png, spiralinfo.png (Schema 10 vs. 15 Spiralen), infofacts5.png (Standfuß) -->
+        <!-- Bilder in images/banner-carousel/ : modell-basic.png, modell-pro.png, spiralinfo.png (Schema 10 vs. 15 Slots), infofacts5.png (Standfuß) -->
         <!-- Fehlt ein Bild, wird sein Feld automatisch ausgeblendet. -->
         <section id="facts" class="facts page">
             <div class="container wow fadeInUp">
@@ -777,8 +807,11 @@
 
                     <!-- Basis-Modell -->
                     <div class="model-head">
-                        <div class="model-photo">
-                            <img src="images/banner-carousel/modell-basic.png" alt="Basis-Modell" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                        <div class="model-figure">
+                            <div class="model-photo">
+                                <img src="images/banner-carousel/modell-basic.png" alt="Basis-Modell" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                            </div>
+                            <p class="model-photo-caption">Automaten-Tiefe: siehe 10/15 Slots</p>
                         </div>
                         <div class="model-text">
                             <div class="model-title-row">
@@ -796,11 +829,11 @@
                                     <span class="color-label">Verfügbare Größen</span>
                                     <div class="size-chips">
                                         <div class="size-item">
-                                            <span class="size-chip">10 Spiralen</span>
+                                            <span class="size-chip">10 Slots</span>
                                             <span class="size-depth">(Tiefe 27 cm)</span>
                                         </div>
                                         <div class="size-item">
-                                            <span class="size-chip">15 Spiralen</span>
+                                            <span class="size-chip">15 Slots</span>
                                             <span class="size-depth">(Tiefe 36 cm)</span>
                                         </div>
                                     </div>
@@ -812,8 +845,11 @@
 
                     <!-- Pro-Modell (mit LED-Modul) -->
                     <div class="model-head">
-                        <div class="model-photo">
-                            <img src="images/banner-carousel/modell-pro.png" alt="Pro-Modell mit LED-Modul" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                        <div class="model-figure">
+                            <div class="model-photo">
+                                <img src="images/banner-carousel/modell-pro.png" alt="Pro-Modell mit LED-Modul" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                            </div>
+                            <p class="model-photo-caption">Automaten-Tiefe: siehe 10/15 Slots</p>
                         </div>
                         <div class="model-text">
                             <div class="model-title-row">
@@ -832,11 +868,11 @@
                                     <span class="color-label">Verfügbare Größen</span>
                                     <div class="size-chips">
                                         <div class="size-item">
-                                            <span class="size-chip">10 Spiralen</span>
+                                            <span class="size-chip">10 Slots</span>
                                             <span class="size-depth">(Tiefe 27 cm)</span>
                                         </div>
                                         <div class="size-item">
-                                            <span class="size-chip">15 Spiralen</span>
+                                            <span class="size-chip">15 Slots</span>
                                             <span class="size-depth">(Tiefe 36 cm)</span>
                                         </div>
                                     </div>
@@ -852,17 +888,17 @@
                 <div class="facts-info">
                     <h2 class="info-title">Spiralförderung</h2>
                     <div class="spiral-row">
-                        <p class="info-lead">Die Produkte werden über eine Spiralförderung ausgegeben: Eine rotierende Spirale befördert den Artikel zuverlässig aus dem Fach. Der Abstand der Spiralwindungen bestimmt dabei Kapazität und Produktgröße. Dadurch sind verschiedene Kapazitäten möglich, passend zu Ihrem Sortiment. Die Automaten sind mit 10 oder 15 Slots/Spiralen erhältlich. Mit 10 Spiralen beträgt die Tiefe des Automaten 27 cm, mit 15 Spiralen 36 cm.</p>
+                        <p class="info-lead">Die Produkte werden über eine Spiralförderung ausgegeben: Eine rotierende Spirale befördert den Artikel zuverlässig aus dem Fach. Der Abstand der Spiralwindungen bestimmt dabei Kapazität und Produktgröße. Dadurch sind verschiedene Kapazitäten möglich, passend zu Ihrem Sortiment. Die Automaten sind mit 10 oder 15 Slots erhältlich, wobei jeder Slot eine Spirale enthält. Mit 10 Slots beträgt die Tiefe des Automaten 27 cm, mit 15 Slots 36 cm.</p>
                         <div class="spiral-figure">
-                            <img src="images/banner-carousel/spiralinfo.png" width="1400" height="1010" alt="Schema: Automat mit 10 Spiralen (270 mm Tiefe) und mit 15 Spiralen (355 mm Tiefe), Höhe und Breite bleiben gleich" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
-                            <p class="spiral-caption">(Beispiel: Konfiguration mit 15 Spiralen – Tiefe des Automaten 36 cm)</p>
+                            <img src="images/banner-carousel/spiralinfo.png" width="1400" height="1010" alt="Schema: Automat mit 10 Slots (270 mm Tiefe) und mit 15 Slots (355 mm Tiefe), Höhe und Breite bleiben gleich" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                            <p class="spiral-caption">(Beispiel: Konfiguration mit 15 Slots – Tiefe des Automaten 36 cm)</p>
                         </div>
                     </div>
                     <div class="spec-grid spec-grid-3">
                         <div class="spec">
                             <span class="info-label">Zwei Größen</span>
-                            <span class="spec-value">10 oder 15 Spiralen</span>
-                            <span class="spec-note">Basis- und Pro-Modell sind jeweils mit 10 oder 15 Spiralen erhältlich.</span>
+                            <span class="spec-value">10 oder 15 Slots</span>
+                            <span class="spec-note">Basis- und Pro-Modell sind jeweils mit 10 oder 15 Slots erhältlich. Ein Slot enthält eine Spirale.</span>
                         </div>
                         <div class="spec">
                             <span class="info-label">Enger Spiralabstand</span>
