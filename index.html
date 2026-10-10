@@ -262,9 +262,15 @@
         }
         .size-chips {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 8px;
             min-height: 32px;
+        }
+        /* Größenfeld mit kleiner Tiefenangabe darunter */
+        .size-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .size-chip {
             display: inline-block;
@@ -276,6 +282,15 @@
             border: 1px solid #cfcfcf;
             border-radius: 20px;
             padding: 8px 14px;
+            white-space: nowrap;
+        }
+        .size-depth {
+            display: block;
+            font-family: "Open sans", sans-serif;
+            font-size: 11px;
+            line-height: 1.2;
+            color: #777777;
+            margin-top: 5px;
             white-space: nowrap;
         }
 
@@ -367,17 +382,35 @@
             line-height: 1;
         }
 
-        /* Spiralförderung: Schema (10 vs. 15 Spiralen) über die volle Breite */
+        /* Spiralförderung: Text links, Schema rechts daneben */
+        .spiral-row {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: flex-start;
+            gap: 32px;
+            margin-bottom: 8px;
+        }
+        .spiral-row .info-lead {
+            flex: 1 1 0;
+            min-width: 0;
+        }
         .spiral-figure {
-            margin: 4px 0 28px;
+            flex: 0 0 340px;
+            margin: 0 0 20px;
             text-align: center;
         }
         .spiral-figure img {
             display: block;
             width: 100%;
-            max-width: 820px;
             height: auto;
             margin: 0 auto;
+        }
+        .spiral-caption {
+            font-family: "Open sans", sans-serif;
+            font-size: 12px;
+            line-height: 1.4;
+            color: #555555;
+            margin: 8px 0 0;
         }
 
         /* Montage: kleiner Abschnitt mit größerem Bild */
@@ -465,16 +498,17 @@
                 grid-template-columns: repeat(3, 1fr);
             }
         }
-        /* Handy: Schema bleibt lesbar und lässt sich seitlich wischen */
+        /* Handy: Schema rutscht unter den Text und nutzt die volle Breite */
         @media (max-width: 767px) {
-            .spiral-figure {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
+            .spiral-row {
+                flex-direction: column;
+                gap: 0;
             }
-            .spiral-figure img {
-                width: 560px;
-                max-width: none;
-                margin: 0;
+            .spiral-figure {
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 420px;
+                margin: 0 auto 20px;
             }
         }
         @media (max-width: 480px) {
@@ -761,8 +795,14 @@
                                 <div class="option-group">
                                     <span class="color-label">Verfügbare Größen</span>
                                     <div class="size-chips">
-                                        <span class="size-chip">10 Spiralen</span>
-                                        <span class="size-chip">15 Spiralen</span>
+                                        <div class="size-item">
+                                            <span class="size-chip">10 Spiralen</span>
+                                            <span class="size-depth">(Tiefe 27 cm)</span>
+                                        </div>
+                                        <div class="size-item">
+                                            <span class="size-chip">15 Spiralen</span>
+                                            <span class="size-depth">(Tiefe 36 cm)</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -791,8 +831,14 @@
                                 <div class="option-group">
                                     <span class="color-label">Verfügbare Größen</span>
                                     <div class="size-chips">
-                                        <span class="size-chip">10 Spiralen</span>
-                                        <span class="size-chip">15 Spiralen</span>
+                                        <div class="size-item">
+                                            <span class="size-chip">10 Spiralen</span>
+                                            <span class="size-depth">(Tiefe 27 cm)</span>
+                                        </div>
+                                        <div class="size-item">
+                                            <span class="size-chip">15 Spiralen</span>
+                                            <span class="size-depth">(Tiefe 36 cm)</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -805,9 +851,12 @@
                 <!-- Spiralförderung -->
                 <div class="facts-info">
                     <h2 class="info-title">Spiralförderung</h2>
-                    <p class="info-lead">Die Produkte werden über eine Spiralförderung ausgegeben: Eine rotierende Spirale befördert den Artikel zuverlässig aus dem Fach. Der Abstand der Spiralwindungen bestimmt dabei Kapazität und Produktgröße. Dadurch sind verschiedene Kapazitäten möglich, passend zu Ihrem Sortiment. Die Automaten sind mit 10 oder 15 Slots/Spiralen erhältlich </p>
-                    <div class="spiral-figure">
-                        <img src="images/banner-carousel/spiralinfo.png" width="1400" height="1010" alt="Schema: Automat mit 10 Spiralen (270 mm Tiefe) und mit 15 Spiralen (355 mm Tiefe), Höhe und Breite bleiben gleich" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                    <div class="spiral-row">
+                        <p class="info-lead">Die Produkte werden über eine Spiralförderung ausgegeben: Eine rotierende Spirale befördert den Artikel zuverlässig aus dem Fach. Der Abstand der Spiralwindungen bestimmt dabei Kapazität und Produktgröße. Dadurch sind verschiedene Kapazitäten möglich, passend zu Ihrem Sortiment. Die Automaten sind mit 10 oder 15 Slots/Spiralen erhältlich. Mit 10 Spiralen beträgt die Tiefe des Automaten 27 cm, mit 15 Spiralen 36 cm.</p>
+                        <div class="spiral-figure">
+                            <img src="images/banner-carousel/spiralinfo.png" width="1400" height="1010" alt="Schema: Automat mit 10 Spiralen (270 mm Tiefe) und mit 15 Spiralen (355 mm Tiefe), Höhe und Breite bleiben gleich" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                            <p class="spiral-caption">(Beispiel: Konfiguration mit 15 Spiralen – Tiefe des Automaten 36 cm)</p>
+                        </div>
                     </div>
                     <div class="spec-grid spec-grid-3">
                         <div class="spec">
@@ -855,6 +904,12 @@
                             <span class="info-label">Software</span>
                             <span class="spec-value">Individuell anpassbar</span>
                             <span class="spec-note">Die Software lässt sich nach Ihren Wünschen konfigurieren und anpassen</span>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon" aria-hidden="true"><i class="fa fa-wifi"></i></div>
+                            <span class="info-label">Konnektivität</span>
+                            <span class="spec-value">WLAN &amp; 5G</span>
+                            <span class="spec-note">Sortiment, Verkaufszahlen und Statistiken lassen sich jederzeit online abrufen</span>
                         </div>
                     </div>
                 </div>
