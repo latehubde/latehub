@@ -53,6 +53,11 @@
             --orange: #bf4800;
             --green: #248a3d;
             --purple: #8944ab;
+            --nav-height: 60px;
+        }
+        /* Sprungziele (z. B. "Mehr erfahren") landen nicht unter der festen Leiste */
+        html {
+            scroll-padding-top: var(--nav-height);
         }
         body, p, li, a, span, button, h1, h2, h3, h4 {
             font-family: var(--font);
@@ -105,15 +110,24 @@
             text-decoration: none;
         }
 
-        /* ===== Navigationsleiste: dunkel, leicht durchscheinend ===== */
+        /* ===== Navigationsleiste (Apple-Stil) =====
+           Ganz oben: komplett transparent, verschmilzt mit dem schwarzen Startbereich.
+           Beim Scrollen: dunkel, durchscheinend, mit Weichzeichner (wie apple.com).
+           Das Umschalten übernimmt die Klasse "nav-at-top" am body (siehe Skript unten). */
         #header .navbar-default {
-            background-color: rgba(22, 22, 23, 0.85) !important;
+            background-color: rgba(22, 22, 23, 0.8) !important;
             -webkit-backdrop-filter: saturate(180%) blur(20px);
             backdrop-filter: saturate(180%) blur(20px);
             border: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: none;
             margin-bottom: 0;
+            min-height: 0;
+            transition: background-color 0.35s ease, border-color 0.35s ease;
+        }
+        body.nav-at-top #header .navbar-default {
+            background-color: rgba(0, 0, 0, 0) !important;
+            border-bottom-color: transparent;
         }
         #header .navbar-default .navbar-collapse {
             background-color: transparent !important;
@@ -121,19 +135,23 @@
             box-shadow: none;
         }
 
-        /* Logo */
+        /* Logo: Das Bild hat einen schwarzen Hintergrund. Mit "screen" wird Schwarz unsichtbar,
+           nur das weiße Logo bleibt stehen. Kein Rechteck mehr auf der durchscheinenden Leiste. */
         #header .navbar-default .navbar-brand {
             height: auto;
-            padding: 8px 15px;
+            padding: 10px 15px;
+            display: block;
         }
         #header .navbar-default .navbar-brand img {
             display: block;
-            height: 40px;
+            height: 36px;
             width: auto;
+            mix-blend-mode: screen;
         }
 
         /* Menü-Knopf (Handy) */
         #header .navbar-default .navbar-toggle {
+            margin: 11px 15px 11px 0;
             border-color: rgba(255, 255, 255, 0.25);
         }
         #header .navbar-default .navbar-toggle:hover,
@@ -144,13 +162,14 @@
             background-color: #f5f5f7;
         }
 
-        /* Menüpunkte: hellgrau, beim Darüberfahren und aktiv weiß */
+        /* Menüpunkte: hellgrau, beim Darüberfahren und aktiv weiß, keine Großbuchstaben */
         #header .navbar-default .navbar-nav > li > a {
             font-family: var(--font);
             font-weight: 400;
             font-size: 15px;
             line-height: 20px;
             letter-spacing: -0.01em;
+            text-transform: none !important;
             color: rgba(245, 245, 247, 0.8) !important;
             background-color: transparent !important;
             padding: 14px 15px;
@@ -165,9 +184,6 @@
             color: #ffffff !important;
             background-color: transparent !important;
         }
-        #header .navbar-default .navbar-nav > li.active > a {
-            font-weight: 600;
-        }
         #header .navbar-default .navbar-nav > li > a:focus-visible {
             outline: 2px solid var(--blue-on-dark);
             outline-offset: -2px;
@@ -178,6 +194,7 @@
             background-color: var(--blue) !important;
             color: #ffffff !important;
             font-weight: 400;
+            font-size: 14px;
             text-align: center;
             border-top: none;
             border-radius: 980px;
@@ -199,7 +216,7 @@
             }
         }
 
-        /* Tablet: Leiste über die volle Breite, Logo links, Menü rechts am Rand */
+        /* Tablet, Laptop und Desktop: schlanke Leiste von 60 px Höhe, Logo links, Menü rechts am Rand */
         @media (min-width: 768px) {
             #header .navbar-default > .container {
                 width: 100%;
@@ -211,34 +228,18 @@
                 padding: 10px 15px;
             }
             #header .navbar-default .navbar-brand img {
-                height: 52px;
+                height: 40px;
             }
             #header .navbar-default .navbar-collapse {
                 padding-right: 0;
             }
             #header .navbar-default .navbar-nav > li > a {
-                padding: 26px 16px;
+                padding: 20px 16px;
                 border-top: none;
             }
             #header .navbar-default .navbar-nav > li.nav-cta > a {
-                margin: 17px 0 17px 10px;
-                padding: 9px 20px;
-            }
-        }
-
-        /* Laptop / Desktop: Logo wieder in Originalgröße */
-        @media (min-width: 992px) {
-            #header .navbar-default .navbar-brand {
-                padding: 10px 15px;
-            }
-            #header .navbar-default .navbar-brand img {
-                height: 75px;
-            }
-            #header .navbar-default .navbar-nav > li > a {
-                padding: 37px 16px;
-            }
-            #header .navbar-default .navbar-nav > li.nav-cta > a {
-                margin: 28px 0 29px 10px;
+                margin: 12px 0 12px 10px;
+                padding: 8px 18px;
             }
         }
 
@@ -990,7 +991,7 @@
         }
         @media (min-width: 992px) {
             #banner {
-                padding-top: 130px !important;
+                padding-top: 110px !important;
             }
             #banner h1 {
                 font-size: 60px;
@@ -1006,7 +1007,7 @@
 
 </head>
 
-<body>
+<body class="nav-at-top">
 
 <!-- Start: Preloader section -->
 <div id="loader-wrapper">
@@ -1477,6 +1478,23 @@
         var l = document.getElementById('loader-wrapper');
         if (l) { l.style.display = 'none'; }
       }, 2000);
+    </script>
+
+    <!-- Navigationsleiste: ganz oben transparent, beim Scrollen dunkel und durchscheinend -->
+    <script>
+      (function () {
+        var body = document.body;
+        function onScroll() {
+          var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+          if (y > 8) {
+            body.classList.remove('nav-at-top');
+          } else {
+            body.classList.add('nav-at-top');
+          }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      })();
     </script>
 
     <!-- Bilderband: Autoscroll, Pause bei Mausberührung, Ziehen/Wischen, pausiert außerhalb des Sichtbereichs -->
