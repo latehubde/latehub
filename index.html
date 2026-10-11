@@ -83,7 +83,7 @@
         }
 
         /* ===== Runde Knöpfe (überall einheitlich) =====
-           WhatsApp = grün, E-Mail = blau, "Mehr erfahren" = neutraler Umriss */
+           WhatsApp = grün, E-Mail = blau, "Mehr erfahren" = blau gefüllt, "Anfragen" = blauer Umriss */
         .apple-btn {
             display: inline-block;
             font-family: var(--font);
@@ -119,6 +119,30 @@
         .apple-btn-email:focus {
             background-color: var(--blue-hover);
             color: #ffffff;
+            text-decoration: none;
+        }
+        /* Blauer Hauptknopf (Startbereich: "Mehr erfahren") */
+        .apple-btn-primary {
+            background-color: var(--blue);
+            color: #ffffff;
+        }
+        .apple-btn-primary:hover,
+        .apple-btn-primary:focus {
+            background-color: var(--blue-hover);
+            color: #ffffff;
+            text-decoration: none;
+        }
+        /* Blauer Umrissknopf (Startbereich: "Anfragen") */
+        .apple-btn-outline-blue {
+            border-color: var(--blue-on-dark);
+            color: var(--blue-on-dark);
+            background-color: transparent;
+        }
+        .apple-btn-outline-blue:hover,
+        .apple-btn-outline-blue:focus {
+            background-color: rgba(41, 151, 255, 0.14);
+            border-color: var(--blue-on-dark);
+            color: var(--blue-on-dark);
             text-decoration: none;
         }
         .apple-btn-outline {
@@ -285,48 +309,115 @@
             }
         }
 
-        /* ===== Startbereich: schwarz, zentriert, zwei Buttons, Bild darunter ===== */
+        /* ===== Startbereich: nach dem Vorbild der Apple-Startseite =====
+           Aufbau jeder Folie von oben nach unten: große Überschrift, Untertitel, zwei Knöpfe, Bild.
+           Die Folie ist so hoch wie der Bildschirm (minus Leiste), unten schaut ein Stück vom nächsten Abschnitt hervor.
+           Das Bild füllt den restlichen Platz und wird immer komplett angezeigt. */
+        :root {
+            --hero-h: calc(100vh - var(--nav-height) - 24px);   /* Folienhöhe */
+        }
+        @supports (height: 100svh) {
+            :root {
+                --hero-h: calc(100svh - var(--nav-height) - 24px);
+            }
+        }
         #banner {
             background: #000000 !important;
             height: auto !important;
             min-height: 0 !important;
             display: block !important;
-            padding: 92px 0 0 !important;
+            padding: var(--nav-height) 0 0 !important;
+        }
+        /* Volle Breite, kein Seitenrand */
+        #banner > .container {
+            width: 100%;
+            max-width: none;
+            padding-left: 0;
+            padding-right: 0;
         }
         #banner .carousel,
-        #banner .carousel-inner,
+        #banner .carousel-inner {
+            background: #000000 !important;
+            height: var(--hero-h) !important;
+            min-height: 540px !important;
+            max-height: 820px !important;
+        }
+        #banner .carousel-inner > .item,
         #banner .banner-item {
             background: #000000 !important;
-            height: auto !important;
+            height: 100% !important;
             min-height: 0 !important;
         }
-        #banner .banner-item {
-            padding: 16px 0 96px;
+
+        /* Eine Folie: Text oben, Bild füllt den Rest, unten Platz für die Steuerung */
+        .hero-slide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            padding: 34px 20px 76px;
             text-align: center;
+        }
+        .hero-text {
+            flex: 0 0 auto;
+            width: 100%;
         }
         #banner h1 {
             color: #f5f5f7;
             font-weight: 600;
-            font-size: 32px;
+            font-size: 34px;
             line-height: 1.08;
-            letter-spacing: -0.02em;
-            margin: 0 auto 14px;
-            max-width: 800px;
+            letter-spacing: -0.01em;
+            margin: 0 auto 6px;
+            max-width: 980px;
         }
-        #banner p {
+        /* Untertitel (wie "Pro further." bei Apple): weiß, größer als normaler Text */
+        #banner .hero-sub {
             font-family: var(--font);
-            font-size: 17px;
+            font-size: 19px;
             font-weight: 400;
-            line-height: 1.5;
-            color: var(--grey-dark-bg);
-            max-width: 600px;
-            margin: 0 auto 22px;
+            line-height: 1.16;
+            letter-spacing: 0.004em;
+            color: #f5f5f7;
+            max-width: 760px;
+            margin: 0 auto 18px;
         }
         .hero-buttons {
-            margin-bottom: 32px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            margin: 0;
         }
         .hero-buttons .apple-btn {
-            margin: 0 5px 10px;
+            font-size: 15px;
+            line-height: 1.2;
+            padding: 9px 18px;
+            margin: 0;
+        }
+
+        /* Bildbereich: nimmt allen übrigen Platz ein, das Bild passt sich darin an */
+        .hero-media {
+            position: relative;
+            flex: 1 1 0;
+            min-height: 0;
+            width: 100%;
+            margin-top: 26px;
+        }
+        #ghughu-banner-carousel .hero-img {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: block;
+            width: 100%;
+            max-width: 1100px;
+            height: 100%;
+            margin: 0 auto;
+            border: none;
+            object-fit: contain;
+            object-position: center top;
         }
 
         /* Karussell: langsamere Überblendung */
@@ -335,28 +426,13 @@
             transition-duration: 1.2s;
         }
 
-        /* Hero-Bild: nicht mehr bildschirmfüllend.
-           Höchstens 880 px breit und höchstens 56 % der Bildschirmhöhe hoch, das Seitenverhältnis bleibt erhalten.
-           Größer oder kleiner machen: max-width (Breite) und max-height (Höhe in vh) anpassen. */
-        #ghughu-banner-carousel .hero-img {
-            display: block;
-            width: auto;
-            height: auto;
-            max-width: 100%;
-            max-width: min(880px, 100%);
-            max-height: 56vh;
-            margin: 0 auto;
-            border: none;
-            border-radius: 24px;
-        }
-
         /* Karussell-Steuerung: unter dem Bild, mittig */
         .carousel-indicators {
             position: absolute;
             left: 50%;
             right: auto;
             top: auto;
-            bottom: 28px;
+            bottom: 16px;
             margin: 0;
             padding: 0;
             width: 104px;
@@ -391,7 +467,7 @@
         .carousel-control.left,
         .carousel-control.right {
             top: auto;
-            bottom: 28px;
+            bottom: 16px;
             width: 44px;
             height: 44px;
             margin-top: 0;
@@ -425,6 +501,41 @@
         .carousel-control.left:hover,
         .carousel-control.right:hover {
             background-color: rgba(255, 255, 255, 0.24);
+        }
+
+        /* Tablet: Überschrift 48 px, Untertitel 24 px */
+        @media (min-width: 768px) {
+            .hero-slide {
+                padding: 40px 40px 76px;
+            }
+            #banner h1 {
+                font-size: 48px;
+                margin-bottom: 8px;
+            }
+            #banner .hero-sub {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            .hero-buttons .apple-btn {
+                font-size: 17px;
+                padding: 11px 22px;
+            }
+            .hero-media {
+                margin-top: 28px;
+            }
+        }
+        /* Laptop und Desktop (wie Apple): Überschrift 56 px, Untertitel 28 px */
+        @media (min-width: 1068px) {
+            #banner h1 {
+                font-size: 56px;
+                line-height: 1.07;
+                letter-spacing: -0.005em;
+            }
+            #banner .hero-sub {
+                font-size: 28px;
+                line-height: 1.14;
+                margin-bottom: 22px;
+            }
         }
 
         /* ===== Abschnitt "Unsere Automaten" (hellgrau) ===== */
@@ -1000,30 +1111,15 @@
             color: var(--grey) !important;
         }
 
-        /* ===== Größere Bildschirme: etwas größere Überschriften (bewusst moderat, wie bei Apple) ===== */
+        /* ===== Größere Bildschirme: Überschriften der übrigen Abschnitte (bewusst moderat, wie bei Apple) ===== */
         @media (min-width: 768px) {
-            #banner {
-                padding-top: 96px !important;
-            }
             h1 {
                 font-size: 34px;
             }
-            #banner h1 {
-                font-size: 40px;
-            }
         }
         @media (min-width: 992px) {
-            #banner {
-                padding-top: 104px !important;
-            }
             h1 {
                 font-size: 40px;
-            }
-            #banner h1 {
-                font-size: 48px;
-            }
-            #banner p {
-                font-size: 19px;
             }
             .strip-head .strip-title {
                 font-size: 28px;
@@ -1101,63 +1197,59 @@
                   </ol>
 
               <!-- Wrapper for slides -->
-              <div class="carousel-inner full-height" role="listbox">
+              <div class="carousel-inner" role="listbox">
+
+                <!-- Folie 1 -->
                 <div class="item active banner-item">
-                        <div class="row">
-                        <div class="col-sm-12 text-center">
-                              <h1 class="animated fadeInUp delay-2">LATEHUB. Der Automat für Ihre Location.</h1>
-                              <p class="animated fadeInUp delay-3">Wir betreiben Automaten in Clubs, Bars, Hotels
-                              und Gastronomiebetrieben, von der Befüllung bis zum laufenden Betrieb. Das Sortiment, an Ihre Zielgruppe angepasst. Der klassische Gang zum Kiosk entfällt: Ihre
-                              Gäste bleiben in Ihrer Location und sind rund um die Uhr versorgt –
-                              ganz ohne zusätzlichen Personalaufwand für Ihr Team.</p>
-                              <div class="hero-buttons animated fadeInUp delay-3">
-                                  <a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener" class="apple-btn apple-btn-whatsapp"><i class="fa fa-whatsapp" aria-hidden="true"></i>WhatsApp</a>
-                                  <a href="#facts" class="apple-btn apple-btn-outline">Mehr erfahren</a>
-                              </div>
+                    <div class="hero-slide">
+                        <div class="hero-text">
+                            <h1 class="animated fadeInUp delay-2">LATEHUB.</h1>
+                            <p class="hero-sub animated fadeInUp delay-3">Der Automat für Ihre Location.</p>
+                            <div class="hero-buttons animated fadeInUp delay-3">
+                                <a href="#facts" class="apple-btn apple-btn-primary">Mehr erfahren</a>
+                                <a href="#cta" class="apple-btn apple-btn-outline-blue">Anfragen</a>
+                            </div>
                         </div>
-                        <div class="col-sm-12 text-center">
-                            <img src="images/banner-carousel/carouselpic1.png" class="hero-img animated fadeInUp delay-4 img-responsive" alt="latehub Automat" decoding="async">
-                        </div>
-                        </div>
-                </div>
-
-                <div class="item banner-item">
-                    <div class="row">
-                        <div class="col-sm-12 text-center">
-                              <h1 class="animated fadeInUp delay-2">Bargeldlos und sicher bezahlen.</h1>
-                              <p class="animated fadeInUp delay-3">Kein Bargeld, kein Wechselgeld:
-                              Unsere Automaten arbeiten ausschließlich mit Karten/kontaktloser Zahlung. Das ist
-                              sicher, schnell und passt zum Zahlungsverhalten Ihrer Gäste.</p>
-                              <div class="hero-buttons animated fadeInUp delay-3">
-                                  <a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener" class="apple-btn apple-btn-whatsapp"><i class="fa fa-whatsapp" aria-hidden="true"></i>WhatsApp</a>
-                                  <a href="#facts" class="apple-btn apple-btn-outline">Mehr erfahren</a>
-                              </div>
-                        </div>
-                        <div class="col-sm-12 text-center">
-                            <img src="images/banner-carousel/carouselpic2.png" class="hero-img animated fadeInUp delay-4 img-responsive" alt="Kontaktlose Zahlung am Automaten" decoding="async">
+                        <div class="hero-media">
+                            <img src="images/banner-carousel/carouselpic1.png" class="hero-img animated fadeInUp delay-4" alt="latehub Automat" decoding="async">
                         </div>
                     </div>
                 </div>
 
+                <!-- Folie 2 -->
                 <div class="item banner-item">
-                    <div class="row">
-                        <div class="col-sm-12 text-center">
-                              <h1 class="animated fadeInUp delay-2">Verkauf ab 18, sicher geprüft.</h1>
-                              <p class="animated fadeInUp delay-3">Das optionale Altersverifikations-Modul ermöglicht den Verkauf
-                              altersbeschränkter Produkte – jugendschutzkonform und ohne
-                              Kontrolle durch Ihr Personal.</p>
-                              <div class="hero-buttons animated fadeInUp delay-3">
-                                  <a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener" class="apple-btn apple-btn-whatsapp"><i class="fa fa-whatsapp" aria-hidden="true"></i>WhatsApp</a>
-                                  <a href="#facts" class="apple-btn apple-btn-outline">Mehr erfahren</a>
-                              </div>
+                    <div class="hero-slide">
+                        <div class="hero-text">
+                            <h1 class="animated fadeInUp delay-2">Bargeldlos bezahlen.</h1>
+                            <p class="hero-sub animated fadeInUp delay-3">Kontaktlos, schnell und sicher.</p>
+                            <div class="hero-buttons animated fadeInUp delay-3">
+                                <a href="#facts" class="apple-btn apple-btn-primary">Mehr erfahren</a>
+                                <a href="#cta" class="apple-btn apple-btn-outline-blue">Anfragen</a>
+                            </div>
                         </div>
-                        <div class="col-sm-12 text-center">
-                            <img src="images/banner-carousel/carouselpic3.png" class="hero-img animated fadeInUp delay-4 img-responsive" alt="Altersverifikation am Automaten" decoding="async">
+                        <div class="hero-media">
+                            <img src="images/banner-carousel/carouselpic2.png" class="hero-img animated fadeInUp delay-4" alt="Kontaktlose Zahlung am Automaten" decoding="async">
                         </div>
                     </div>
                 </div>
 
-                </div>                
+                <!-- Folie 3 -->
+                <div class="item banner-item">
+                    <div class="hero-slide">
+                        <div class="hero-text">
+                            <h1 class="animated fadeInUp delay-2">Verkauf ab 18.</h1>
+                            <p class="hero-sub animated fadeInUp delay-3">Sicher geprüft, ganz ohne Personal.</p>
+                            <div class="hero-buttons animated fadeInUp delay-3">
+                                <a href="#facts" class="apple-btn apple-btn-primary">Mehr erfahren</a>
+                                <a href="#cta" class="apple-btn apple-btn-outline-blue">Anfragen</a>
+                            </div>
+                        </div>
+                        <div class="hero-media">
+                            <img src="images/banner-carousel/carouselpic3.png" class="hero-img animated fadeInUp delay-4" alt="Altersverifikation am Automaten" decoding="async">
+                        </div>
+                    </div>
+                </div>
+
               </div>
 
               <!-- Controls -->
@@ -1168,6 +1260,7 @@
                 <i><img src="images/banner-carousel/arrow-right.svg" alt="Weiter"></i>
               </a>
              </div> 
+            </div>
         </section>
 
         <!-- ================= UNSERE AUTOMATEN ================= -->
