@@ -73,7 +73,7 @@
         }
         h1 {
             font-weight: 600;
-            font-size: 32px;
+            font-size: 28px;
             line-height: 1.1;
             letter-spacing: -0.015em;
         }
@@ -189,6 +189,24 @@
             outline-offset: -2px;
         }
 
+        /* E-Mail-Knopf: dezenter Pillen-Knopf mit Umriss und Briefsymbol */
+        #header .navbar-default .navbar-nav > li.nav-mail > a {
+            color: #ffffff !important;
+            font-weight: 500;
+            font-size: 14px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 980px;
+            margin: 12px 15px 0;
+            padding: 9px 19px;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        #header .navbar-default .navbar-nav > li.nav-mail > a:hover,
+        #header .navbar-default .navbar-nav > li.nav-mail > a:focus {
+            background-color: rgba(255, 255, 255, 0.12) !important;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
         /* WhatsApp-Knopf: kleiner grüner Pillen-Knopf mit Symbol */
         #header .navbar-default .navbar-nav > li.nav-cta > a {
             background-color: var(--whatsapp) !important;
@@ -202,6 +220,7 @@
             padding: 10px 20px;
             transition: background-color 0.2s;
         }
+        #header .navbar-default .navbar-nav > li.nav-mail > a .fa,
         #header .navbar-default .navbar-nav > li.nav-cta > a .fa {
             font-size: 18px;
             margin-right: 6px;
@@ -241,19 +260,23 @@
                 padding: 30px 16px;
                 border-top: none;
             }
+            #header .navbar-default .navbar-nav > li.nav-mail > a {
+                margin: 22px 0 22px 10px;
+                padding: 7px 17px;
+            }
             #header .navbar-default .navbar-nav > li.nav-cta > a {
                 margin: 22px 0 22px 10px;
                 padding: 8px 18px;
             }
         }
 
-        /* ===== Startbereich: schwarz, zentriert, zwei Buttons, großes Bild ===== */
+        /* ===== Startbereich: schwarz, zentriert, zwei Buttons, Bild darunter ===== */
         #banner {
             background: #000000 !important;
             height: auto !important;
             min-height: 0 !important;
             display: block !important;
-            padding: 100px 0 0 !important;
+            padding: 92px 0 0 !important;
         }
         #banner .carousel,
         #banner .carousel-inner,
@@ -263,29 +286,29 @@
             min-height: 0 !important;
         }
         #banner .banner-item {
-            padding: 24px 0 110px;
+            padding: 16px 0 96px;
             text-align: center;
         }
         #banner h1 {
             color: #f5f5f7;
             font-weight: 600;
-            font-size: 36px;
-            line-height: 1.07;
+            font-size: 32px;
+            line-height: 1.08;
             letter-spacing: -0.02em;
             margin: 0 auto 14px;
-            max-width: 900px;
+            max-width: 800px;
         }
         #banner p {
             font-family: var(--font);
-            font-size: 19px;
+            font-size: 17px;
             font-weight: 400;
             line-height: 1.5;
             color: var(--grey-dark-bg);
-            max-width: 640px;
-            margin: 0 auto 26px;
+            max-width: 600px;
+            margin: 0 auto 22px;
         }
         .hero-buttons {
-            margin-bottom: 40px;
+            margin-bottom: 32px;
         }
         .hero-buttons .apple-btn {
             margin: 0 5px 10px;
@@ -297,14 +320,19 @@
             transition-duration: 1.2s;
         }
 
-        /* Hero-Bild: groß, runde Ecken. Größe anpassen über max-width */
+        /* Hero-Bild: nicht mehr bildschirmfüllend.
+           Höchstens 880 px breit und höchstens 56 % der Bildschirmhöhe hoch, das Seitenverhältnis bleibt erhalten.
+           Größer oder kleiner machen: max-width (Breite) und max-height (Höhe in vh) anpassen. */
         #ghughu-banner-carousel .hero-img {
             display: block;
-            width: 100%;
-            max-width: 980px;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-width: min(880px, 100%);
+            max-height: 56vh;
             margin: 0 auto;
             border: none;
-            border-radius: 28px;
+            border-radius: 24px;
         }
 
         /* Karussell-Steuerung: unter dem Bild, mittig */
@@ -448,7 +476,7 @@
         .facts .model-name {
             font-family: var(--font);
             font-weight: 600;
-            font-size: 32px;
+            font-size: 28px;
             line-height: 1.1;
             letter-spacing: -0.02em;
             color: var(--ink);
@@ -569,7 +597,7 @@
         .facts .info-title {
             font-family: var(--font);
             font-weight: 600;
-            font-size: 28px;
+            font-size: 24px;
             line-height: 1.15;
             letter-spacing: -0.02em;
             color: var(--ink);
@@ -605,7 +633,7 @@
             display: block;
             font-family: var(--font);
             font-weight: 600;
-            font-size: 21px;
+            font-size: 19px;
             line-height: 1.2;
             letter-spacing: -0.015em;
             color: var(--ink);
@@ -715,7 +743,7 @@
         .contact-note p {
             flex: 1 1 380px;
             font-family: var(--font);
-            font-size: 19px;
+            font-size: 17px;
             line-height: 1.5;
             color: #f5f5f7;
             margin: 0;
@@ -794,12 +822,12 @@
         }
         #who-are-we p {
             font-family: var(--font);
-            font-size: 19px;
+            font-size: 17px;
             line-height: 1.5;
             color: var(--grey);
         }
         #who-are-we p:first-child {
-            font-size: 21px;
+            font-size: 19px;
             font-weight: 600;
             color: var(--ink);
         }
@@ -816,7 +844,7 @@
         .strip-head .strip-title {
             font-family: var(--font);
             font-weight: 600;
-            font-size: 28px;
+            font-size: 24px;
             line-height: 1.1;
             letter-spacing: -0.02em;
             color: #f5f5f7;
@@ -824,7 +852,7 @@
         }
         .strip-head .strip-sub {
             font-family: var(--font);
-            font-size: 19px;
+            font-size: 17px;
             line-height: 1.5;
             color: var(--grey-dark-bg);
             max-width: 640px;
@@ -861,7 +889,7 @@
                 padding: 36px 0;
             }
             .strip-head .strip-title {
-                font-size: 24px;
+                font-size: 22px;
             }
             .image-strip-track img {
                 height: 150px;
@@ -908,7 +936,7 @@
         .leistung h2 {
             font-family: var(--font);
             font-weight: 600;
-            font-size: 28px;
+            font-size: 22px;
             line-height: 1.15;
             letter-spacing: -0.02em;
             color: var(--ink);
@@ -984,30 +1012,33 @@
             color: var(--grey) !important;
         }
 
-        /* ===== Große Bildschirme: größere Überschriften ===== */
+        /* ===== Größere Bildschirme: etwas größere Überschriften (bewusst moderat, wie bei Apple) ===== */
         @media (min-width: 768px) {
             #banner {
-                padding-top: 112px !important;
+                padding-top: 96px !important;
+            }
+            h1 {
+                font-size: 34px;
+            }
+            #banner h1 {
+                font-size: 40px;
+            }
+        }
+        @media (min-width: 992px) {
+            #banner {
+                padding-top: 104px !important;
             }
             h1 {
                 font-size: 40px;
             }
             #banner h1 {
-                font-size: 52px;
-            }
-        }
-        @media (min-width: 992px) {
-            #banner {
-                padding-top: 130px !important;
-            }
-            #banner h1 {
-                font-size: 60px;
+                font-size: 48px;
             }
             #banner p {
-                font-size: 21px;
+                font-size: 19px;
             }
             .strip-head .strip-title {
-                font-size: 32px;
+                font-size: 28px;
             }
         }
     </style>
@@ -1029,8 +1060,7 @@
             <header id="header">
 
             <!-- TOP NAVIGATION -->
-            <!-- WhatsApp-Nummer: Überall im Code steht 491234567890 als Platzhalter.
-                 Ersetze sie per Suchen und Ersetzen durch deine Nummer (mit Ländervorwahl, ohne +, ohne Leerzeichen, ohne führende Null). -->
+            <!-- WhatsApp: +49 1590 6125600 (im Link ohne + und ohne Leerzeichen: 4915906125600). E-Mail: kontakt@latehub.de -->
             <nav class="top-navigation-bar navbar navbar-default navbar-fixed-top">
                 <div class="container">
                 <div class="row">
@@ -1053,7 +1083,8 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="active"><a href="index.html">Startseite</a></li>
                             <li><a href="about.html">Über uns</a></li>
-                            <li class="nav-cta"><a href="https://wa.me/491234567890?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener"><i class="fa fa-whatsapp" aria-hidden="true"></i>WhatsApp</a></li>
+                            <li class="nav-mail"><a href="mailto:kontakt@latehub.de"><i class="fa fa-envelope-o" aria-hidden="true"></i>E-Mail</a></li>
+                            <li class="nav-cta"><a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener"><i class="fa fa-whatsapp" aria-hidden="true"></i>WhatsApp</a></li>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->
@@ -1093,7 +1124,7 @@
                               ganz ohne zusätzlichen Personalaufwand für Ihr Team.</p>
                               <div class="hero-buttons animated fadeInUp delay-3">
                                   <a href="#facts" class="apple-btn apple-btn-primary">Mehr erfahren</a>
-                                  <a href="https://wa.me/491234567890?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener" class="apple-btn apple-btn-outline">Anfragen</a>
+                                  <a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener" class="apple-btn apple-btn-outline">Anfragen</a>
                               </div>
                         </div>
                         <div class="col-sm-12 text-center">
@@ -1111,7 +1142,7 @@
                               sicher, schnell und passt zum Zahlungsverhalten Ihrer Gäste.</p>
                               <div class="hero-buttons animated fadeInUp delay-3">
                                   <a href="#facts" class="apple-btn apple-btn-primary">Mehr erfahren</a>
-                                  <a href="https://wa.me/491234567890?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener" class="apple-btn apple-btn-outline">Anfragen</a>
+                                  <a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener" class="apple-btn apple-btn-outline">Anfragen</a>
                               </div>
                         </div>
                         <div class="col-sm-12 text-center">
@@ -1129,7 +1160,7 @@
                               Kontrolle durch Ihr Personal.</p>
                               <div class="hero-buttons animated fadeInUp delay-3">
                                   <a href="#facts" class="apple-btn apple-btn-primary">Mehr erfahren</a>
-                                  <a href="https://wa.me/491234567890?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener" class="apple-btn apple-btn-outline">Anfragen</a>
+                                  <a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener" class="apple-btn apple-btn-outline">Anfragen</a>
                               </div>
                         </div>
                         <div class="col-sm-12 text-center">
@@ -1314,7 +1345,7 @@
                 <!-- Hinweis auf Kontakt -->
                 <div class="contact-note">
                     <p>Für weiterführende Informationen stehen wir Ihnen jederzeit gerne zur Verfügung. Bei Interesse freuen wir uns über Ihre Kontaktaufnahme.</p>
-                    <a href="https://wa.me/491234567890?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener" class="contact-link">Kontakt aufnehmen</a>
+                    <a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener" class="contact-link">Kontakt aufnehmen</a>
                 </div>
 
             </div>
@@ -1416,7 +1447,7 @@
                         <h1>Interesse an einem Automaten für Ihre Location?</h1>
                     </div>
                     <div class="col-sm-6">
-                        <a href="https://wa.me/491234567890?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener" class="btn btn-block custom-button">Unverbindlich anfragen</a>
+                        <a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener" class="btn btn-block custom-button">Unverbindlich anfragen</a>
                     </div>
                 </div><!-- End: .row -->
             </div><!-- End: .container-->
@@ -1434,9 +1465,9 @@
                                 <div class="footer-link footer-link-1">
                                     <h4>Für Locations</h4>
                                     <ul>
-                                        <li><a href="https://wa.me/491234567890?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener">Automat anfragen</a></li>
+                                        <li><a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener">Automat anfragen</a></li>
                                         <li><a href="about.html">Über latehub</a></li>
-                                        <li><a href="https://wa.me/491234567890?text=Hallo%20latehub%2C%20ich%20m%C3%B6chte%20einen%20Standort%20f%C3%BCr%20einen%20Automaten%20anbieten." target="_blank" rel="noopener">Standort anbieten</a></li>
+                                        <li><a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20m%C3%B6chte%20einen%20Standort%20f%C3%BCr%20einen%20Automaten%20anbieten." target="_blank" rel="noopener">Standort anbieten</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -1446,7 +1477,7 @@
                                     <ul>
                                         <li><a href="impressum.html">Impressum</a></li>
                                         <li><a href="datenschutz.html">Datenschutz</a></li>
-                                        <li><a href="https://wa.me/491234567890" target="_blank" rel="noopener">Kontakt</a></li>
+                                        <li><a href="mailto:kontakt@latehub.de">Kontakt</a></li>
                                     </ul>
                                 </div>
                             </div>
