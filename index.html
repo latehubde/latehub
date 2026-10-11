@@ -291,13 +291,13 @@
 
         /* ===== Startbereich (eigener Slider, unabhängig von Bootstrap) =====
            Jede Folie hat eine feste Höhe: Text direkt unter der Leiste, Bild füllt den Rest und wird nie abgeschnitten.
-           Folienhöhe anpassen: --hero-h (die "16px" bestimmen, wie viel vom nächsten Abschnitt unten hervorschaut). */
+           Der schwarze Bereich füllt den ganzen Bildschirm (Leiste + Startbereich = 100 % der Fensterhöhe). */
         :root {
-            --hero-h: calc(100vh - var(--nav-height) - 16px);
+            --hero-h: calc(100vh - var(--nav-height));
         }
         @supports (height: 100svh) {
             :root {
-                --hero-h: calc(100svh - var(--nav-height) - 16px);
+                --hero-h: calc(100svh - var(--nav-height));
             }
         }
         #hero {
@@ -311,7 +311,7 @@
             width: 100%;
             height: var(--hero-h);
             min-height: 520px;
-            max-height: 820px;
+            max-height: 1100px;
             overflow: hidden;
             background: #000000;
         }
@@ -515,7 +515,10 @@
         /* ----- Modell-Kacheln nach dem Vorbild der Apple-Kacheln (MacBook Air) -----
            Zwei weiße Kacheln nebeneinander mit schmalem Abstand, fast randlos.
            Von oben nach unten: Modellname, kurzer Text, zwei Knöpfe, Bild, Farben und Größen.
-           Abstände: Bildhöhe über --visual-h anpassen, Abstand Knöpfe/Bild über margin-top bei .model-visual. */
+           Abstände einstellen:
+           --visual-h = Höhe des Bildes (größer = größeres Bild)
+           --crop     = wie viel leerer Rand oben und unten vom Bild abgeschnitten wird
+                        (größer = Bild rückt näher an Knöpfe und Auswahl, zu groß schneidet das Produkt an) */
         .models-wrap {
             padding: 0 12px;
         }
@@ -529,6 +532,7 @@
             --tile-sub: #6e6e73;
             --tile-line: #d2d2d7;
             --visual-h: 320px;
+            --crop: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -579,23 +583,25 @@
             color: var(--blue);
         }
 
-        /* Bild: feste Höhe direkt unter den Knöpfen, wird immer komplett angezeigt */
+        /* Bild: Der leere Rand oben und unten wird abgeschnitten (--crop),
+           dadurch rückt das Produkt näher an Knöpfe und Auswahl. */
         .model-visual {
             position: relative;
             flex: 0 0 auto;
             width: 100%;
-            height: var(--visual-h);
+            height: calc(var(--visual-h) - 2 * var(--crop));
             margin-top: 4px;
+            overflow: hidden;
         }
         .model-img {
             position: absolute;
-            top: 0;
-            bottom: 0;
+            top: calc(-1 * var(--crop));
             left: 0;
             right: 0;
+            bottom: auto;
             display: block;
             width: 100%;
-            height: 100%;
+            height: var(--visual-h);
             margin: 0 auto;
             object-fit: contain;
             object-position: center center;
@@ -895,6 +901,7 @@
             }
             .model-tile {
                 --visual-h: 400px;
+                --crop: 38px;
             }
         }
         @media (min-width: 992px) {
@@ -903,6 +910,7 @@
             }
             .model-tile {
                 --visual-h: 460px;
+                --crop: 44px;
                 padding-top: 44px;
             }
             .spec-grid {
@@ -930,6 +938,7 @@
             }
             .model-tile {
                 --visual-h: 300px;
+                --crop: 28px;
             }
         }
         @media (max-width: 480px) {
