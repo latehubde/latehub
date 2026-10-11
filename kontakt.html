@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+    <!--meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kontakt zu latehub – schreiben Sie uns per E-Mail oder WhatsApp. Wir betreiben Automaten in Clubs, Bars, Hotels und Gastronomie in Köln.">
+    <!--meta tags ends-->
+
+    <title>Kontakt – latehub</title>
+
+    <!-- Schriften -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,800%7cRoboto+Mono:400,700%7cMerriweather:300%7cAbril+Fatface%7cMontserrat:700,800&display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Icons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Popup Images -->
+    <link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
+
+    <!-- css animation -->
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+
+    <!-- custom stylesheets -->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <!-- Design im Stil von apple.com -->
+    <style>
+        /* ===== Farben und Schrift (Apple-Stil) ===== */
+        :root {
+            --font: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Inter", "Helvetica Neue", Arial, sans-serif;
+            --bg-light: #f5f5f7;
+            --ink: #1d1d1f;
+            --grey: #6e6e73;
+            --grey-dark-bg: #a1a1a6;
+            --line: #d2d2d7;
+            --blue: #0071e3;
+            --blue-hover: #0077ed;
+            --blue-on-dark: #2997ff;
+            --orange: #bf4800;
+            --green: #248a3d;
+            --whatsapp: #1fa855;
+            --whatsapp-hover: #25d366;
+            --nav-height: 64px;
+        }
+        @media (min-width: 768px) {
+            :root {
+                --nav-height: 80px;
+            }
+        }
+        html {
+            scroll-padding-top: var(--nav-height);
+        }
+        body, p, li, a, span, button, h1, h2, h3, h4 {
+            font-family: var(--font);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        h1 {
+            font-weight: 600;
+            font-size: 34px;
+            line-height: 1.08;
+            letter-spacing: -0.015em;
+        }
+        h1 .muted {
+            color: #86868b;
+        }
+
+        /* ===== Runde Knöpfe ===== */
+        .apple-btn {
+            display: inline-block;
+            font-family: var(--font);
+            font-weight: 400;
+            font-size: 17px;
+            line-height: 1.2;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 980px;
+            border: 1px solid transparent;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+        }
+        .apple-btn .fa {
+            font-size: 19px;
+            margin-right: 8px;
+            vertical-align: -2px;
+        }
+        .apple-btn-whatsapp {
+            background-color: var(--whatsapp);
+            color: #ffffff;
+        }
+        .apple-btn-whatsapp:hover,
+        .apple-btn-whatsapp:focus {
+            background-color: var(--whatsapp-hover);
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .apple-btn-email {
+            background-color: var(--blue);
+            color: #ffffff;
+        }
+        .apple-btn-email:hover,
+        .apple-btn-email:focus {
+            background-color: var(--blue-hover);
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .apple-btn-outline-blue {
+            border-color: var(--blue);
+            color: var(--blue);
+            background-color: transparent;
+        }
+        .apple-btn-outline-blue:hover,
+        .apple-btn-outline-blue:focus {
+            background-color: rgba(0, 113, 227, 0.08);
+            border-color: var(--blue);
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        /* ===== Navigationsleiste (Apple-Stil, identisch zur Startseite) ===== */
+        #header .navbar-default {
+            background-color: #000000 !important;
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: none;
+            margin-bottom: 0;
+            min-height: 0;
+        }
+        #header .navbar-default .navbar-collapse {
+            background-color: transparent !important;
+            border: none;
+            box-shadow: none;
+        }
+        #header .navbar-default .navbar-brand {
+            height: auto;
+            padding: 10px 15px;
+            display: block;
+        }
+        #header .navbar-default .navbar-brand img {
+            display: block;
+            height: 44px;
+            max-height: none;
+            width: auto;
+        }
+        #header .navbar-default .navbar-toggle {
+            margin: 15px 15px 15px 0;
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+        #header .navbar-default .navbar-toggle:hover,
+        #header .navbar-default .navbar-toggle:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        #header .navbar-default .navbar-toggle .icon-bar {
+            background-color: #f5f5f7;
+        }
+        #header .navbar-default .navbar-nav > li > a {
+            font-family: var(--font);
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 20px;
+            letter-spacing: -0.01em;
+            text-transform: none !important;
+            color: rgba(245, 245, 247, 0.8) !important;
+            background-color: transparent !important;
+            padding: 14px 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            transition: color 0.2s;
+        }
+        #header .navbar-default .navbar-nav > li > a:hover,
+        #header .navbar-default .navbar-nav > li > a:focus,
+        #header .navbar-default .navbar-nav > li.active > a,
+        #header .navbar-default .navbar-nav > li.active > a:hover,
+        #header .navbar-default .navbar-nav > li.active > a:focus {
+            color: #ffffff !important;
+            background-color: transparent !important;
+        }
+        #header .navbar-default .navbar-nav > li > a:focus-visible {
+            outline: 2px solid var(--blue-on-dark);
+            outline-offset: -2px;
+        }
+        /* Kontakt-Knopf (blau, ganz rechts) */
+        #header .navbar-default .navbar-nav > li.nav-contact > a {
+            color: #ffffff !important;
+            font-weight: 500;
+            font-size: 14px;
+            text-align: center;
+            border-top: none;
+            border-radius: 980px;
+            margin: 12px 15px 16px;
+            padding: 10px 20px;
+            background-color: var(--blue) !important;
+            transition: background-color 0.2s;
+        }
+        #header .navbar-default .navbar-nav > li.nav-contact > a:hover,
+        #header .navbar-default .navbar-nav > li.nav-contact > a:focus {
+            background-color: var(--blue-hover) !important;
+            color: #ffffff !important;
+        }
+        @media (max-width: 767px) {
+            #header .navbar-default .navbar-collapse {
+                background-color: #000000 !important;
+            }
+        }
+        @media (min-width: 768px) {
+            #header .navbar-default > .container {
+                width: 100%;
+                max-width: none;
+                padding-left: 40px;
+                padding-right: 40px;
+            }
+            #header .navbar-default .navbar-brand {
+                padding: 12px 15px;
+            }
+            #header .navbar-default .navbar-brand img {
+                height: 56px;
+            }
+            #header .navbar-default .navbar-collapse {
+                padding-right: 0;
+            }
+            #header .navbar-default .navbar-nav > li > a {
+                padding: 30px 16px;
+                border-top: none;
+            }
+            #header .navbar-default .navbar-nav > li.nav-contact > a {
+                margin: 22px 0 22px 10px;
+                padding: 8px 20px;
+            }
+        }
+
+        /* ===== Kopfbereich der Kontaktseite (schwarz) ===== */
+        #kontakt-hero {
+            background: #000000 !important;
+            padding: calc(var(--nav-height) + 56px) 0 56px;
+            text-align: center;
+        }
+        #kontakt-hero h1 {
+            color: #f5f5f7;
+            margin: 0 auto 12px;
+            max-width: 980px;
+        }
+        #kontakt-hero .kontakt-sub {
+            font-family: var(--font);
+            font-size: 19px;
+            font-weight: 400;
+            line-height: 1.3;
+            color: #f5f5f7;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* ===== Kontaktkarten (hellgrau, weiße Karten) ===== */
+        #kontakt-karten {
+            background: var(--bg-light) !important;
+            padding: 48px 0 64px;
+        }
+        .kontakt-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .kontakt-card {
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            border-radius: 28px;
+            padding: 36px 34px 34px;
+        }
+        .kontakt-icon {
+            display: block;
+            margin-bottom: 20px;
+            font-size: 38px;
+            line-height: 1;
+        }
+        .kontakt-icon .fa {
+            display: block;
+            line-height: 1;
+        }
+        .kontakt-card:nth-child(1) .kontakt-icon { color: var(--blue); }
+        .kontakt-card:nth-child(2) .kontakt-icon { color: var(--green); }
+        .kontakt-card:nth-child(3) .kontakt-icon { color: var(--orange); }
+        .kontakt-card .info-label {
+            display: block;
+            font-family: var(--font);
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--orange);
+            margin-bottom: 4px;
+        }
+        .kontakt-card .kontakt-value {
+            display: block;
+            font-family: var(--font);
+            font-weight: 600;
+            font-size: 22px;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            word-break: break-word;
+            margin-bottom: 8px;
+        }
+        .kontakt-card p {
+            font-family: var(--font);
+            font-size: 17px;
+            line-height: 1.5;
+            color: var(--grey);
+            margin: 0 0 24px;
+        }
+        .kontakt-card .kontakt-action {
+            margin-top: auto;
+        }
+        @media (min-width: 992px) {
+            .kontakt-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            #kontakt-hero h1 {
+                font-size: 56px;
+                line-height: 1.07;
+            }
+            #kontakt-hero .kontakt-sub {
+                font-size: 24px;
+            }
+        }
+        @media (min-width: 768px) and (max-width: 991px) {
+            #kontakt-hero h1 {
+                font-size: 48px;
+            }
+        }
+
+        /* ===== Footer (hellgrau, klein) ===== */
+        #footer {
+            background: var(--bg-light) !important;
+            color: var(--grey);
+            border-top: 1px solid var(--line);
+        }
+        #footer h4 {
+            font-family: var(--font);
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: none;
+            letter-spacing: 0;
+            color: var(--ink) !important;
+        }
+        #footer a {
+            font-family: var(--font);
+            font-size: 12px;
+            color: #424245 !important;
+        }
+        #footer a:hover {
+            color: #000000 !important;
+            text-decoration: underline;
+        }
+        #footer .footer-text p,
+        #footer .footer-text span {
+            font-family: var(--font);
+            font-size: 12px;
+            line-height: 1.5;
+            color: var(--grey) !important;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!-- Start: Preloader section -->
+<div id="loader-wrapper">
+    <div id="loader"></div>
+</div>
+<!-- End: Preloader section -->
+
+<!-- DOCUMENT WRAPPER STARTS -->
+    <main>
+
+        <!-- MAIN HEADER STARTS-->
+        <header id="header">
+
+            <!-- TOP NAVIGATION -->
+            <nav class="top-navigation-bar navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                <div class="row">
+                <div class="col-md-12">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed"
+                                data-toggle="collapse" data-target="#top-navigation-bar"
+                                aria-expanded="false">
+                            <span class="sr-only">Navigation umschalten</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html"><img src="images/banner-carousel/logoicon.png" alt="latehub" decoding="async"></a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="top-navigation-bar">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="index.html">Startseite</a></li>
+                            <li><a href="about.html">Über uns</a></li>
+                            <li class="nav-contact"><a href="kontakt.html">Kontakt</a></li>
+                        </ul>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- TOP NAVIGATION ENDS -->
+
+        </header>
+        <!-- main header ends-->
+
+        <!-- ================= KOPFBEREICH ================= -->
+        <section id="kontakt-hero">
+            <div class="container">
+                <h1>Kontakt. <span class="muted">Wir freuen uns auf Ihre Nachricht.</span></h1>
+                <p class="kontakt-sub">Sie interessieren sich für einen Automaten in Ihrer Location? Schreiben Sie uns per WhatsApp oder E-Mail.</p>
+            </div>
+        </section>
+
+        <!-- ================= KONTAKTKARTEN ================= -->
+        <section id="kontakt-karten">
+            <div class="container">
+                <div class="kontakt-grid">
+
+                    <!-- E-Mail -->
+                    <div class="kontakt-card">
+                        <div class="kontakt-icon" aria-hidden="true"><i class="fa fa-envelope"></i></div>
+                        <span class="info-label">E-Mail</span>
+                        <span class="kontakt-value">kontakt@latehub.de</span>
+                        <p>Schreiben Sie uns jederzeit eine E-Mail. Wir melden uns bei Ihnen.</p>
+                        <div class="kontakt-action">
+                            <a href="mailto:kontakt@latehub.de" class="apple-btn apple-btn-email"><i class="fa fa-envelope" aria-hidden="true"></i>E-Mail senden</a>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp -->
+                    <div class="kontakt-card">
+                        <div class="kontakt-icon" aria-hidden="true"><i class="fa fa-whatsapp"></i></div>
+                        <span class="info-label">WhatsApp</span>
+                        <span class="kontakt-value">+49 1590 6125600</span>
+                        <p>Schreiben Sie uns direkt per WhatsApp, einfach und unkompliziert.</p>
+                        <div class="kontakt-action">
+                            <a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener" class="apple-btn apple-btn-whatsapp"><i class="fa fa-whatsapp" aria-hidden="true"></i>WhatsApp öffnen</a>
+                        </div>
+                    </div>
+
+                    <!-- Standort -->
+                    <div class="kontakt-card">
+                        <div class="kontakt-icon" aria-hidden="true"><i class="fa fa-map-marker"></i></div>
+                        <span class="info-label">Standort</span>
+                        <span class="kontakt-value">Köln</span>
+                        <p>Wir betreiben Automaten mit kontaktloser Zahlung und Altersverifikation in Clubs, Bars, Hotels und Gastronomie in Köln.</p>
+                        <div class="kontakt-action">
+                            <a href="https://www.google.com/maps/search/?api=1&amp;query=K%C3%B6ln" target="_blank" rel="noopener" class="apple-btn apple-btn-outline-blue">Auf Karte anzeigen</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- footer section starts -->
+        <footer id="footer" class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-wrapper clearfix page">
+                    <div class="col-md-6 footer-left">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="footer-link footer-link-1">
+                                    <h4>Für Locations</h4>
+                                    <ul>
+                                        <li><a href="about.html">Über latehub</a></li>
+                                        <li><a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener">WhatsApp</a></li>
+                                        <li><a href="mailto:kontakt@latehub.de">E-Mail</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="footer-link footer-link-2">
+                                    <h4>Rechtliches</h4>
+                                    <ul>
+                                        <li><a href="impressum.html">Impressum</a></li>
+                                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-md-offset-1 footer-text">
+                        <p>latehub – Wir betreiben Automaten mit kontaktloser Zahlung und Altersverifikation in Clubs, Bars, Hotels und Gastronomie. Individuelles Sortiment, minimaler Aufwand für Ihr Team.</p>
+                        <span>&copy; 2026 latehub</span>
+                    </div>
+                    </div>
+                </div><!-- End: .row -->
+            </div><!-- End: .container-->
+        </footer>
+        <!-- footer section ends -->
+
+    </main>
+<!-- DOCUMENT WRAPPER ENDS -->
+
+
+<!-- SCRIPTS -->
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="js/wow.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js"></script>
+    <script src="js/gmaps.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Notausgang: blendet den Lade-Bildschirm nach 2 Sekunden aus -->
+    <script>
+      setTimeout(function () {
+        var l = document.getElementById('loader-wrapper');
+        if (l) { l.style.display = 'none'; }
+      }, 2000);
+    </script>
+<!-- SCRIPTS ENDS -->
+</body>
+
+</html>
