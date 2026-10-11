@@ -252,7 +252,7 @@
             font-family: var(--font);
             font-weight: 600;
             font-size: 17px;
-            color: var(--orange-on-dark, #ff9f0a);
+            color: #ff9f0a;
             margin: 0 0 12px;
         }
         #about-hero h1 {
@@ -478,6 +478,28 @@
             font-size: 12px;
             line-height: 1.5;
             color: var(--grey) !important;
+        }
+
+        /* Menü-Knopf (Handy): Striche einfarbig, in allen Zuständen */
+        #header .navbar-default .navbar-toggle .icon-bar,
+        #header .navbar-default .navbar-toggle:hover .icon-bar,
+        #header .navbar-default .navbar-toggle:focus .icon-bar,
+        #header .navbar-default .navbar-toggle:active .icon-bar,
+        #header .navbar-default .navbar-toggle.collapsed .icon-bar,
+        #header .navbar-default .navbar-toggle:not(.collapsed) .icon-bar {
+            background-color: #f5f5f7 !important;
+            background-image: none !important;
+        }
+        #header .navbar-default .navbar-toggle,
+        #header .navbar-default .navbar-toggle:active,
+        #header .navbar-default .navbar-toggle:not(.collapsed) {
+            background-color: transparent !important;
+            border-color: rgba(255, 255, 255, 0.25) !important;
+            -webkit-tap-highlight-color: transparent;
+        }
+        #header .navbar-default .navbar-toggle:hover,
+        #header .navbar-default .navbar-toggle:focus {
+            background-color: rgba(255, 255, 255, 0.1) !important;
         }
     </style>
 
