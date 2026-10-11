@@ -84,7 +84,7 @@
         }
 
         /* ===== Runde Knöpfe (überall einheitlich) =====
-           WhatsApp = grün, E-Mail = blau, "Mehr erfahren" = blau gefüllt, "Anfragen" = blauer Umriss */
+           WhatsApp = grün, E-Mail = blau, "Mehr erfahren" = blau gefüllt, "Kontakt" = blauer Umriss */
         .apple-btn {
             display: inline-block;
             font-family: var(--font);
@@ -133,7 +133,7 @@
             color: #ffffff;
             text-decoration: none;
         }
-        /* Blauer Umrissknopf ("Anfragen") */
+        /* Blauer Umrissknopf ("Kontakt") */
         .apple-btn-outline-blue {
             border-color: var(--blue-on-dark);
             color: var(--blue-on-dark);
@@ -236,41 +236,21 @@
             outline-offset: -2px;
         }
 
-        /* WhatsApp-Knopf (grün, links) und E-Mail-Knopf (blau, ganz rechts) */
-        #header .navbar-default .navbar-nav > li.nav-wa > a,
-        #header .navbar-default .navbar-nav > li.nav-mail > a {
+        /* Kontakt-Knopf (blau, ganz rechts) */
+        #header .navbar-default .navbar-nav > li.nav-contact > a {
             color: #ffffff !important;
             font-weight: 500;
             font-size: 14px;
             text-align: center;
             border-top: none;
             border-radius: 980px;
-            margin: 12px 15px 0;
+            margin: 12px 15px 16px;
             padding: 10px 20px;
+            background-color: var(--blue) !important;
             transition: background-color 0.2s;
         }
-        #header .navbar-default .navbar-nav > li.nav-mail > a {
-            margin-bottom: 16px;
-        }
-        #header .navbar-default .navbar-nav > li.nav-wa > a {
-            background-color: var(--whatsapp) !important;
-        }
-        #header .navbar-default .navbar-nav > li.nav-mail > a {
-            background-color: var(--blue) !important;
-        }
-        #header .navbar-default .navbar-nav > li.nav-wa > a .fa,
-        #header .navbar-default .navbar-nav > li.nav-mail > a .fa {
-            font-size: 18px;
-            margin-right: 6px;
-            vertical-align: -2px;
-        }
-        #header .navbar-default .navbar-nav > li.nav-wa > a:hover,
-        #header .navbar-default .navbar-nav > li.nav-wa > a:focus {
-            background-color: var(--whatsapp-hover) !important;
-            color: #ffffff !important;
-        }
-        #header .navbar-default .navbar-nav > li.nav-mail > a:hover,
-        #header .navbar-default .navbar-nav > li.nav-mail > a:focus {
+        #header .navbar-default .navbar-nav > li.nav-contact > a:hover,
+        #header .navbar-default .navbar-nav > li.nav-contact > a:focus {
             background-color: var(--blue-hover) !important;
             color: #ffffff !important;
         }
@@ -303,10 +283,9 @@
                 padding: 30px 16px;
                 border-top: none;
             }
-            #header .navbar-default .navbar-nav > li.nav-wa > a,
-            #header .navbar-default .navbar-nav > li.nav-mail > a {
+            #header .navbar-default .navbar-nav > li.nav-contact > a {
                 margin: 22px 0 22px 10px;
-                padding: 8px 18px;
+                padding: 8px 20px;
             }
         }
 
@@ -535,7 +514,8 @@
 
         /* ----- Modell-Kacheln nach dem Vorbild der Apple-Kacheln (MacBook Air) -----
            Zwei weiße Kacheln nebeneinander mit schmalem Abstand, fast randlos.
-           Von oben nach unten: Modellname, kurzer Text, zwei Knöpfe, Bild, Farben und Größen. */
+           Von oben nach unten: Modellname, kurzer Text, zwei Knöpfe, Bild, Farben und Größen.
+           Abstände: Bildhöhe über --visual-h anpassen, Abstand Knöpfe/Bild über margin-top bei .model-visual. */
         .models-wrap {
             padding: 0 12px;
         }
@@ -548,11 +528,11 @@
             --tile-ink: #1d1d1f;
             --tile-sub: #6e6e73;
             --tile-line: #d2d2d7;
+            --visual-h: 320px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            min-height: 640px;
             padding: 40px 20px 0;
             overflow: hidden;
             background-color: #ffffff;
@@ -599,13 +579,13 @@
             color: var(--blue);
         }
 
-        /* Bild: füllt den Platz zwischen Knöpfen und Auswahl, wird immer komplett angezeigt */
+        /* Bild: feste Höhe direkt unter den Knöpfen, wird immer komplett angezeigt */
         .model-visual {
             position: relative;
-            flex: 1 1 0;
+            flex: 0 0 auto;
             width: 100%;
-            min-height: 340px;
-            margin-top: 20px;
+            height: var(--visual-h);
+            margin-top: 4px;
         }
         .model-img {
             position: absolute;
@@ -618,17 +598,18 @@
             height: 100%;
             margin: 0 auto;
             object-fit: contain;
+            object-position: center center;
             mix-blend-mode: multiply;
         }
 
-        /* Farben und Größen unter dem Bild */
+        /* Farben und Größen direkt unter dem Bild */
         .model-options {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 16px 44px;
             width: 100%;
-            padding: 18px 8px 28px;
+            padding: 4px 8px 28px;
         }
         .option-group {
             min-width: 0;
@@ -912,13 +893,16 @@
             .model-tile .model-sub {
                 font-size: 21px;
             }
+            .model-tile {
+                --visual-h: 400px;
+            }
         }
         @media (min-width: 992px) {
             .models-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             .model-tile {
-                min-height: 740px;
+                --visual-h: 460px;
                 padding-top: 44px;
             }
             .spec-grid {
@@ -944,8 +928,8 @@
                 padding: 28px 22px 14px;
                 border-radius: 24px;
             }
-            .model-visual {
-                min-height: 300px;
+            .model-tile {
+                --visual-h: 300px;
             }
         }
         @media (max-width: 480px) {
@@ -1101,7 +1085,7 @@
             }
         }
 
-        /* ===== Anfrage-Abschnitt (schwarz) mit WhatsApp- und E-Mail-Knopf ===== */
+        /* ===== Kontakt-Abschnitt (schwarz) mit WhatsApp- und E-Mail-Knopf ===== */
         #cta {
             background: #000000 !important;
         }
@@ -1176,7 +1160,7 @@
             <header id="header">
 
             <!-- TOP NAVIGATION -->
-            <!-- WhatsApp: +49 1590 6125600 (im Link ohne + und ohne Leerzeichen: 4915906125600). E-Mail: kontakt@latehub.de -->
+            <!-- Der Kontakt-Knopf führt auf die eigene Seite kontakt.html (E-Mail, Standort, WhatsApp) -->
             <nav class="top-navigation-bar navbar navbar-default navbar-fixed-top">
                 <div class="container">
                 <div class="row">
@@ -1199,8 +1183,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="active"><a href="index.html">Startseite</a></li>
                             <li><a href="about.html">Über uns</a></li>
-                            <li class="nav-wa"><a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Automaten." target="_blank" rel="noopener"><i class="fa fa-whatsapp" aria-hidden="true"></i>WhatsApp</a></li>
-                            <li class="nav-mail"><a href="mailto:kontakt@latehub.de"><i class="fa fa-envelope" aria-hidden="true"></i>E-Mail</a></li>
+                            <li class="nav-contact"><a href="kontakt.html">Kontakt</a></li>
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->
@@ -1227,7 +1210,7 @@
                         <p class="hero-sub">Der Automat für Ihre Location.</p>
                         <div class="hero-buttons">
                             <a href="#facts" class="apple-btn apple-btn-primary">Mehr erfahren</a>
-                            <a href="#cta" class="apple-btn apple-btn-outline-blue">Anfragen</a>
+                            <a href="kontakt.html" class="apple-btn apple-btn-outline-blue">Kontakt</a>
                         </div>
                     </div>
                     <div class="hero-media">
@@ -1242,7 +1225,7 @@
                         <p class="hero-sub">Kontaktlos, schnell und sicher.</p>
                         <div class="hero-buttons">
                             <a href="#facts" class="apple-btn apple-btn-primary">Mehr erfahren</a>
-                            <a href="#cta" class="apple-btn apple-btn-outline-blue">Anfragen</a>
+                            <a href="kontakt.html" class="apple-btn apple-btn-outline-blue">Kontakt</a>
                         </div>
                     </div>
                     <div class="hero-media">
@@ -1257,7 +1240,7 @@
                         <p class="hero-sub">Sicher geprüft, ganz ohne Personal.</p>
                         <div class="hero-buttons">
                             <a href="#facts" class="apple-btn apple-btn-primary">Mehr erfahren</a>
-                            <a href="#cta" class="apple-btn apple-btn-outline-blue">Anfragen</a>
+                            <a href="kontakt.html" class="apple-btn apple-btn-outline-blue">Kontakt</a>
                         </div>
                     </div>
                     <div class="hero-media">
@@ -1298,7 +1281,7 @@
                         <p class="model-sub">Schlicht, unauffällig, überall einsetzbar.</p>
                         <div class="tile-btns">
                             <a href="#spiral" class="apple-btn apple-btn-primary">Mehr erfahren</a>
-                            <a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20das%20Basis-Modell." target="_blank" rel="noopener" class="apple-btn apple-btn-outline-blue">Anfragen</a>
+                            <a href="kontakt.html" class="apple-btn apple-btn-outline-blue">Kontakt</a>
                         </div>
                         <div class="model-visual">
                             <img class="model-img" src="images/banner-carousel/modell-basic.png" alt="Basis-Modell" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
@@ -1333,7 +1316,7 @@
                         <p class="model-sub">Mit LED-Modul für Club und Bar.</p>
                         <div class="tile-btns">
                             <a href="#spiral" class="apple-btn apple-btn-primary">Mehr erfahren</a>
-                            <a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20das%20Pro-Modell%20mit%20LED-Modul." target="_blank" rel="noopener" class="apple-btn apple-btn-outline-blue">Anfragen</a>
+                            <a href="kontakt.html" class="apple-btn apple-btn-outline-blue">Kontakt</a>
                         </div>
                         <div class="model-visual">
                             <img class="model-img" src="images/banner-carousel/modell-pro.png" alt="Pro-Modell mit LED-Modul" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
@@ -1545,7 +1528,7 @@
             </div>
         </section>
 
-        <!-- CTA section starts -->
+        <!-- KONTAKT section starts -->
         <section id="cta" class="cta page">
             <div class="container wow fadeInUp">
                 <div class="row">
@@ -1561,7 +1544,7 @@
                 </div><!-- End: .row -->
             </div><!-- End: .container-->
         </section>
-        <!-- CTA section ends -->
+        <!-- KONTAKT section ends -->
 
          <!-- footer section starts -->
         <footer id="footer" class="footer">
