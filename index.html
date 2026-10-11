@@ -121,7 +121,7 @@
             color: #ffffff;
             text-decoration: none;
         }
-        /* Blauer Hauptknopf (Startbereich: "Mehr erfahren") */
+        /* Blauer Hauptknopf ("Mehr erfahren") */
         .apple-btn-primary {
             background-color: var(--blue);
             color: #ffffff;
@@ -132,7 +132,7 @@
             color: #ffffff;
             text-decoration: none;
         }
-        /* Blauer Umrissknopf (Startbereich: "Anfragen") */
+        /* Blauer Umrissknopf ("Anfragen") */
         .apple-btn-outline-blue {
             border-color: var(--blue-on-dark);
             color: var(--blue-on-dark);
@@ -332,8 +332,8 @@
         #banner > .container {
             width: 100%;
             max-width: none;
-            padding-left: 0;
-            padding-right: 0;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
         }
         #banner .carousel,
         #banner .carousel-inner {
@@ -341,12 +341,16 @@
             height: var(--hero-h) !important;
             min-height: 540px !important;
             max-height: 820px !important;
+            padding: 0 !important;
         }
+        /* Wichtig: Innenabstände der Folie auf 0 (sonst rutscht der Inhalt nach unten und das Bild wird abgeschnitten) */
         #banner .carousel-inner > .item,
         #banner .banner-item {
             background: #000000 !important;
             height: 100% !important;
             min-height: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
         }
 
         /* Eine Folie: Text oben, Bild füllt den Rest, unten Platz für die Steuerung */
@@ -355,7 +359,7 @@
             flex-direction: column;
             align-items: center;
             height: 100%;
-            padding: 34px 20px 76px;
+            padding: 36px 20px 68px;
             text-align: center;
         }
         .hero-text {
@@ -402,7 +406,7 @@
             flex: 1 1 0;
             min-height: 0;
             width: 100%;
-            margin-top: 26px;
+            margin-top: 20px;
         }
         #ghughu-banner-carousel .hero-img {
             position: absolute;
@@ -432,7 +436,7 @@
             left: 50%;
             right: auto;
             top: auto;
-            bottom: 16px;
+            bottom: 14px;
             margin: 0;
             padding: 0;
             width: 104px;
@@ -467,7 +471,7 @@
         .carousel-control.left,
         .carousel-control.right {
             top: auto;
-            bottom: 16px;
+            bottom: 14px;
             width: 44px;
             height: 44px;
             margin-top: 0;
@@ -506,7 +510,7 @@
         /* Tablet: Überschrift 48 px, Untertitel 24 px */
         @media (min-width: 768px) {
             .hero-slide {
-                padding: 40px 40px 76px;
+                padding: 36px 40px 68px;
             }
             #banner h1 {
                 font-size: 48px;
@@ -519,9 +523,6 @@
             .hero-buttons .apple-btn {
                 font-size: 17px;
                 padding: 11px 22px;
-            }
-            .hero-media {
-                margin-top: 28px;
             }
         }
         /* Laptop und Desktop (wie Apple): Überschrift 56 px, Untertitel 28 px */
@@ -549,107 +550,140 @@
             max-width: 980px;
         }
 
-        /* Die zwei Modelle als Karten nebeneinander */
+        /* ----- Modell-Kacheln nach dem Vorbild der Apple-Kacheln (Watch Ultra / MacBook Air) -----
+           Zwei Kacheln nebeneinander mit schmalem Abstand, fast randlos.
+           Von oben nach unten: Modellname, kurzer Text, zwei Knöpfe, Bild, Farben und Größen. */
+        .models-wrap {
+            padding: 0 12px;
+            margin-bottom: 12px;
+        }
         .models-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 24px;
-            margin-bottom: 24px;
+            gap: 12px;
         }
-        .model-head {
+        .model-tile {
             display: flex;
-            flex-direction: column-reverse;
-            justify-content: flex-end;
-            gap: 20px;
-            background-color: #ffffff;
-            border-radius: 28px;
-            padding: 36px 36px 28px;
-        }
-
-        /* Foto mit kleiner Beschriftung darunter */
-        .model-figure {
-            width: 100%;
-        }
-        .model-photo {
-            width: 100%;
-            height: 300px;
-            background-color: #ffffff;
-            display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        .model-photo-caption {
-            font-family: var(--font);
-            font-size: 12px;
-            line-height: 1.4;
-            color: var(--grey);
             text-align: center;
-            margin: 8px 0 0;
+            min-height: 640px;
+            padding: 40px 20px 0;
+            overflow: hidden;
+            background-color: var(--tile-bg);
+            color: var(--tile-ink);
         }
-        .model-text {
-            min-width: 0;
+        /* Schwarze Kachel (Basis-Modell) */
+        .tile-dark {
+            --tile-bg: #000000;
+            --tile-ink: #f5f5f7;
+            --tile-sub: #a1a1a6;
+            --tile-line: #424245;
         }
-
-        /* Überschrift mit Hinweis in EINER Zeile: "Pro-Modell  mit LED-Modul" (Hinweis orange wie das "Neu" bei Apple) */
-        .model-title-row {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            align-items: baseline;
-            gap: 2px 12px;
-            margin: 0 0 12px;
+        /* Weiße Kachel (Pro-Modell) */
+        .tile-light {
+            --tile-bg: #ffffff;
+            --tile-ink: #1d1d1f;
+            --tile-sub: #6e6e73;
+            --tile-line: #d2d2d7;
         }
-        .facts .model-name {
+        .facts .model-tile .model-name {
             font-family: var(--font);
             font-weight: 600;
-            font-size: 28px;
+            font-size: 32px;
             line-height: 1.1;
-            letter-spacing: -0.02em;
-            color: var(--ink);
+            letter-spacing: -0.01em;
+            color: var(--tile-ink);
+            margin: 0 0 6px;
+        }
+        .model-tile .model-sub {
+            font-family: var(--font);
+            font-size: 19px;
+            font-weight: 400;
+            line-height: 1.19;
+            color: var(--tile-ink);
+            margin: 0 0 16px;
+        }
+        .tile-btns {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+        .tile-btns .apple-btn {
+            font-size: 15px;
+            line-height: 1.2;
+            padding: 8px 18px;
             margin: 0;
         }
-        .model-badge {
-            display: inline-block;
-            background: none;
-            color: var(--orange);
-            font-family: var(--font);
-            font-weight: 600;
-            font-size: 14px;
-            padding: 0;
-            white-space: nowrap;
+        /* Auf der weißen Kachel: Umrissknopf in dunklerem Blau (wie bei Apple) */
+        .tile-light .apple-btn-outline-blue {
+            border-color: var(--blue);
+            color: var(--blue);
         }
-        .model-desc {
-            font-family: var(--font);
-            font-size: 17px;
-            line-height: 1.5;
-            color: var(--ink);
-            margin: 0;
+        .tile-light .apple-btn-outline-blue:hover,
+        .tile-light .apple-btn-outline-blue:focus {
+            background-color: rgba(0, 113, 227, 0.08);
+            border-color: var(--blue);
+            color: var(--blue);
         }
 
-        /* Auswahl: Farben und Größen */
+        /* Bild: füllt den Platz zwischen Knöpfen und Auswahl, wird immer komplett angezeigt */
+        .model-visual {
+            position: relative;
+            flex: 1 1 0;
+            width: 100%;
+            min-height: 340px;
+            margin-top: 20px;
+        }
+        .model-img {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+        /* Weiße Kachel: weißer Bildhintergrund verschwindet */
+        .tile-light .model-img {
+            mix-blend-mode: multiply;
+        }
+        /* Schwarze Kachel ohne eigenes Dunkel-Bild: Bildränder weich ins Schwarz ausblenden */
+        .model-img.is-light-photo {
+            -webkit-mask-image: radial-gradient(ellipse 62% 60% at 50% 50%, #000 62%, transparent 100%);
+            mask-image: radial-gradient(ellipse 62% 60% at 50% 50%, #000 62%, transparent 100%);
+        }
+
+        /* Farben und Größen unter dem Bild */
         .model-options {
             display: flex;
             flex-wrap: wrap;
-            gap: 14px 36px;
-            margin: 0 0 16px;
+            justify-content: center;
+            gap: 16px 44px;
+            width: 100%;
+            padding: 18px 8px 28px;
         }
         .option-group {
             min-width: 0;
+            text-align: center;
         }
         .color-label {
             display: block;
             font-family: var(--font);
             font-weight: 600;
             font-size: 13px;
-            color: var(--grey);
+            color: var(--tile-sub);
             margin-bottom: 10px;
         }
         .color-swatches {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 14px;
-            padding-left: 5px;
             min-height: 32px;
         }
         .swatch {
@@ -657,8 +691,8 @@
             width: 24px;
             height: 24px;
             border-radius: 50%;
-            border: 1px solid var(--line);
-            box-shadow: 0 0 0 3px #ffffff, 0 0 0 4px var(--line);
+            border: 1px solid var(--tile-line);
+            box-shadow: 0 0 0 3px var(--tile-bg), 0 0 0 4px var(--tile-line);
         }
         .swatch-white {
             background-color: #ffffff;
@@ -667,9 +701,13 @@
             background-color: #1d1d1f;
             border-color: #1d1d1f;
         }
+        .tile-dark .swatch-black {
+            border-color: #6e6e73;
+        }
         .size-chips {
             display: flex;
             align-items: flex-start;
+            justify-content: center;
             gap: 8px;
             min-height: 32px;
         }
@@ -684,8 +722,8 @@
             font-weight: 600;
             font-size: 13px;
             line-height: 1;
-            color: var(--ink);
-            border: 1px solid var(--line);
+            color: var(--tile-ink);
+            border: 1px solid var(--tile-line);
             border-radius: 980px;
             padding: 9px 15px;
             white-space: nowrap;
@@ -695,26 +733,23 @@
             font-family: var(--font);
             font-size: 11px;
             line-height: 1.2;
-            color: var(--grey);
+            color: var(--tile-sub);
             margin-top: 5px;
             white-space: nowrap;
         }
 
-        /* Bildfelder: Bild immer vollständig sichtbar */
-        .model-photo img,
+        /* Bildfeld Montage: Bild immer vollständig sichtbar */
         .mount-photo img {
             display: block;
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
         }
-        /* Modellfotos: leicht vergrößert, damit der Automat größer wirkt und Bildränder abgeschnitten werden.
-           Wert anpassen: 1 = Originalgröße, 1.15 = 15 % größer, 1.3 = 30 % größer */
-        .model-photo img {
-            transform: scale(1.15);
-        }
 
         /* Informationskarten (Spiralförderung, Technische Daten): weiße Karten */
+        .facts-rest {
+            margin-top: 12px;
+        }
         .facts-info {
             background-color: #ffffff;
             border-radius: 28px;
@@ -883,10 +918,20 @@
             .spec-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .facts .model-tile .model-name {
+                font-size: 40px;
+            }
+            .model-tile .model-sub {
+                font-size: 21px;
+            }
         }
         @media (min-width: 992px) {
             .models-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            .model-tile {
+                min-height: 740px;
+                padding-top: 44px;
             }
             .spec-grid {
                 grid-template-columns: repeat(4, 1fr);
@@ -907,13 +952,12 @@
                 max-width: 360px;
                 margin: 0 auto 20px;
             }
-            .model-head,
             .facts-info {
                 padding: 28px 22px 14px;
                 border-radius: 24px;
             }
-            .model-photo {
-                height: 260px;
+            .model-visual {
+                min-height: 300px;
             }
         }
         @media (max-width: 480px) {
@@ -1264,96 +1308,96 @@
         </section>
 
         <!-- ================= UNSERE AUTOMATEN ================= -->
-        <!-- Aufbau: 1) zwei Modelle mit Bild, Farb- und Größenauswahl, 2) Spiralförderung mit Schema, 3) Technische Daten, 4) Montage mit Bild, 5) Hinweis mit WhatsApp- und E-Mail-Knopf. -->
-        <!-- Bilder in images/banner-carousel/ : modell-basic.png, modell-pro.png, spiralinfo.png (Schema 10 vs. 15 Slots), infofacts5.png (Standfuß) -->
+        <!-- Aufbau: 1) zwei Modell-Kacheln (schwarz / weiß) mit Bild, Farben und Größen, 2) Spiralförderung mit Schema, 3) Technische Daten, 4) Montage mit Bild, 5) Hinweis mit WhatsApp- und E-Mail-Knopf. -->
+        <!-- Bilder in images/banner-carousel/ : modell-basic.png (optional zusätzlich modell-basic-dark.png mit schwarzem/transparentem Hintergrund), modell-pro.png, spiralinfo.png, infofacts5.png -->
         <!-- Fehlt ein Bild, wird sein Feld automatisch ausgeblendet. -->
         <section id="facts" class="facts page">
             <div class="container wow fadeInUp">
                 <h1>Unsere Automaten. <span class="muted">Kompakt und platzeffizient.</span></h1>
+            </div>
 
+            <!-- Modell-Kacheln (volle Breite wie bei Apple) -->
+            <div class="models-wrap">
                 <div class="models-grid">
 
-                    <!-- Basis-Modell -->
-                    <div class="model-head">
-                        <div class="model-figure">
-                            <div class="model-photo">
-                                <img src="images/banner-carousel/modell-basic.png" alt="Basis-Modell" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
-                            </div>
-                            <p class="model-photo-caption">Automaten-Tiefe: siehe 10/15 Slots</p>
+                    <!-- Basis-Modell: schwarze Kachel -->
+                    <article class="model-tile tile-dark">
+                        <h2 class="model-name">Basis-Modell</h2>
+                        <p class="model-sub">Schlicht, unauffällig, überall einsetzbar.</p>
+                        <div class="tile-btns">
+                            <a href="#spiral" class="apple-btn apple-btn-primary">Mehr erfahren</a>
+                            <a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20das%20Basis-Modell." target="_blank" rel="noopener" class="apple-btn apple-btn-outline-blue">Anfragen</a>
                         </div>
-                        <div class="model-text">
-                            <div class="model-title-row">
-                                <h2 class="model-name">Basis-Modell</h2>
-                            </div>
-                            <div class="model-options">
-                                <div class="option-group">
-                                    <span class="color-label">Verfügbare Farben</span>
-                                    <div class="color-swatches">
-                                        <span class="swatch swatch-white" role="img" title="Weiß" aria-label="Weiß"></span>
-                                        <span class="swatch swatch-black" role="img" title="Schwarz" aria-label="Schwarz"></span>
-                                    </div>
-                                </div>
-                                <div class="option-group">
-                                    <span class="color-label">Verfügbare Größen</span>
-                                    <div class="size-chips">
-                                        <div class="size-item">
-                                            <span class="size-chip">10 Slots</span>
-                                            <span class="size-depth">(Tiefe 27 cm)</span>
-                                        </div>
-                                        <div class="size-item">
-                                            <span class="size-chip">15 Slots</span>
-                                            <span class="size-depth">(Tiefe 36 cm)</span>
-                                        </div>
-                                    </div>
+                        <div class="model-visual">
+                            <!-- Wenn modell-basic-dark.png (schwarzer/transparenter Hintergrund) existiert, wird es genommen, sonst modell-basic.png -->
+                            <img class="model-img" src="images/banner-carousel/modell-basic-dark.png" alt="Basis-Modell" loading="lazy" decoding="async" onerror="this.onerror=function(){this.parentNode.style.display='none'};this.className+=' is-light-photo';this.src='images/banner-carousel/modell-basic.png';">
+                        </div>
+                        <div class="model-options">
+                            <div class="option-group">
+                                <span class="color-label">Farben</span>
+                                <div class="color-swatches">
+                                    <span class="swatch swatch-white" role="img" title="Weiß" aria-label="Weiß"></span>
+                                    <span class="swatch swatch-black" role="img" title="Schwarz" aria-label="Schwarz"></span>
                                 </div>
                             </div>
-                            <p class="model-desc">Das Standardmodell: schlicht, unauffällig und in jeder Location einsetzbar. Die reduzierte Gestaltung fügt sich dezent in jede Umgebung ein, ob Hotel, Bar oder Club.</p>
+                            <div class="option-group">
+                                <span class="color-label">Größen</span>
+                                <div class="size-chips">
+                                    <div class="size-item">
+                                        <span class="size-chip">10 Slots</span>
+                                        <span class="size-depth">(Tiefe 27 cm)</span>
+                                    </div>
+                                    <div class="size-item">
+                                        <span class="size-chip">15 Slots</span>
+                                        <span class="size-depth">(Tiefe 36 cm)</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </article>
 
-                    <!-- Pro-Modell (mit LED-Modul) -->
-                    <div class="model-head">
-                        <div class="model-figure">
-                            <div class="model-photo">
-                                <img src="images/banner-carousel/modell-pro.png" alt="Pro-Modell mit LED-Modul" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
-                            </div>
-                            <p class="model-photo-caption">Automaten-Tiefe: siehe 10/15 Slots</p>
+                    <!-- Pro-Modell: weiße Kachel -->
+                    <article class="model-tile tile-light">
+                        <h2 class="model-name">Pro-Modell</h2>
+                        <p class="model-sub">Mit LED-Modul für Club und Bar.</p>
+                        <div class="tile-btns">
+                            <a href="#spiral" class="apple-btn apple-btn-primary">Mehr erfahren</a>
+                            <a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20das%20Pro-Modell%20mit%20LED-Modul." target="_blank" rel="noopener" class="apple-btn apple-btn-outline-blue">Anfragen</a>
                         </div>
-                        <div class="model-text">
-                            <div class="model-title-row">
-                                <h2 class="model-name">Pro-Modell</h2>
-                                <span class="model-badge">mit LED-Modul</span>
-                            </div>
-                            <div class="model-options">
-                                <div class="option-group">
-                                    <span class="color-label">Verfügbare Farben</span>
-                                    <div class="color-swatches">
-                                        <span class="swatch swatch-white" role="img" title="Weiß" aria-label="Weiß"></span>
-                                        <span class="swatch swatch-black" role="img" title="Schwarz" aria-label="Schwarz"></span>
-                                    </div>
+                        <div class="model-visual">
+                            <img class="model-img" src="images/banner-carousel/modell-pro.png" alt="Pro-Modell mit LED-Modul" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                        </div>
+                        <div class="model-options">
+                            <div class="option-group">
+                                <span class="color-label">Farben</span>
+                                <div class="color-swatches">
+                                    <span class="swatch swatch-white" role="img" title="Weiß" aria-label="Weiß"></span>
+                                    <span class="swatch swatch-black" role="img" title="Schwarz" aria-label="Schwarz"></span>
                                 </div>
-                                <div class="option-group">
-                                    <span class="color-label">Verfügbare Größen</span>
-                                    <div class="size-chips">
-                                        <div class="size-item">
-                                            <span class="size-chip">10 Slots</span>
-                                            <span class="size-depth">(Tiefe 27 cm)</span>
-                                        </div>
-                                        <div class="size-item">
-                                            <span class="size-chip">15 Slots</span>
-                                            <span class="size-depth">(Tiefe 36 cm)</span>
-                                        </div>
+                            </div>
+                            <div class="option-group">
+                                <span class="color-label">Größen</span>
+                                <div class="size-chips">
+                                    <div class="size-item">
+                                        <span class="size-chip">10 Slots</span>
+                                        <span class="size-depth">(Tiefe 27 cm)</span>
+                                    </div>
+                                    <div class="size-item">
+                                        <span class="size-chip">15 Slots</span>
+                                        <span class="size-depth">(Tiefe 36 cm)</span>
                                     </div>
                                 </div>
                             </div>
-                            <p class="model-desc">Zusätzlich mit individualisierbarer LED-Technik: LED-Streifen links und rechts am Gehäuse setzen den Automaten in Szene und fügen sich stimmig in die Atmosphäre von Club und Bar ein.</p>
                         </div>
-                    </div>
+                    </article>
 
                 </div>
+            </div>
+
+            <div class="container wow fadeInUp facts-rest">
 
                 <!-- Spiralförderung -->
-                <div class="facts-info">
+                <div class="facts-info" id="spiral">
                     <h2 class="info-title">Spiralförderung</h2>
                     <div class="spiral-row">
                         <p class="info-lead">Die Produkte werden über eine Spiralförderung ausgegeben: Eine rotierende Spirale befördert den Artikel zuverlässig aus dem Fach. Der Abstand der Spiralwindungen bestimmt dabei Kapazität und Produktgröße. Dadurch sind verschiedene Kapazitäten möglich, passend zu Ihrem Sortiment. Die Automaten sind mit 10 oder 15 Slots verfügbar, wobei jeder Slot eine Spirale enthält. Mit 10 Slots beträgt die Tiefe des Automaten 27 cm, mit 15 Slots 36 cm.</p>
