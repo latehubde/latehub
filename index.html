@@ -51,6 +51,7 @@
             --blue-hover: #0077ed;
             --blue-on-dark: #2997ff;
             --orange: #bf4800;
+            --orange-on-dark: #ff9f0a;
             --green: #248a3d;
             --purple: #8944ab;
             --whatsapp: #1fa855;
@@ -309,74 +310,73 @@
             }
         }
 
-        /* ===== Startbereich: nach dem Vorbild der Apple-Startseite =====
-           Aufbau jeder Folie von oben nach unten: große Überschrift, Untertitel, zwei Knöpfe, Bild.
-           Die Folie ist so hoch wie der Bildschirm (minus Leiste), unten schaut ein Stück vom nächsten Abschnitt hervor.
-           Das Bild füllt den restlichen Platz und wird immer komplett angezeigt. */
+        /* ===== Startbereich (eigener Slider, unabhängig von Bootstrap) =====
+           Jede Folie hat eine feste Höhe: Text direkt unter der Leiste, Bild füllt den Rest und wird nie abgeschnitten.
+           Folienhöhe anpassen: --hero-h (die "16px" bestimmen, wie viel vom nächsten Abschnitt unten hervorschaut). */
         :root {
-            --hero-h: calc(100vh - var(--nav-height) - 24px);   /* Folienhöhe */
+            --hero-h: calc(100vh - var(--nav-height) - 16px);
         }
         @supports (height: 100svh) {
             :root {
-                --hero-h: calc(100svh - var(--nav-height) - 24px);
+                --hero-h: calc(100svh - var(--nav-height) - 16px);
             }
         }
-        #banner {
-            background: #000000 !important;
-            height: auto !important;
-            min-height: 0 !important;
-            display: block !important;
-            padding: var(--nav-height) 0 0 !important;
+        #hero {
+            position: relative;
+            background: #000000;
+            padding: var(--nav-height) 0 0;
+            margin: 0;
         }
-        /* Volle Breite, kein Seitenrand */
-        #banner > .container {
+        #hero .hero-stage {
+            position: relative;
             width: 100%;
-            max-width: none;
-            padding-left: 0 !important;
-            padding-right: 0 !important;
-        }
-        #banner .carousel,
-        #banner .carousel-inner {
-            background: #000000 !important;
-            height: var(--hero-h) !important;
-            min-height: 540px !important;
-            max-height: 820px !important;
-            padding: 0 !important;
-        }
-        /* Wichtig: Innenabstände der Folie auf 0 (sonst rutscht der Inhalt nach unten und das Bild wird abgeschnitten) */
-        #banner .carousel-inner > .item,
-        #banner .banner-item {
-            background: #000000 !important;
-            height: 100% !important;
-            min-height: 0 !important;
-            padding: 0 !important;
-            margin: 0 !important;
+            height: var(--hero-h);
+            min-height: 520px;
+            max-height: 820px;
+            overflow: hidden;
+            background: #000000;
         }
 
-        /* Eine Folie: Text oben, Bild füllt den Rest, unten Platz für die Steuerung */
-        .hero-slide {
+        /* Eine Folie: füllt die Bühne komplett, Inhalt von oben nach unten */
+        #hero .hero-slide {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 100%;
-            padding: 36px 20px 68px;
+            padding: 24px 20px 70px;
             text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1.2s ease, visibility 0s linear 1.2s;
         }
-        .hero-text {
+        #hero .hero-slide.is-active {
+            opacity: 1;
+            visibility: visible;
+            z-index: 2;
+            transition: opacity 1.2s ease, visibility 0s;
+        }
+        #hero .hero-text {
             flex: 0 0 auto;
             width: 100%;
         }
-        #banner h1 {
+        #hero h1 {
             color: #f5f5f7;
             font-weight: 600;
             font-size: 34px;
             line-height: 1.08;
             letter-spacing: -0.01em;
+            text-transform: none;
+            text-shadow: none;
             margin: 0 auto 6px;
+            padding: 0;
             max-width: 980px;
         }
         /* Untertitel (wie "Pro further." bei Apple): weiß, größer als normaler Text */
-        #banner .hero-sub {
+        #hero .hero-sub {
             font-family: var(--font);
             font-size: 19px;
             font-weight: 400;
@@ -385,15 +385,17 @@
             color: #f5f5f7;
             max-width: 760px;
             margin: 0 auto 18px;
+            padding: 0;
         }
-        .hero-buttons {
+        #hero .hero-buttons {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 14px;
             margin: 0;
+            padding: 0;
         }
-        .hero-buttons .apple-btn {
+        #hero .hero-buttons .apple-btn {
             font-size: 15px;
             line-height: 1.2;
             padding: 9px 18px;
@@ -401,14 +403,14 @@
         }
 
         /* Bildbereich: nimmt allen übrigen Platz ein, das Bild passt sich darin an */
-        .hero-media {
+        #hero .hero-media {
             position: relative;
             flex: 1 1 0;
             min-height: 0;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 18px;
         }
-        #ghughu-banner-carousel .hero-img {
+        #hero .hero-img {
             position: absolute;
             top: 0;
             bottom: 0;
@@ -424,115 +426,96 @@
             object-position: center top;
         }
 
-        /* Karussell: langsamere Überblendung */
-        .carousel-fade .carousel-inner .item {
-            -webkit-transition-duration: 1.2s;
-            transition-duration: 1.2s;
-        }
-
-        /* Karussell-Steuerung: unter dem Bild, mittig */
-        .carousel-indicators {
+        /* Steuerung: Pfeil, Punkte, Pfeil – unten mittig */
+        #hero .hero-controls {
             position: absolute;
-            left: 50%;
-            right: auto;
-            top: auto;
+            left: 0;
+            right: 0;
             bottom: 14px;
-            margin: 0;
-            padding: 0;
-            width: 104px;
-            height: 44px;
-            transform: translateX(-50%);
-            -webkit-transform: translateX(-50%);
-            background-color: rgba(255, 255, 255, 0.14);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            border: none;
-            border-radius: 22px;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            gap: 12px;
             z-index: 5;
+            pointer-events: none;
         }
-        .carousel-indicators li {
-            width: 8px;
-            height: 8px;
-            margin: 0 6px;
-            background-color: rgba(255, 255, 255, 0.4);
-            border: none;
-            border-radius: 8px;
+        #hero .hero-controls > * {
+            pointer-events: auto;
         }
-        .carousel-indicators .active {
-            width: 8px;
-            height: 8px;
-            margin: 0 6px;
-            background-color: #ffffff;
-        }
-
-        .carousel-control.left,
-        .carousel-control.right {
-            top: auto;
-            bottom: 14px;
+        #hero .hero-ctrl {
             width: 44px;
             height: 44px;
-            margin-top: 0;
-            margin-right: 0;
-            background-color: rgba(255, 255, 255, 0.14);
-            background-image: none;
+            padding: 0;
+            border: 0;
             border-radius: 50%;
+            background: rgba(255, 255, 255, 0.14);
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
             transition: background-color 0.3s;
-            z-index: 5;
         }
-        .carousel-control.left {
-            left: 50%;
-            right: auto;
-            margin-left: -108px;
+        #hero .hero-ctrl:hover,
+        #hero .hero-ctrl:focus {
+            background: rgba(255, 255, 255, 0.24);
+            outline: none;
         }
-        .carousel-control.right {
-            left: 50%;
-            right: auto;
-            margin-left: 64px;
-        }
-        .carousel-control.left i img,
-        .carousel-control.right i img {
-            margin-top: 0;
+        #hero .hero-ctrl img {
+            display: block;
             width: 20px;
             height: auto;
-            display: block;
         }
-        .carousel-control.left:hover,
-        .carousel-control.right:hover {
-            background-color: rgba(255, 255, 255, 0.24);
+        #hero .hero-dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            height: 44px;
+            padding: 0 22px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.14);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+        #hero .hero-dot {
+            width: 8px;
+            height: 8px;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+        }
+        #hero .hero-dot.is-active {
+            background: #ffffff;
         }
 
         /* Tablet: Überschrift 48 px, Untertitel 24 px */
         @media (min-width: 768px) {
-            .hero-slide {
-                padding: 36px 40px 68px;
+            #hero .hero-slide {
+                padding: 24px 40px 70px;
             }
-            #banner h1 {
+            #hero h1 {
                 font-size: 48px;
                 margin-bottom: 8px;
             }
-            #banner .hero-sub {
+            #hero .hero-sub {
                 font-size: 24px;
                 margin-bottom: 20px;
             }
-            .hero-buttons .apple-btn {
+            #hero .hero-buttons .apple-btn {
                 font-size: 17px;
                 padding: 11px 22px;
             }
         }
         /* Laptop und Desktop (wie Apple): Überschrift 56 px, Untertitel 28 px */
         @media (min-width: 1068px) {
-            #banner h1 {
+            #hero h1 {
                 font-size: 56px;
                 line-height: 1.07;
                 letter-spacing: -0.005em;
             }
-            #banner .hero-sub {
+            #hero .hero-sub {
                 font-size: 28px;
                 line-height: 1.14;
                 margin-bottom: 22px;
@@ -550,12 +533,11 @@
             max-width: 980px;
         }
 
-        /* ----- Modell-Kacheln nach dem Vorbild der Apple-Kacheln (Watch Ultra / MacBook Air) -----
-           Zwei Kacheln nebeneinander mit schmalem Abstand, fast randlos.
+        /* ----- Modell-Kacheln nach dem Vorbild der Apple-Kacheln (MacBook Air) -----
+           Zwei weiße Kacheln nebeneinander mit schmalem Abstand, fast randlos.
            Von oben nach unten: Modellname, kurzer Text, zwei Knöpfe, Bild, Farben und Größen. */
         .models-wrap {
             padding: 0 12px;
-            margin-bottom: 12px;
         }
         .models-grid {
             display: grid;
@@ -563,6 +545,9 @@
             gap: 12px;
         }
         .model-tile {
+            --tile-ink: #1d1d1f;
+            --tile-sub: #6e6e73;
+            --tile-line: #d2d2d7;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -570,22 +555,8 @@
             min-height: 640px;
             padding: 40px 20px 0;
             overflow: hidden;
-            background-color: var(--tile-bg);
+            background-color: #ffffff;
             color: var(--tile-ink);
-        }
-        /* Schwarze Kachel (Basis-Modell) */
-        .tile-dark {
-            --tile-bg: #000000;
-            --tile-ink: #f5f5f7;
-            --tile-sub: #a1a1a6;
-            --tile-line: #424245;
-        }
-        /* Weiße Kachel (Pro-Modell) */
-        .tile-light {
-            --tile-bg: #ffffff;
-            --tile-ink: #1d1d1f;
-            --tile-sub: #6e6e73;
-            --tile-line: #d2d2d7;
         }
         .facts .model-tile .model-name {
             font-family: var(--font);
@@ -616,13 +587,13 @@
             padding: 8px 18px;
             margin: 0;
         }
-        /* Auf der weißen Kachel: Umrissknopf in dunklerem Blau (wie bei Apple) */
-        .tile-light .apple-btn-outline-blue {
+        /* Weiße Kachel: Umrissknopf in dunklerem Blau (wie bei Apple) */
+        .model-tile .apple-btn-outline-blue {
             border-color: var(--blue);
             color: var(--blue);
         }
-        .tile-light .apple-btn-outline-blue:hover,
-        .tile-light .apple-btn-outline-blue:focus {
+        .model-tile .apple-btn-outline-blue:hover,
+        .model-tile .apple-btn-outline-blue:focus {
             background-color: rgba(0, 113, 227, 0.08);
             border-color: var(--blue);
             color: var(--blue);
@@ -647,15 +618,7 @@
             height: 100%;
             margin: 0 auto;
             object-fit: contain;
-        }
-        /* Weiße Kachel: weißer Bildhintergrund verschwindet */
-        .tile-light .model-img {
             mix-blend-mode: multiply;
-        }
-        /* Schwarze Kachel ohne eigenes Dunkel-Bild: Bildränder weich ins Schwarz ausblenden */
-        .model-img.is-light-photo {
-            -webkit-mask-image: radial-gradient(ellipse 62% 60% at 50% 50%, #000 62%, transparent 100%);
-            mask-image: radial-gradient(ellipse 62% 60% at 50% 50%, #000 62%, transparent 100%);
         }
 
         /* Farben und Größen unter dem Bild */
@@ -692,7 +655,7 @@
             height: 24px;
             border-radius: 50%;
             border: 1px solid var(--tile-line);
-            box-shadow: 0 0 0 3px var(--tile-bg), 0 0 0 4px var(--tile-line);
+            box-shadow: 0 0 0 3px #ffffff, 0 0 0 4px var(--tile-line);
         }
         .swatch-white {
             background-color: #ffffff;
@@ -700,9 +663,6 @@
         .swatch-black {
             background-color: #1d1d1f;
             border-color: #1d1d1f;
-        }
-        .tile-dark .swatch-black {
-            border-color: #6e6e73;
         }
         .size-chips {
             display: flex;
@@ -738,17 +698,79 @@
             white-space: nowrap;
         }
 
-        /* Bildfeld Montage: Bild immer vollständig sichtbar */
-        .mount-photo img {
-            display: block;
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+        /* ===== Abschnitt "Spiralförderung" (schwarz) ===== */
+        #spiral {
+            background: #000000 !important;
+            color: #f5f5f7;
+        }
+        #spiral h1 {
+            color: #f5f5f7;
+            margin: 0 0 32px;
+            max-width: 980px;
+        }
+        #spiral .info-lead {
+            font-family: var(--font);
+            font-size: 17px;
+            line-height: 1.5;
+            color: #d2d2d7;
+            margin: 0 0 24px;
+            max-width: 860px;
+        }
+        #spiral .spec .info-label {
+            color: var(--orange-on-dark);
+        }
+        #spiral .spec .spec-value {
+            color: #f5f5f7;
+        }
+        #spiral .spec .spec-note {
+            color: var(--grey-dark-bg);
+        }
+        #spiral .spiral-caption {
+            color: var(--grey-dark-bg);
+        }
+        /* Schema auf weißer Karte, damit es auf Schwarz gut lesbar bleibt */
+        #spiral .spiral-figure img {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 10px;
         }
 
-        /* Informationskarten (Spiralförderung, Technische Daten): weiße Karten */
-        .facts-rest {
-            margin-top: 12px;
+        /* Spiralförderung: Text links, Schema rechts daneben.
+           Bildbreite anpassen über flex: 0 0 270px */
+        .spiral-row {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: flex-start;
+            gap: 32px;
+            margin-bottom: 0;
+        }
+        .spiral-row .info-lead {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+        .spiral-figure {
+            flex: 0 0 270px;
+            margin: 0 0 14px;
+            text-align: center;
+        }
+        .spiral-figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+        .spiral-caption {
+            font-family: var(--font);
+            font-size: 12px;
+            line-height: 1.4;
+            color: var(--grey);
+            margin: 8px 0 0;
+        }
+
+        /* ===== Abschnitt "Technische Daten" + Montage (hellgrau) ===== */
+        #tech {
+            background: var(--bg-light) !important;
+            color: var(--ink);
         }
         .facts-info {
             background-color: #ffffff;
@@ -756,7 +778,7 @@
             padding: 36px 36px 16px;
             margin-bottom: 24px;
         }
-        .facts .info-title {
+        .info-title {
             font-family: var(--font);
             font-weight: 600;
             font-size: 24px;
@@ -764,14 +786,6 @@
             letter-spacing: -0.02em;
             color: var(--ink);
             margin: 0 0 18px;
-        }
-        .facts-info .info-lead {
-            font-family: var(--font);
-            font-size: 17px;
-            line-height: 1.5;
-            color: var(--ink);
-            margin: 0 0 24px;
-            max-width: 860px;
         }
         .spec-grid {
             display: grid;
@@ -826,38 +840,6 @@
         .spec-grid .spec:nth-child(3) .spec-icon { color: var(--orange); }
         .spec-grid .spec:nth-child(4) .spec-icon { color: var(--purple); }
 
-        /* Spiralförderung: Text links, Schema rechts daneben.
-           Bildbreite anpassen über flex: 0 0 270px */
-        .spiral-row {
-            display: flex;
-            flex-wrap: nowrap;
-            align-items: flex-start;
-            gap: 32px;
-            margin-bottom: 0;
-        }
-        .spiral-row .info-lead {
-            flex: 1 1 0;
-            min-width: 0;
-        }
-        .spiral-figure {
-            flex: 0 0 270px;
-            margin: 0 0 14px;
-            text-align: center;
-        }
-        .spiral-figure img {
-            display: block;
-            width: 100%;
-            height: auto;
-            margin: 0 auto;
-        }
-        .spiral-caption {
-            font-family: var(--font);
-            font-size: 12px;
-            line-height: 1.4;
-            color: var(--grey);
-            margin: 8px 0 0;
-        }
-
         /* Montage */
         .mount {
             display: flex;
@@ -878,6 +860,12 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+        }
+        .mount-photo img {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
         .mount-text {
             flex: 1 1 0;
@@ -1227,89 +1215,73 @@
         
         <!-- main header ends-->
 
-        <section id="banner" class="banner">
-            
-            <div class="container">
-            <!-- data-interval: Zeit pro Slide in Millisekunden (9000 = 9 Sekunden) -->
-            <div id="ghughu-banner-carousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="9000">
-              
-               <!-- Indicators -->
-                  <ol class="carousel-indicators">
-                    <li data-target="#ghughu-banner-carousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#ghughu-banner-carousel" data-slide-to="1"></li>
-                    <li data-target="#ghughu-banner-carousel" data-slide-to="2"></li>
-                  </ol>
-
-              <!-- Wrapper for slides -->
-              <div class="carousel-inner" role="listbox">
+        <!-- ================= STARTBEREICH (eigener Slider) ================= -->
+        <!-- Drei Folien: Überschrift, Untertitel, zwei Knöpfe, Bild. Wechsel automatisch alle 9 Sekunden (im Script unten: INTERVAL). -->
+        <div id="hero">
+            <div class="hero-stage">
 
                 <!-- Folie 1 -->
-                <div class="item active banner-item">
-                    <div class="hero-slide">
-                        <div class="hero-text">
-                            <h1 class="animated fadeInUp delay-2">LATEHUB.</h1>
-                            <p class="hero-sub animated fadeInUp delay-3">Der Automat für Ihre Location.</p>
-                            <div class="hero-buttons animated fadeInUp delay-3">
-                                <a href="#facts" class="apple-btn apple-btn-primary">Mehr erfahren</a>
-                                <a href="#cta" class="apple-btn apple-btn-outline-blue">Anfragen</a>
-                            </div>
+                <div class="hero-slide is-active">
+                    <div class="hero-text">
+                        <h1>LATEHUB.</h1>
+                        <p class="hero-sub">Der Automat für Ihre Location.</p>
+                        <div class="hero-buttons">
+                            <a href="#facts" class="apple-btn apple-btn-primary">Mehr erfahren</a>
+                            <a href="#cta" class="apple-btn apple-btn-outline-blue">Anfragen</a>
                         </div>
-                        <div class="hero-media">
-                            <img src="images/banner-carousel/carouselpic1.png" class="hero-img animated fadeInUp delay-4" alt="latehub Automat" decoding="async">
-                        </div>
+                    </div>
+                    <div class="hero-media">
+                        <img src="images/banner-carousel/carouselpic1.png" class="hero-img" alt="latehub Automat" decoding="async">
                     </div>
                 </div>
 
                 <!-- Folie 2 -->
-                <div class="item banner-item">
-                    <div class="hero-slide">
-                        <div class="hero-text">
-                            <h1 class="animated fadeInUp delay-2">Bargeldlos bezahlen.</h1>
-                            <p class="hero-sub animated fadeInUp delay-3">Kontaktlos, schnell und sicher.</p>
-                            <div class="hero-buttons animated fadeInUp delay-3">
-                                <a href="#facts" class="apple-btn apple-btn-primary">Mehr erfahren</a>
-                                <a href="#cta" class="apple-btn apple-btn-outline-blue">Anfragen</a>
-                            </div>
+                <div class="hero-slide" aria-hidden="true">
+                    <div class="hero-text">
+                        <h1>Bargeldlos bezahlen.</h1>
+                        <p class="hero-sub">Kontaktlos, schnell und sicher.</p>
+                        <div class="hero-buttons">
+                            <a href="#facts" class="apple-btn apple-btn-primary">Mehr erfahren</a>
+                            <a href="#cta" class="apple-btn apple-btn-outline-blue">Anfragen</a>
                         </div>
-                        <div class="hero-media">
-                            <img src="images/banner-carousel/carouselpic2.png" class="hero-img animated fadeInUp delay-4" alt="Kontaktlose Zahlung am Automaten" decoding="async">
-                        </div>
+                    </div>
+                    <div class="hero-media">
+                        <img src="images/banner-carousel/carouselpic2.png" class="hero-img" alt="Kontaktlose Zahlung am Automaten" decoding="async">
                     </div>
                 </div>
 
                 <!-- Folie 3 -->
-                <div class="item banner-item">
-                    <div class="hero-slide">
-                        <div class="hero-text">
-                            <h1 class="animated fadeInUp delay-2">Verkauf ab 18.</h1>
-                            <p class="hero-sub animated fadeInUp delay-3">Sicher geprüft, ganz ohne Personal.</p>
-                            <div class="hero-buttons animated fadeInUp delay-3">
-                                <a href="#facts" class="apple-btn apple-btn-primary">Mehr erfahren</a>
-                                <a href="#cta" class="apple-btn apple-btn-outline-blue">Anfragen</a>
-                            </div>
+                <div class="hero-slide" aria-hidden="true">
+                    <div class="hero-text">
+                        <h1>Verkauf ab 18.</h1>
+                        <p class="hero-sub">Sicher geprüft, ganz ohne Personal.</p>
+                        <div class="hero-buttons">
+                            <a href="#facts" class="apple-btn apple-btn-primary">Mehr erfahren</a>
+                            <a href="#cta" class="apple-btn apple-btn-outline-blue">Anfragen</a>
                         </div>
-                        <div class="hero-media">
-                            <img src="images/banner-carousel/carouselpic3.png" class="hero-img animated fadeInUp delay-4" alt="Altersverifikation am Automaten" decoding="async">
-                        </div>
+                    </div>
+                    <div class="hero-media">
+                        <img src="images/banner-carousel/carouselpic3.png" class="hero-img" alt="Altersverifikation am Automaten" decoding="async">
                     </div>
                 </div>
 
-              </div>
+                <!-- Steuerung -->
+                <div class="hero-controls">
+                    <button type="button" class="hero-ctrl hero-prev" aria-label="Zurück"><img src="images/banner-carousel/arrow-left.svg" alt=""></button>
+                    <div class="hero-dots">
+                        <button type="button" class="hero-dot is-active" aria-label="Folie 1"></button>
+                        <button type="button" class="hero-dot" aria-label="Folie 2"></button>
+                        <button type="button" class="hero-dot" aria-label="Folie 3"></button>
+                    </div>
+                    <button type="button" class="hero-ctrl hero-next" aria-label="Weiter"><img src="images/banner-carousel/arrow-right.svg" alt=""></button>
+                </div>
 
-              <!-- Controls -->
-              <a class="left carousel-control" href="#ghughu-banner-carousel" role="button" data-slide="prev">
-                <i><img src="images/banner-carousel/arrow-left.svg" alt="Zurück"></i>
-              </a>
-              <a class="right carousel-control" href="#ghughu-banner-carousel" role="button" data-slide="next">
-                <i><img src="images/banner-carousel/arrow-right.svg" alt="Weiter"></i>
-              </a>
-             </div> 
             </div>
-        </section>
+        </div>
+        <!-- ================= STARTBEREICH ENDE ================= -->
 
-        <!-- ================= UNSERE AUTOMATEN ================= -->
-        <!-- Aufbau: 1) zwei Modell-Kacheln (schwarz / weiß) mit Bild, Farben und Größen, 2) Spiralförderung mit Schema, 3) Technische Daten, 4) Montage mit Bild, 5) Hinweis mit WhatsApp- und E-Mail-Knopf. -->
-        <!-- Bilder in images/banner-carousel/ : modell-basic.png (optional zusätzlich modell-basic-dark.png mit schwarzem/transparentem Hintergrund), modell-pro.png, spiralinfo.png, infofacts5.png -->
+        <!-- ================= UNSERE AUTOMATEN (hell) ================= -->
+        <!-- Zwei weiße Modell-Kacheln mit Bild, Farben und Größen. Bilder: images/banner-carousel/modell-basic.png und modell-pro.png -->
         <!-- Fehlt ein Bild, wird sein Feld automatisch ausgeblendet. -->
         <section id="facts" class="facts page">
             <div class="container wow fadeInUp">
@@ -1320,8 +1292,8 @@
             <div class="models-wrap">
                 <div class="models-grid">
 
-                    <!-- Basis-Modell: schwarze Kachel -->
-                    <article class="model-tile tile-dark">
+                    <!-- Basis-Modell -->
+                    <article class="model-tile">
                         <h2 class="model-name">Basis-Modell</h2>
                         <p class="model-sub">Schlicht, unauffällig, überall einsetzbar.</p>
                         <div class="tile-btns">
@@ -1329,8 +1301,7 @@
                             <a href="https://wa.me/4915906125600?text=Hallo%20latehub%2C%20ich%20interessiere%20mich%20f%C3%BCr%20das%20Basis-Modell." target="_blank" rel="noopener" class="apple-btn apple-btn-outline-blue">Anfragen</a>
                         </div>
                         <div class="model-visual">
-                            <!-- Wenn modell-basic-dark.png (schwarzer/transparenter Hintergrund) existiert, wird es genommen, sonst modell-basic.png -->
-                            <img class="model-img" src="images/banner-carousel/modell-basic-dark.png" alt="Basis-Modell" loading="lazy" decoding="async" onerror="this.onerror=function(){this.parentNode.style.display='none'};this.className+=' is-light-photo';this.src='images/banner-carousel/modell-basic.png';">
+                            <img class="model-img" src="images/banner-carousel/modell-basic.png" alt="Basis-Modell" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
                         </div>
                         <div class="model-options">
                             <div class="option-group">
@@ -1356,8 +1327,8 @@
                         </div>
                     </article>
 
-                    <!-- Pro-Modell: weiße Kachel -->
-                    <article class="model-tile tile-light">
+                    <!-- Pro-Modell -->
+                    <article class="model-tile">
                         <h2 class="model-name">Pro-Modell</h2>
                         <p class="model-sub">Mit LED-Modul für Club und Bar.</p>
                         <div class="tile-btns">
@@ -1393,37 +1364,44 @@
 
                 </div>
             </div>
+        </section>
+        <!-- ================= AUTOMATEN ENDE ================= -->
 
-            <div class="container wow fadeInUp facts-rest">
-
-                <!-- Spiralförderung -->
-                <div class="facts-info" id="spiral">
-                    <h2 class="info-title">Spiralförderung</h2>
-                    <div class="spiral-row">
-                        <p class="info-lead">Die Produkte werden über eine Spiralförderung ausgegeben: Eine rotierende Spirale befördert den Artikel zuverlässig aus dem Fach. Der Abstand der Spiralwindungen bestimmt dabei Kapazität und Produktgröße. Dadurch sind verschiedene Kapazitäten möglich, passend zu Ihrem Sortiment. Die Automaten sind mit 10 oder 15 Slots verfügbar, wobei jeder Slot eine Spirale enthält. Mit 10 Slots beträgt die Tiefe des Automaten 27 cm, mit 15 Slots 36 cm.</p>
-                        <div class="spiral-figure">
-                            <img src="images/banner-carousel/spiralinfo.png" width="1400" height="1010" alt="Schema: Automat mit 10 Slots (270 mm Tiefe) und mit 15 Slots (355 mm Tiefe), Höhe und Breite bleiben gleich" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
-                            <p class="spiral-caption">(Beispiel: Konfiguration mit 15 Slots – Tiefe des Automaten 36 cm)</p>
-                        </div>
-                    </div>
-                    <div class="spec-grid spec-grid-3">
-                        <div class="spec">
-                            <span class="info-label">Zwei Größen</span>
-                            <span class="spec-value">10 oder 15 Slots</span>
-                            <span class="spec-note">Basis- und Pro-Modell sind jeweils mit 10 oder 15 Slots verfügbar. Ein Slot enthält eine Spirale.</span>
-                        </div>
-                        <div class="spec">
-                            <span class="info-label">Enger Spiralabstand</span>
-                            <span class="spec-value">Mehr Produkte</span>
-                            <span class="spec-note">Pro Fach finden mehr Artikel Platz, die Gesamtkapazität steigt.</span>
-                        </div>
-                        <div class="spec">
-                            <span class="info-label">Größerer Spiralabstand</span>
-                            <span class="spec-value">Größere Produkte</span>
-                            <span class="spec-note">Auch voluminösere Artikel lassen sich im Automaten anbieten.</span>
-                        </div>
+        <!-- ================= SPIRALFÖRDERUNG (schwarz) ================= -->
+        <section id="spiral" class="spiral-section page">
+            <div class="container wow fadeInUp">
+                <h1>Spiralförderung. <span class="muted">Passend zu Ihrem Sortiment.</span></h1>
+                <div class="spiral-row">
+                    <p class="info-lead">Die Produkte werden über eine Spiralförderung ausgegeben: Eine rotierende Spirale befördert den Artikel zuverlässig aus dem Fach. Der Abstand der Spiralwindungen bestimmt dabei Kapazität und Produktgröße. Dadurch sind verschiedene Kapazitäten möglich, passend zu Ihrem Sortiment. Die Automaten sind mit 10 oder 15 Slots verfügbar, wobei jeder Slot eine Spirale enthält. Mit 10 Slots beträgt die Tiefe des Automaten 27 cm, mit 15 Slots 36 cm.</p>
+                    <div class="spiral-figure">
+                        <img src="images/banner-carousel/spiralinfo.png" width="1400" height="1010" alt="Schema: Automat mit 10 Slots (270 mm Tiefe) und mit 15 Slots (355 mm Tiefe), Höhe und Breite bleiben gleich" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+                        <p class="spiral-caption">(Beispiel: Konfiguration mit 15 Slots – Tiefe des Automaten 36 cm)</p>
                     </div>
                 </div>
+                <div class="spec-grid spec-grid-3">
+                    <div class="spec">
+                        <span class="info-label">Zwei Größen</span>
+                        <span class="spec-value">10 oder 15 Slots</span>
+                        <span class="spec-note">Basis- und Pro-Modell sind jeweils mit 10 oder 15 Slots verfügbar. Ein Slot enthält eine Spirale.</span>
+                    </div>
+                    <div class="spec">
+                        <span class="info-label">Enger Spiralabstand</span>
+                        <span class="spec-value">Mehr Produkte</span>
+                        <span class="spec-note">Pro Fach finden mehr Artikel Platz, die Gesamtkapazität steigt.</span>
+                    </div>
+                    <div class="spec">
+                        <span class="info-label">Größerer Spiralabstand</span>
+                        <span class="spec-value">Größere Produkte</span>
+                        <span class="spec-note">Auch voluminösere Artikel lassen sich im Automaten anbieten.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ================= SPIRALFÖRDERUNG ENDE ================= -->
+
+        <!-- ================= TECHNISCHE DATEN + MONTAGE (hell) ================= -->
+        <section id="tech" class="tech page">
+            <div class="container wow fadeInUp">
 
                 <!-- Technische Daten -->
                 <div class="facts-info">
@@ -1478,7 +1456,7 @@
 
             </div>
         </section>
-        <!-- ================= AUTOMATEN ENDE ================= -->
+        <!-- ================= TECHNISCHE DATEN ENDE ================= -->
 
         <section id="who-are-we" class="who-are-we page">
             <div class="container wow fadeInUp">
@@ -1648,6 +1626,70 @@
         var l = document.getElementById('loader-wrapper');
         if (l) { l.style.display = 'none'; }
       }, 2000);
+    </script>
+
+    <!-- Startbereich-Slider: Pfeile, Punkte, Wischen, automatischer Wechsel -->
+    <script>
+      (function () {
+        var hero = document.getElementById('hero');
+        if (!hero) { return; }
+
+        var INTERVAL = 9000; /* Zeit pro Folie in Millisekunden (9000 = 9 Sekunden) */
+        var slides = [].slice.call(hero.querySelectorAll('.hero-slide'));
+        var dots = [].slice.call(hero.querySelectorAll('.hero-dot'));
+        var prevBtn = hero.querySelector('.hero-prev');
+        var nextBtn = hero.querySelector('.hero-next');
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var current = 0;
+        var timer = null;
+        var touchStartX = null;
+
+        function show(index) {
+          current = (index + slides.length) % slides.length;
+          slides.forEach(function (slide, i) {
+            var active = (i === current);
+            slide.classList.toggle('is-active', active);
+            slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+          });
+          dots.forEach(function (dot, i) {
+            dot.classList.toggle('is-active', i === current);
+          });
+        }
+
+        function restart() {
+          if (timer) { clearInterval(timer); timer = null; }
+          if (!reduceMotion) {
+            timer = setInterval(function () { show(current + 1); }, INTERVAL);
+          }
+        }
+
+        if (prevBtn) {
+          prevBtn.addEventListener('click', function () { show(current - 1); restart(); });
+        }
+        if (nextBtn) {
+          nextBtn.addEventListener('click', function () { show(current + 1); restart(); });
+        }
+        dots.forEach(function (dot, i) {
+          dot.addEventListener('click', function () { show(i); restart(); });
+        });
+
+        /* Wischen auf Touchgeräten */
+        hero.addEventListener('touchstart', function (e) {
+          touchStartX = e.touches[0].clientX;
+        }, { passive: true });
+        hero.addEventListener('touchend', function (e) {
+          if (touchStartX === null) { return; }
+          var dx = e.changedTouches[0].clientX - touchStartX;
+          touchStartX = null;
+          if (Math.abs(dx) > 50) {
+            show(dx < 0 ? current + 1 : current - 1);
+            restart();
+          }
+        }, { passive: true });
+
+        show(0);
+        restart();
+      })();
     </script>
 
     <!-- Bilderband: Autoscroll, Pause bei Mausberührung, Ziehen/Wischen, pausiert außerhalb des Sichtbereichs -->
