@@ -691,22 +691,40 @@
             }
         }
 
-        /* ===== Abschnitt "Spiralförderung" (schwarz) ===== */
+        /* ===== Abschnitt "Spiralförderung" (schwarz) =====
+           Links: Text und die drei Infos darunter. Rechts: Bild auf Höhe des Textes.
+           Abstände einstellen: padding-top / padding-bottom (oben und unten im schwarzen Abschnitt),
+           gap in .spiral-row (Abstand zwischen Text und Bild), Bildbreite über flex: 0 0 270px. */
         #spiral {
             background: #000000 !important;
             color: #f5f5f7;
+            padding-top: 64px;
+            padding-bottom: 64px;
         }
         #spiral h1 {
             color: #f5f5f7;
-            margin: 0 0 32px;
+            margin: 0 0 24px;
             max-width: 980px;
+        }
+        .spiral-row {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: flex-start;
+            gap: 40px;
+        }
+        .spiral-copy {
+            flex: 1 1 0;
+            min-width: 0;
         }
         #spiral .info-lead {
             font-size: 17px;
             line-height: 1.5;
             color: #d2d2d7;
-            margin: 0 0 24px;
+            margin: 0 0 28px;
             max-width: 860px;
+        }
+        #spiral .spec {
+            padding-bottom: 0;
         }
         #spiral .spec .info-label {
             color: var(--orange-on-dark);
@@ -718,22 +736,9 @@
         #spiral .spiral-caption {
             color: var(--grey-dark-bg);
         }
-
-        /* Spiralförderung: Text links, Schema rechts daneben.
-           Bildbreite anpassen über flex: 0 0 270px */
-        .spiral-row {
-            display: flex;
-            flex-wrap: nowrap;
-            align-items: flex-start;
-            gap: 32px;
-        }
-        .spiral-row .info-lead {
-            flex: 1 1 0;
-            min-width: 0;
-        }
         .spiral-figure {
             flex: 0 0 270px;
-            margin: 0 0 14px;
+            margin: 0;
             text-align: center;
         }
         /* Schema auf weißer Karte, damit es auf Schwarz gut lesbar bleibt */
@@ -751,17 +756,35 @@
             line-height: 1.4;
             margin: 8px 0 0;
         }
-        /* Handy: Schema rutscht unter den Text und nutzt die volle Breite */
+        /* Handy: erst Text, dann Bild, dann die drei Infos, mit vollem Platz in der Breite */
         @media (max-width: 767px) {
+            #spiral {
+                padding-top: 44px;
+                padding-bottom: 44px;
+            }
             .spiral-row {
                 flex-direction: column;
                 gap: 0;
             }
+            .spiral-copy {
+                display: contents;
+            }
+            #spiral .info-lead {
+                order: 1;
+                margin-bottom: 20px;
+            }
             .spiral-figure {
+                order: 2;
                 flex: 0 0 auto;
                 width: 100%;
                 max-width: 360px;
-                margin: 0 auto 20px;
+                margin: 0 auto 24px;
+            }
+            .spiral-copy .spec-grid {
+                order: 3;
+            }
+            #spiral .spec {
+                padding-bottom: 20px;
             }
         }
 
@@ -1301,27 +1324,29 @@
         <div class="container wow fadeInUp">
             <h1>Spiralförderung. <span class="muted">Passend zu Ihrem Sortiment.</span></h1>
             <div class="spiral-row">
-                <p class="info-lead">Die Produkte werden über eine Spiralförderung ausgegeben: Eine rotierende Spirale befördert den Artikel zuverlässig aus dem Fach. Jeder Slot enthält eine eigene Spirale, deren Windungsabstand bestimmt, wie viele und wie große Produkte hineinpassen.</p>
+                <div class="spiral-copy">
+                    <p class="info-lead">Die Produkte werden über eine Spiralförderung ausgegeben: Eine rotierende Spirale befördert den Artikel zuverlässig aus dem Fach. Jeder Slot enthält eine eigene Spirale, deren Windungsabstand bestimmt, wie viele und wie große Produkte hineinpassen.</p>
+                    <div class="spec-grid spec-grid-3">
+                        <div class="spec">
+                            <span class="info-label">Zwei Größen</span>
+                            <span class="spec-value">10 oder 15 Slots</span>
+                            <span class="spec-note">Höhe und Breite bleiben gleich, nur die Tiefe wächst mit der Slot-Zahl.</span>
+                        </div>
+                        <div class="spec">
+                            <span class="info-label">Enger Spiralabstand</span>
+                            <span class="spec-value">Mehr Produkte</span>
+                            <span class="spec-note">Pro Fach finden mehr Artikel Platz, die Gesamtkapazität steigt.</span>
+                        </div>
+                        <div class="spec">
+                            <span class="info-label">Größerer Spiralabstand</span>
+                            <span class="spec-value">Größere Produkte</span>
+                            <span class="spec-note">Auch voluminösere Artikel lassen sich im Automaten anbieten.</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="spiral-figure">
                     <img src="images/banner-carousel/spiralinfo.png" width="1400" height="1010" alt="Schema: Automat mit 10 Slots (270 mm Tiefe) und mit 15 Slots (355 mm Tiefe), Höhe und Breite bleiben gleich" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
                     <p class="spiral-caption">(Beispiel: Konfiguration mit 15 Slots – Tiefe des Automaten 36 cm)</p>
-                </div>
-            </div>
-            <div class="spec-grid spec-grid-3">
-                <div class="spec">
-                    <span class="info-label">Zwei Größen</span>
-                    <span class="spec-value">10 oder 15 Slots</span>
-                    <span class="spec-note">Höhe und Breite bleiben gleich, nur die Tiefe wächst mit der Slot-Zahl.</span>
-                </div>
-                <div class="spec">
-                    <span class="info-label">Enger Spiralabstand</span>
-                    <span class="spec-value">Mehr Produkte</span>
-                    <span class="spec-note">Pro Fach finden mehr Artikel Platz, die Gesamtkapazität steigt.</span>
-                </div>
-                <div class="spec">
-                    <span class="info-label">Größerer Spiralabstand</span>
-                    <span class="spec-value">Größere Produkte</span>
-                    <span class="spec-note">Auch voluminösere Artikel lassen sich im Automaten anbieten.</span>
                 </div>
             </div>
         </div>
