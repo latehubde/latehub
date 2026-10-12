@@ -692,19 +692,17 @@
         }
 
         /* ===== Abschnitt "Spiralförderung" (schwarz) =====
-           Links: Text und die drei Infos darunter. Rechts: Bild auf Höhe des Textes.
-           Abstände einstellen: padding-top / padding-bottom (oben und unten im schwarzen Abschnitt),
-           gap in .spiral-row (Abstand zwischen Text und Bild), Bildbreite über flex: 0 0 270px. */
+           Links: Überschrift, Text und die drei Infos. Rechts: Bild, das auf Höhe der Überschrift beginnt.
+           Einstellen:
+           - padding-top / padding-bottom = Abstand oben und unten im schwarzen Abschnitt
+           - gap in .spiral-row = Abstand zwischen Text und Bild
+           - margin-top in .spiral-figure = Feinabstimmung der Bildhöhe zur Überschrift (0 = ganz oben)
+           - flex: 0 0 270px in .spiral-figure = Bildbreite */
         #spiral {
             background: #000000 !important;
             color: #f5f5f7;
-            padding-top: 64px;
-            padding-bottom: 64px;
-        }
-        #spiral h1 {
-            color: #f5f5f7;
-            margin: 0 0 24px;
-            max-width: 980px;
+            padding-top: 56px;
+            padding-bottom: 48px;
         }
         .spiral-row {
             display: flex;
@@ -716,11 +714,16 @@
             flex: 1 1 0;
             min-width: 0;
         }
+        #spiral h1 {
+            color: #f5f5f7;
+            margin: 0 0 20px;
+            max-width: 980px;
+        }
         #spiral .info-lead {
             font-size: 17px;
             line-height: 1.5;
             color: #d2d2d7;
-            margin: 0 0 28px;
+            margin: 0 0 24px;
             max-width: 860px;
         }
         #spiral .spec {
@@ -738,7 +741,7 @@
         }
         .spiral-figure {
             flex: 0 0 270px;
-            margin: 0;
+            margin: 6px 0 0;
             text-align: center;
         }
         /* Schema auf weißer Karte, damit es auf Schwarz gut lesbar bleibt */
@@ -756,11 +759,11 @@
             line-height: 1.4;
             margin: 8px 0 0;
         }
-        /* Handy: erst Text, dann Bild, dann die drei Infos, mit vollem Platz in der Breite */
+        /* Handy: Überschrift, Text, Bild, dann die drei Infos, mit voller Breite */
         @media (max-width: 767px) {
             #spiral {
-                padding-top: 44px;
-                padding-bottom: 44px;
+                padding-top: 40px;
+                padding-bottom: 36px;
             }
             .spiral-row {
                 flex-direction: column;
@@ -768,6 +771,10 @@
             }
             .spiral-copy {
                 display: contents;
+            }
+            #spiral h1 {
+                order: 0;
+                margin-bottom: 16px;
             }
             #spiral .info-lead {
                 order: 1;
@@ -1322,9 +1329,9 @@
     <!-- ================= SPIRALFÖRDERUNG (schwarz) ================= -->
     <section id="spiral" class="spiral-section page">
         <div class="container wow fadeInUp">
-            <h1>Spiralförderung. <span class="muted">Passend zu Ihrem Sortiment.</span></h1>
             <div class="spiral-row">
                 <div class="spiral-copy">
+                    <h1>Spiralförderung. <span class="muted">Passend zu Ihrem Sortiment.</span></h1>
                     <p class="info-lead">Die Produkte werden über eine Spiralförderung ausgegeben: Eine rotierende Spirale befördert den Artikel zuverlässig aus dem Fach. Jeder Slot enthält eine eigene Spirale, deren Windungsabstand bestimmt, wie viele und wie große Produkte hineinpassen.</p>
                     <div class="spec-grid spec-grid-3">
                         <div class="spec">
