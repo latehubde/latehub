@@ -60,34 +60,11 @@ $(window).on("load resize", function(){
 
 /**
  * ================================
- * GOOGLE MAPS                    
- * ================================
- */
-
-
-map=new GMaps({
-  div: '#map',
-  lat: 23.790223,
-  lng: 90.414036,
-})
-
-map.addMarker({
-        lat: 23.790223,
-        lng: 90.414036,
-        title: 'GhuGhu',
-        infoWindow: {
-            content: '<span class="map-header">Ghu Ghu Headquarters</span><span class="map-address">Build-A/6, Mirpur 14 , Dhaka</span'
-        }
-    });
-
-
-/**
- * ================================
  * CONTACT FORM                    
  * ================================
  */
 
-$('#contact-form').validate({
+if ($.fn.validate && $('#contact-form').length) $('#contact-form').validate({
 	rules:{
 		name:'required',
 		email: 'required',
