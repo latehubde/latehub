@@ -389,6 +389,17 @@
             }
         }
 
+        /* Lange Überschrift auf schmalen Handys: trennen und etwas kleiner */
+        #about-hero h1 {
+            overflow-wrap: anywhere;
+            hyphens: auto;
+        }
+        @media (max-width: 575px) {
+            #about-hero h1 {
+                font-size: clamp(24px, 8vw, 34px);
+            }
+        }
+
         /* ===== Footer (hellgrau, klein) ===== */
         #footer {
             background: var(--bg-light) !important;
